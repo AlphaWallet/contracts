@@ -251,6 +251,11 @@
           <name lang="zh">莫爾多維亞體育場</name>
           <name lang="es">Mordovia Arena</name>
         </entity>
+	<entity key="254">
+          <name lang="en">Block 71</name>
+          <name lang="zh">Block 71</name>
+          <name lang="es">Block 71</name>
+        </entity>
         <entity key="255">
           <name lang="en">UNSW Michael Crouch Innovation Center</name>
           <name lang="zh">新南威尔大学Michael Crouch创新中心</name>
