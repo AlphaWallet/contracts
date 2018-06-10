@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><asset><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><token><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
 <ds:SignedInfo>
 <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
 <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
@@ -114,6 +114,11 @@ EPUQyp2aDrV1aug=
       </redeem>
     </feature>
   </features>
+  <grouping>
+    <group bitmask="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" name="default">
+      <consecutive_groups/>
+    </group>
+  </grouping>
   <ordering>
     <order bitmask="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" name="default">
       <byName field="locality"/>
@@ -172,7 +177,8 @@ EPUQyp2aDrV1aug=
     Weiwu thought that it helps the developers if we use byte-fields
     instead of bit-fields.
   -->
-    <field bitmask="00000000000000000000000000000000FF000000000000000000000000000000" id="locality" type="Enumeration">
+    <field bitmask="00000000000000000000000000000000FF000000000000000000000000000000" attribute="locality" as="mapping"/>
+    <attribute id="locality">
       <name lang="en">City</name>
       <name lang="zh">城市</name>
       <name lang="es">Ciudad</name>
@@ -341,7 +347,7 @@ EPUQyp2aDrV1aug=
           <name lang="zh">待定</name>
         </entity>      
       </mapping>
-    </field>
+    </attribute>
     <field bitmask="0000000000000000000000000000000000FF0000000000000000000000000000" id="venue" type="Enumeration">
       <name lang="en">Venue</name>
       <name lang="zh">场馆</name>
@@ -742,4 +748,4 @@ EPUQyp2aDrV1aug=
       <name>№</name>
     </field>
   </fields>
-</asset>
+</token>
