@@ -339,7 +339,11 @@ EPUQyp2aDrV1aug=
 	<entity key="233">
           <name lang="en">TBC</name>
           <name lang="zh">待定</name>
-        </entity>      
+        </entity>     
+	<entity key="232">
+          <name lang="en">Hong Kong</name>
+          <name lang="zh">香港</name>
+        </entity> 
       </mapping>
     </field>
     <field bitmask="0000000000000000000000000000000000FF0000000000000000000000000000" id="venue" type="Enumeration">
@@ -521,7 +525,13 @@ EPUQyp2aDrV1aug=
           <name lang="en">Stratum</name>
           <name lang="zh">Stratum</name>
           <name lang="es">Stratum</name>
-        </entity>       
+        </entity>
+	  <entity key="237">
+	  <name lang="ru">Hong Kong Convention and Exhibition Centre</name>
+          <name lang="en">Hong Kong Convention and Exhibition Centre</name>
+          <name lang="zh">香港会议展览中心</name>
+          <name lang="es">Hong Kong Convention and Exhibition Centre</name>
+        </entity>
       </mapping>
     </field>
     <field bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000" id="time" type="BinaryTime">
@@ -733,7 +743,13 @@ EPUQyp2aDrV1aug=
           <name lang="ru">General Event</name>
           <name lang="en">General Event</name>
           <name lang="zh">通用活动</name>
-	  <name lang="es">General Event</name>	       
+	  <name lang="es">General Event</name>
+	</entity>
+	       <entity key="246">
+          <name lang="ru">AlphaWallet Meeting Slot</name>
+          <name lang="en">AlphaWallet Meeting Slot</name>
+          <name lang="zh">AlphaWallet面议机会</name>
+	  <name lang="es">AlphaWallet Meeting Slot</name>       
         </entity>
       
       </mapping>
