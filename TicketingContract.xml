@@ -12,9 +12,9 @@
 </ds:Reference>
 </ds:SignedInfo>
 <ds:SignatureValue>
-AfHVkz/Q1o2zBFCp5lzXdwYzaNKwrFiELjobk4OZvBf4aW3XEyF9poZD5u9gdZZUX+268xguj4jV
-R1rlDbA+BeC1AV3+89TzntEqUUzjZb6sk19+dHM2djNE/WRCE/mHJTzsgrYGH/8hZ0Go/9cD4mEV
-mnDWJGt8pRNDb1XnVtJuh3Vw
+rRcNvJ8OBJUbMsIRfez0dgj60F6RBNMhlO+zyfhyOeUFrBVhtI7tvXGETO8DlLrIi7IqRtpm6IFV
+GtJP0d3OQq1EHKsLQsB2EiTubH0cJ4TFcS+Sq3kFPE5y5JC7kZ/Eh2ZfzUzULwSG9Dqa3dyC/uQt
+dA0qFHlxCowBIey9bUDvoA==
 </ds:SignatureValue>
 <ds:KeyInfo>
 <ds:X509Data>
@@ -529,7 +529,8 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="zh">时间</name>
       <name lang="es">Tiempo</name>
       <name lang="ru">время</name>
-      <!-- keys used here are BinaryTime (RFC6019) -->
+      <!-- keys used here are BinaryTime (RFC6019) for backward compatibility,
+           don't copy this behaviour when creating new assets -->
       <origin as="mapping" bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000">
         <!-- $ TZ=Europe/Moscow date -d @1528988400 +%Y%m%d%H%M%S%z -->
         <option key="1528988400">
