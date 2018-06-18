@@ -1,6 +1,53 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<token>
-  <contract type="holding" id="holding_contract">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><token><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+<ds:DigestValue>wXV16NcSJu1zoFyOMwsob+uU0yhksya70FvvgdloeJA=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+AczVp86Er0b/firU347D013q4CpPzj6LHJd3MohKLwg26crxTYZL1AMhtgDUWEaLPVZfV0hmsEyN
+83JBC4iIngNTAIk2hEL+2U0ge4RafjF0anzmYZz4zgsLLHowhbXp+2IV0QuUTgd3raoL/0qTvx+j
+EZSaNisL7ZuAGhmrltcgszud
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:KeyName>Shankai</ds:KeyName>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFBzCCBK2gAwIBAgIQKCMFmlBLtxz6L27XkUOsHjAKBggqhkjOPQQDAjCBkDELMAkGA1UEBhMC
+R0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UE
+ChMRQ09NT0RPIENBIExpbWl0ZWQxNjA0BgNVBAMTLUNPTU9ETyBFQ0MgRG9tYWluIFZhbGlkYXRp
+b24gU2VjdXJlIFNlcnZlciBDQTAeFw0xODA1MTEwMDAwMDBaFw0xOTA1MTEyMzU5NTlaMFAxITAf
+BgNVBAsTGERvbWFpbiBDb250cm9sIFZhbGlkYXRlZDEUMBIGA1UECxMLUG9zaXRpdmVTU0wxFTAT
+BgNVBAMTDHNrc3RyYXZlbC5jbjCBmzAQBgcqhkjOPQIBBgUrgQQAIwOBhgAEADc2VNAGlEOcdqeU
+A0vaxIC8gCFb9FDF8ZrrlJwqhpO/ZmnTCWUfe4LoI1a37Zv7QejC2+vPhyP0q55PvUtJT9INARfc
+VaG5jRpTw3ukSF1+ww/E/T6YqtrRV44U7rSF8XPTH0CmDrJD6z/b2aCXwcix4PByn8O6skTdZXOj
+LEXifqcjo4IC4zCCAt8wHwYDVR0jBBgwFoAUu/oI4L9U7lr9FqQ1AgmppMjs/UswHQYDVR0OBBYE
+FGyswybdwCsAau7aZaBGFEcL2XXmMA4GA1UdDwEB/wQEAwIFgDAMBgNVHRMBAf8EAjAAMB0GA1Ud
+JQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBPBgNVHSAESDBGMDoGCysGAQQBsjEBAgIHMCswKQYI
+KwYBBQUHAgEWHWh0dHBzOi8vc2VjdXJlLmNvbW9kby5jb20vQ1BTMAgGBmeBDAECATBUBgNVHR8E
+TTBLMEmgR6BFhkNodHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9DT01PRE9FQ0NEb21haW5WYWxpZGF0
+aW9uU2VjdXJlU2VydmVyQ0EuY3JsMIGFBggrBgEFBQcBAQR5MHcwTwYIKwYBBQUHMAKGQ2h0dHA6
+Ly9jcnQuY29tb2RvY2EuY29tL0NPTU9ET0VDQ0RvbWFpblZhbGlkYXRpb25TZWN1cmVTZXJ2ZXJD
+QS5jcnQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9kb2NhLmNvbTApBgNVHREEIjAgggxz
+a3N0cmF2ZWwuY26CEHd3dy5za3N0cmF2ZWwuY24wggEEBgorBgEEAdZ5AgQCBIH1BIHyAPAAdgDu
+S723dc5guuFCaR+r4Z5mow9+X7By2IMAxHuJeqj9ywAAAWNOX8kpAAAEAwBHMEUCIEIb/jymAGpZ
+LG4umW1TbfCe/7Sr5MEIYknkdRdd6I6qAiEA2pHlmnby7PaQwoZrFGqIPQEyJ6oChl+7VRrcoA4t
+5JsAdgB0ftqDMa0zEJEhnM4lT0Jwwr/9XkIgCMY3NXnmEHvMVgAAAWNOX8mcAAAEAwBHMEUCIQC/
+LOBZaO136CYN7GYr+OODcLZ/AG2r7ge7BigCRSk8fQIgC/n33uxEZD+w3ENTxTdOhCTxvSW6BL71
+wFYJPkFHYWkwCgYIKoZIzj0EAwIDSAAwRQIhAIi6VxP/HzmR3rGw6f9M6FLiH0TNgn1EbARAluAV
+bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature>
+  <contract id="holding_contract" type="holding">
     <address network="1">0xA66A3F08068174e8F005112A8b2c7A507a822335</address>
     <address network="3">0xd8e5f58de3933e1e35f9c65eb72cb188674624f3</address>
     <name lang="ru">Ваучеры</name>
@@ -30,8 +77,8 @@
       <exclude>invited</exclude>
       <exclude>discounted</exclude>
       <gateway>https://482kdh4npg.execute-api.ap-southeast-1.amazonaws.com/dev/</gateway>
-      <message type="exclude" lang="en">%name% can't be traded on the market</message>
-      <message type="exclude" lang="zh">%name% 不能再在市场上交易</message>
+      <message lang="en" type="exclude">%name% can't be traded on the market</message>
+      <message lang="zh" type="exclude">%name% 不能再在市场上交易</message>
       <message type="include">Only %name% can be traded on the market</message>
       <message type="include">只有%name%才可以在市场上交易</message>
     </feature>
@@ -41,8 +88,8 @@
       <exclude>invited</exclude>
       <!-- buy and sell tokens on this contract -->
       <address network="1">0xdecafbaddecafbaddecafbaddecafbaddecafbad</address>
-      <message type="exclude" lang="en">%name% can't be traded on the market</message>
-      <message type="exclude" lang="zh">%name% 不能再在市场上交易</message>
+      <message lang="en" type="exclude">%name% can't be traded on the market</message>
+      <message lang="zh" type="exclude">%name% 不能再在市场上交易</message>
       <message type="include">Only %name% can be traded on the market</message>
       <message type="include">只有%name%才可以在市场上交易</message>
     </feature>
@@ -50,35 +97,35 @@
       <include>valid</include>
       <exclude>discounted</exclude>
       <prefix>https://app.awallet.io/</prefix>
-      <message type="exclude" lang="en">%name% can't be traded with Magic Link</message>
+      <message lang="en" type="exclude">%name% can't be traded with Magic Link</message>
       <message type="include">Only %name% can be traded with Magic Link</message>
-      <message type="exclude" lang="zh">%name% 不能用Magic Link交易</message>
-      <message type="include" lang="zh">只有末到期的票才可以用Magic Link交易</message>
+      <message lang="zh" type="exclude">%name% 不能用Magic Link交易</message>
+      <message lang="zh" type="include">只有末到期的票才可以用Magic Link交易</message>
     </feature>
     <feature type="transfer-link">
       <exclude>discounted</exclude>
       <exclude>invited</exclude>
       <prefix>https://app.awallet.io/</prefix>
-      <message type="exclude" lang="en">%name% can't be traded on the market</message>
-      <message type="exclude" lang="zh">%name% 不能再在市场上交易</message>
+      <message lang="en" type="exclude">%name% can't be traded on the market</message>
+      <message lang="zh" type="exclude">%name% 不能再在市场上交易</message>
     </feature>
     <feature type="feemaster">
       <exclude>expired</exclude>
       <feemaster>https://app.awallet.io:80/api/claimToken</feemaster>
-      <message type="include" lang="en">%name% can't be imported</message>
-      <message type="include" lang="zh">不能收下%name%</message>
+      <message lang="en" type="include">%name% can't be imported</message>
+      <message lang="zh" type="include">不能收下%name%</message>
     </feature>
     <feature type="qr-redeem">
       <include>valid</include>
       <redeem format="Aztec"/>
-      <message type="include" lang="en">Only %name% can be redeemd for paper tickets</message>
-      <message type="include" lang="zh">只有%name%才可以兑换纸票</message>
+      <message lang="en" type="include">Only %name% can be redeemd for paper tickets</message>
+      <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
     </feature>
     <feature type="nfc-redeem">
       <include>valid</include>
       <device>decafbaddecafbad</device>
-      <message type="include" lang="en">Only %name% can be redeemd for paper tickets</message>
-      <message type="include" lang="zh">只有%name%才可以兑换纸票</message>
+      <message lang="en" type="include">Only %name% can be redeemd for paper tickets</message>
+      <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
     </feature>
   </features>
   <selections>
@@ -170,14 +217,12 @@
     1.3.6.1.4.1.1466.115.121.1.26 is IA5String
     1.3.6.1.4.1.1466.115.121.1.27 is Integer
   -->
-    <attribute-type id="locality"
-                    oid="2.5.4.7"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.15">
+    <attribute-type id="locality" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <name lang="en">City</name>
       <name lang="zh">城市</name>
       <name lang="es">Ciudad</name>
       <name lang="ru">город</name>
-      <origin bitmask="00000000000000000000000000000000FF000000000000000000000000000000" as="mapping">
+      <origin as="mapping" bitmask="00000000000000000000000000000000FF000000000000000000000000000000">
         <option key="1">
           <value lang="ru">Москва́</value>
           <value lang="en">Moscow</value>
@@ -342,13 +387,12 @@
         </option>
       </origin>
     </attribute-type>
-    <attribute-type id="venue"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.15">
+    <attribute-type id="venue" syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <name lang="en">Venue</name>
       <name lang="zh">场馆</name>
       <name lang="es">Lugar</name>
       <name lang="ru">место встречи</name>
-      <origin bitmask="0000000000000000000000000000000000FF0000000000000000000000000000" as="mapping">
+      <origin as="mapping" bitmask="0000000000000000000000000000000000FF0000000000000000000000000000">
         <option key="1">
           <value lang="ru">Стадион Калининград</value>
           <value lang="en">Kaliningrad Stadium</value>
@@ -481,14 +525,13 @@
         </option>
       </origin>
     </attribute-type>
-    <attribute-type id="time"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.24">
+    <attribute-type id="time" syntax="1.3.6.1.4.1.1466.115.121.1.24">
       <name lang="en">Time</name>
       <name lang="zh">时间</name>
       <name lang="es">Tiempo</name>
       <name lang="ru">время</name>
       <!-- keys used here are BinaryTime (RFC6019) -->
-      <origin bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000" as="unsigned">
+      <origin as="unsigned" bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000">
         <!-- $ TZ=Europe/Moscow date -d @1528988400 +%Y%m%d%H%M%S%z -->
         <option key="1528988400">
           <value>20180614180000+0300</value>
@@ -515,8 +558,7 @@
         </option>
       </origin>
     </attribute-type>
-    <attribute-type id="countryA"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.26">
+    <attribute-type id="countryA" syntax="1.3.6.1.4.1.1466.115.121.1.26">
       <!-- Intentionally avoid using countryName
        (SYNTAX 1.3.6.1.4.1.1466.115.121.1.11) per RFC 4519
            CountryName is two-characters long, not 3-characters.
@@ -524,28 +566,25 @@
       <name lang="en">Team A</name>
       <name lang="zh">甲队</name>
       <name lang="es">Equipo A</name>
-      <origin bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000" as="utf8"/>
+      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000"/>
     </attribute-type>
-    <attribute-type id="countryB"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.26">
+    <attribute-type id="countryB" syntax="1.3.6.1.4.1.1466.115.121.1.26">
       <name lang="en">Team B</name>
       <name lang="zh">乙队</name>
       <name lang="es">Equipo B</name>
-      <origin bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000" as="utf8"/>
+      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000"/>
     </attribute-type>
-    <attribute-type id="match"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.27">
+    <attribute-type id="match" syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <name lang="en">Match</name>
       <name lang="zh">场次</name>
       <name lang="es">Evento</name>
-      <origin bitmask="00000000000000000000000000000000000000000000000000000000FF000000" as="unsigned"/>
+      <origin as="unsigned" bitmask="00000000000000000000000000000000000000000000000000000000FF000000"/>
     </attribute-type>
-    <attribute-type id="category"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.15">
+    <attribute-type id="category" syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <name lang="en">Cat</name>
       <name lang="zh">等级</name>
       <name lang="es">Cat</name>
-      <origin bitmask="0000000000000000000000000000000000000000000000000000000000FF0000" as="mapping">
+      <origin as="mapping" bitmask="0000000000000000000000000000000000000000000000000000000000FF0000">
         <option key="1">
           <value lang="en">Category 1</value>
           <value lang="zh">一类票</value>
@@ -668,19 +707,16 @@
         </option>
       </origin>
     </attribute-type>
-    <attribute-type id="numero"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.27">
+    <attribute-type id="numero" syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <name>№</name>
-      <origin bitmask="000000000000000000000000000000000000000000000000000000000000FFFF" as="unsigned"/>
+      <origin as="unsigned" bitmask="000000000000000000000000000000000000000000000000000000000000FFFF"/>
     </attribute-type>
-    <attribute-type id="expired"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.7">
+    <attribute-type id="expired" syntax="1.3.6.1.4.1.1466.115.121.1.7">
       <origin contract="holding-contract">
         <function>isExpired</function>
       </origin>
     </attribute-type>
-    <attribute-type id="gifted"
-                    syntax="1.3.6.1.4.1.1466.115.121.1.7">
+    <attribute-type id="gifted" syntax="1.3.6.1.4.1.1466.115.121.1.7">
       <origin contract="holding-contract">
         <function>isGifted</function>
         <parameter>TokenID</parameter><!-- place holder - actual format undefined yet -->
