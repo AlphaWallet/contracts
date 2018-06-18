@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <token>
-  <contract type="holding">
+  <contract type="holding" id="holding_contract">
     <address network="1">0xA66A3F08068174e8F005112A8b2c7A507a822335</address>
     <address network="3">0xd8e5f58de3933e1e35f9c65eb72cb188674624f3</address>
     <name lang="ru">Ваучеры</name>
@@ -20,9 +20,11 @@
   </contract>
   <!-- consider metadata of tokens, e.g. quantifier in each languages -->
   <features>
-    <!-- what is the difference between include or exclude? -->
-    <!-- a feature is only usable if all tokens are included, but, if only some are excluded, the feature is still available for the ones that are not excluded. Think about redeem
-    function, the button should be grayed out with the "include" message there -->
+    <!-- a feature is only usable if all tokens are included, but, if
+         only some are excluded, the feature is still available for
+         the ones that are not excluded. Think about redeem function,
+         the button should be grayed out with the "include" message
+         there -->
     <feature type="market-queue">
       <include>valid</include>
       <exclude>invited</exclude>
@@ -59,6 +61,7 @@
       <prefix>https://app.awallet.io/</prefix>
       <message type="exclude" lang="en">%name% can't be traded on the market</message>
       <message type="exclude" lang="zh">%name% 不能再在市场上交易</message>
+    </feature>
     <feature type="feemaster">
       <exclude>expired</exclude>
       <feemaster>https://app.awallet.io:80/api/claimToken</feemaster>
@@ -67,7 +70,7 @@
     </feature>
     <feature type="qr-redeem">
       <include>valid</include>
-      <redeem format="Aztec" />
+      <redeem format="Aztec"/>
       <message type="include" lang="en">Only %name% can be redeemd for paper tickets</message>
       <message type="include" lang="zh">只有%name%才可以兑换纸票</message>
     </feature>
@@ -82,7 +85,7 @@
     <selection id="discounted">
       <name lang="en">Discount Tickets</name>
       <name lang="zh">打折票</name>
-      <filter>category=1</filter>
+      <filter>(|category=打折票)(category=Discounted))</filter>
     </selection>
     <selection id="invited">
       <name lang="en">Gift Ticket</name>
@@ -97,6 +100,7 @@
     <selection id="expired">
       <name lang="en">Expired Tickets</name>
       <name lang="zh">已经过期的票</name>
+      <filter>expired</filter>
     </selection>
   </selections>
   <grouping>
@@ -161,14 +165,18 @@
     (authorisation server, ios, android, potentially market-queue),
     Weiwu thought that it helps the developers if we use byte-fields
     instead of bit-fields.
+    1.3.6.1.4.1.1466.115.121.1.15 is DirectoryString
+    1.3.6.1.4.1.1466.115.121.1.24 is GeneralisedTime
+    1.3.6.1.4.1.1466.115.121.1.26 is IA5String
+    1.3.6.1.4.1.1466.115.121.1.27 is Integer
   -->
-    <attribute-type id="locality">
+    <attribute-type id="locality"
+                    oid="2.5.4.7"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <name lang="en">City</name>
       <name lang="zh">城市</name>
       <name lang="es">Ciudad</name>
       <name lang="ru">город</name>
-      <object-identifier>2.5.4.7</object-identifier>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.15</syntax><!-- DirectoryString -->
       <origin bitmask="00000000000000000000000000000000FF000000000000000000000000000000" as="mapping">
         <option key="1">
           <value lang="ru">Москва́</value>
@@ -334,12 +342,12 @@
         </option>
       </origin>
     </attribute-type>
-    <attribute-type id="venue">
+    <attribute-type id="venue"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <name lang="en">Venue</name>
       <name lang="zh">场馆</name>
       <name lang="es">Lugar</name>
       <name lang="ru">место встречи</name>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.15</syntax><!-- DirectoryString -->
       <origin bitmask="0000000000000000000000000000000000FF0000000000000000000000000000" as="mapping">
         <option key="1">
           <value lang="ru">Стадион Калининград</value>
@@ -473,29 +481,42 @@
         </option>
       </origin>
     </attribute-type>
-    <attribute-type id="time">
+    <attribute-type id="time"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.24">
       <name lang="en">Time</name>
       <name lang="zh">时间</name>
       <name lang="es">Tiempo</name>
       <name lang="ru">время</name>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.24</syntax><!-- GeneralizedTime -->
       <!-- keys used here are BinaryTime (RFC6019) -->
       <origin bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000" as="unsigned">
         <!-- $ TZ=Europe/Moscow date -d @1528988400 +%Y%m%d%H%M%S%z -->
-        <option key="1528988400"><value>20180614180000+0300</value></option>
+        <option key="1528988400">
+          <value>20180614180000+0300</value>
+        </option>
         <!-- $ TZ=Europe/Moscow date -d @1529074800 +%Y%m%d%H%M%S%z -->
-        <option key="1529074800"><value>20180615180000+0300</value></option>
+        <option key="1529074800">
+          <value>20180615180000+0300</value>
+        </option>
         <!-- $ TZ=Europe/Moscow date -d @1529420400 +%Y%m%d%H%M%S%z -->
-        <option key="1529420400"><value>20180619180000+0300</value></option>
+        <option key="1529420400">
+          <value>20180619180000+0300</value>
+        </option>
         <!-- $ TZ=Europe/Moscow date -d @1529431200 +%Y%m%d%H%M%S%z -->
-        <option key="1529431200"><value>20180619210000+0300</value></option>
+        <option key="1529431200">
+          <value>20180619210000+0300</value>
+        </option>
         <!-- $ TZ=Europe/Moscow date -d @1530900000 +%Y%m%d%H%M%S%z -->
-        <option key="1530900000"><value>20180706210000+0300</value></option>
+        <option key="1530900000">
+          <value>20180706210000+0300</value>
+        </option>
         <!-- $ TZ=Europe/Moscow date -d @1531576800 +%Y%m%d%H%M%S%z -->
-        <option key="1531576800"><value>20180714170000+0300</value></option>
+        <option key="1531576800">
+          <value>20180714170000+0300</value>
+        </option>
       </origin>
     </attribute-type>
-    <attribute-type id="countryA">
+    <attribute-type id="countryA"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.26">
       <!-- Intentionally avoid using countryName
        (SYNTAX 1.3.6.1.4.1.1466.115.121.1.11) per RFC 4519
            CountryName is two-characters long, not 3-characters.
@@ -503,28 +524,27 @@
       <name lang="en">Team A</name>
       <name lang="zh">甲队</name>
       <name lang="es">Equipo A</name>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.26</syntax><!-- IA5String -->
       <origin bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000" as="utf8"/>
     </attribute-type>
-    <attribute-type id="countryB">
+    <attribute-type id="countryB"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.26">
       <name lang="en">Team B</name>
       <name lang="zh">乙队</name>
       <name lang="es">Equipo B</name>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.26</syntax><!-- IA5String -->
       <origin bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000" as="utf8"/>
     </attribute-type>
-    <attribute-type id="match">
+    <attribute-type id="match"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <name lang="en">Match</name>
       <name lang="zh">场次</name>
       <name lang="es">Evento</name>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.27</syntax><!-- Integer -->
       <origin bitmask="00000000000000000000000000000000000000000000000000000000FF000000" as="unsigned"/>
     </attribute-type>
-    <attribute-type id="category">
+    <attribute-type id="category"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <name lang="en">Cat</name>
       <name lang="zh">等级</name>
       <name lang="es">Cat</name>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.15</syntax><!-- DirectoryString -->
       <origin bitmask="0000000000000000000000000000000000000000000000000000000000FF0000" as="mapping">
         <option key="1">
           <value lang="en">Category 1</value>
@@ -648,10 +668,23 @@
         </option>
       </origin>
     </attribute-type>
-    <attribute-type id="numero">
+    <attribute-type id="numero"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <name>№</name>
-      <syntax>1.3.6.1.4.1.1466.115.121.1.27</syntax><!-- Integer -->
       <origin bitmask="000000000000000000000000000000000000000000000000000000000000FFFF" as="unsigned"/>
+    </attribute-type>
+    <attribute-type id="expired"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.7">
+      <origin contract="holding-contract">
+        <function>isExpired</function>
+      </origin>
+    </attribute-type>
+    <attribute-type id="gifted"
+                    syntax="1.3.6.1.4.1.1466.115.121.1.7">
+      <origin contract="holding-contract">
+        <function>isGifted</function>
+        <parameter>TokenID</parameter><!-- place holder - actual format undefined yet -->
+      </origin>
     </attribute-type>
   </fields>
 </token>
