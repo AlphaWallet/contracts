@@ -8,15 +8,16 @@
 <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
 </ds:Transforms>
 <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-<ds:DigestValue>MJVWADdSI8p7RwR3uptlPL5LZmwtwBsclKTwVPEmWYs=</ds:DigestValue>
+<ds:DigestValue>IEoJS6+11sf/1pQDc/Y2XMnjhKTWQO5msG3+ZbsJuKA=</ds:DigestValue>
 </ds:Reference>
 </ds:SignedInfo>
 <ds:SignatureValue>
-kporx19FbGkNJaJAF4hMmpT6riH/lv2wdJdoMOIj8JVva5KIBc4eY0TW3tGz6sH7QwtAkDtb+n92
-41/ebewwRVGHqYQ6lsNiS1AXq14e3nnSQkBEB4IwJ/4svy57e2TqQsPgiYfyf0kNpvQnhIUbHX6z
-zSg6McerMl4TIo7sE/+gUw==
+ARM68hKmxJ+mTmw4lY1w3O8xfoTgi5IdQWUBwPETsDmeYTi0DfThzPSZP7bUzuiIziJ71Ik1Njje
+Guuy8Zci5RJSAHzT2sw72ncbM8+3iN0Wj/1ldTNwUENS11/uQp/FDwvIu97VeK3tKqUnsLAb8APN
+1YNDzCtFT4D7uh/T9fLwHOna
 </ds:SignatureValue>
 <ds:KeyInfo>
+<ds:KeyName>Shankai</ds:KeyName>
 <ds:X509Data>
 <ds:X509Certificate>
 MIIFBzCCBK2gAwIBAgIQKCMFmlBLtxz6L27XkUOsHjAKBggqhkjOPQQDAjCBkDELMAkGA1UEBhMC
@@ -570,7 +571,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="en">Team A</name>
       <name lang="zh">甲队</name>
       <name lang="es">Equipo A</name>
-      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000">
+      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000">
         <option key="1">
           <value>AWT</value>
         </option>
@@ -580,7 +581,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="en">Team B</name>
       <name lang="zh">乙队</name>
       <name lang="es">Equipo B</name>
-      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000">
+      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000">
         <option key="1">
           <value>INV</value>
         </option>
@@ -590,7 +591,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="en">Match</name>
       <name lang="zh">场次</name>
       <name lang="es">Evento</name>
-      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000000000000000FF000000">
+      <origin as="unsigned" bitmask="00000000000000000000000000000000000000000000000000000000FF000000">
         <option key="1">
           <value>M1</value>
         </option>
