@@ -381,6 +381,10 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
           <value lang="en">Dubai</value>
           <value lang="zh">迪拜</value>
         </option>
+        <option key="232">
+          <value lang="en">Hong Kong</value>
+          <value lang="zh">香港</value>
+        </option>
         <option key="233">
           <value lang="en">TBC</value>
           <value lang="zh">待定</value>
@@ -522,6 +526,10 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
         <option key="238">
           <value lang="en">Stratum</value>
           <value lang="zh">臻宛</value>
+        </option>
+        <option key="237">
+          <value lang="en">Hong Kong Convention and Exhibition Centre</value>
+          <value lang="zh">香港会议展览中心</value>
         </option>
       </origin>
     </attribute-type>
@@ -705,6 +713,10 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
         <option key="247">
           <value lang="en">General Event</value>
           <value lang="zh">通用活动</value>
+        </option>
+        <option key="246">
+          <value lang="en">AlphaWallet Meeting Slot</value>
+          <value lang="zh">AlphaWallet面议机会</value>
         </option>
       </origin>
     </attribute-type>
