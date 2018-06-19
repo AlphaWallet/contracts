@@ -571,7 +571,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="en">Team A</name>
       <name lang="zh">甲队</name>
       <name lang="es">Equipo A</name>
-      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000">
+      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000">
         <option key="1">
           <value>AWT</value>
         </option>
@@ -581,7 +581,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="en">Team B</name>
       <name lang="zh">乙队</name>
       <name lang="es">Equipo B</name>
-      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000">
+      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000">
         <option key="1">
           <value>INV</value>
         </option>
@@ -591,7 +591,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="en">Match</name>
       <name lang="zh">场次</name>
       <name lang="es">Evento</name>
-      <origin as="unsigned" bitmask="00000000000000000000000000000000000000000000000000000000FF000000">
+      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000000000000000FF000000">
         <option key="1">
           <value>M1</value>
         </option>
