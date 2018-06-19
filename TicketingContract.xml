@@ -96,10 +96,10 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <include>valid</include>
       <exclude>discounted</exclude>
       <prefix>https://app.awallet.io/</prefix>
-      <message lang="en" type="exclude">%name% can't be traded with Magic Link</message>
-      <message type="include">Only %name% can be traded with Magic Link</message>
-      <message lang="zh" type="exclude">%name% 不能用Magic Link交易</message>
-      <message lang="zh" type="include">只有末到期的票才可以用Magic Link交易</message>
+      <message lang="en" type="exclude">%name% can't be traded with MagicLink</message>
+      <message type="include">Only %name% can be traded with MagicLink</message>
+      <message lang="zh" type="exclude">%name% 不能用MagicLink交易</message>
+      <message lang="zh" type="include">只有末到期的票才可以用MagicLink交易</message>
     </feature>
     <feature type="transfer-link">
       <exclude>discounted</exclude>
@@ -117,13 +117,13 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
     <feature type="qr-redeem">
       <include>valid</include>
       <redeem format="Aztec"/>
-      <message lang="en" type="include">Only %name% can be redeemd for paper tickets</message>
+      <message lang="en" type="include">Only %name% can be redeemed for paper tickets</message>
       <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
     </feature>
     <feature type="nfc-redeem">
       <include>valid</include>
       <device>decafbaddecafbad</device>
-      <message lang="en" type="include">Only %name% can be redeemd for paper tickets</message>
+      <message lang="en" type="include">Only %name% can be redeemed for paper tickets</message>
       <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
     </feature>
   </features>
