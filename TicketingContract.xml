@@ -8,16 +8,15 @@
 <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
 </ds:Transforms>
 <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-<ds:DigestValue>wXV16NcSJu1zoFyOMwsob+uU0yhksya70FvvgdloeJA=</ds:DigestValue>
+<ds:DigestValue>P8ZLyTuOd7bgmje/9xI9jexyphGkpz2g381s8M3UnUc=</ds:DigestValue>
 </ds:Reference>
 </ds:SignedInfo>
 <ds:SignatureValue>
-AczVp86Er0b/firU347D013q4CpPzj6LHJd3MohKLwg26crxTYZL1AMhtgDUWEaLPVZfV0hmsEyN
-83JBC4iIngNTAIk2hEL+2U0ge4RafjF0anzmYZz4zgsLLHowhbXp+2IV0QuUTgd3raoL/0qTvx+j
-EZSaNisL7ZuAGhmrltcgszud
+rRcNvJ8OBJUbMsIRfez0dgj60F6RBNMhlO+zyfhyOeUFrBVhtI7tvXGETO8DlLrIi7IqRtpm6IFV
+GtJP0d3OQq1EHKsLQsB2EiTubH0cJ4TFcS+Sq3kFPE5y5JC7kZ/Eh2ZfzUzULwSG9Dqa3dyC/uQt
+dA0qFHlxCowBIey9bUDvoA==
 </ds:SignatureValue>
 <ds:KeyInfo>
-<ds:KeyName>Shankai</ds:KeyName>
 <ds:X509Data>
 <ds:X509Certificate>
 MIIFBzCCBK2gAwIBAgIQKCMFmlBLtxz6L27XkUOsHjAKBggqhkjOPQQDAjCBkDELMAkGA1UEBhMC
@@ -169,7 +168,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
   </ordering>
 
   <!-- token UI definition can happen here -->
-  <fields>
+  <attribute-types>
     <!--
     There are 64 matches (1-64), each has up to 16 ticket classes,
     within each class, there are less than 65536 tickets.  A compact
@@ -530,8 +529,9 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="zh">时间</name>
       <name lang="es">Tiempo</name>
       <name lang="ru">время</name>
-      <!-- keys used here are BinaryTime (RFC6019) -->
-      <origin as="unsigned" bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000">
+      <!-- keys used here are BinaryTime (RFC6019) for backward compatibility,
+           don't copy this behaviour when creating new assets -->
+      <origin as="mapping" bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000">
         <!-- $ TZ=Europe/Moscow date -d @1528988400 +%Y%m%d%H%M%S%z -->
         <option key="1528988400">
           <value>20180614180000+0300</value>
@@ -722,5 +722,5 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
         <parameter>TokenID</parameter><!-- place holder - actual format undefined yet -->
       </origin>
     </attribute-type>
-  </fields>
+  </attribute-types>
 </token>
