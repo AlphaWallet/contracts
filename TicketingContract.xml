@@ -8,15 +8,16 @@
 <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
 </ds:Transforms>
 <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-<ds:DigestValue>P8ZLyTuOd7bgmje/9xI9jexyphGkpz2g381s8M3UnUc=</ds:DigestValue>
+<ds:DigestValue>IEoJS6+11sf/1pQDc/Y2XMnjhKTWQO5msG3+ZbsJuKA=</ds:DigestValue>
 </ds:Reference>
 </ds:SignedInfo>
 <ds:SignatureValue>
-rRcNvJ8OBJUbMsIRfez0dgj60F6RBNMhlO+zyfhyOeUFrBVhtI7tvXGETO8DlLrIi7IqRtpm6IFV
-GtJP0d3OQq1EHKsLQsB2EiTubH0cJ4TFcS+Sq3kFPE5y5JC7kZ/Eh2ZfzUzULwSG9Dqa3dyC/uQt
-dA0qFHlxCowBIey9bUDvoA==
+ARM68hKmxJ+mTmw4lY1w3O8xfoTgi5IdQWUBwPETsDmeYTi0DfThzPSZP7bUzuiIziJ71Ik1Njje
+Guuy8Zci5RJSAHzT2sw72ncbM8+3iN0Wj/1ldTNwUENS11/uQp/FDwvIu97VeK3tKqUnsLAb8APN
+1YNDzCtFT4D7uh/T9fLwHOna
 </ds:SignatureValue>
 <ds:KeyInfo>
+<ds:KeyName>Shankai</ds:KeyName>
 <ds:X509Data>
 <ds:X509Certificate>
 MIIFBzCCBK2gAwIBAgIQKCMFmlBLtxz6L27XkUOsHjAKBggqhkjOPQQDAjCBkDELMAkGA1UEBhMC
@@ -96,10 +97,10 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <include>valid</include>
       <exclude>discounted</exclude>
       <prefix>https://app.awallet.io/</prefix>
-      <message lang="en" type="exclude">%name% can't be traded with Magic Link</message>
-      <message type="include">Only %name% can be traded with Magic Link</message>
-      <message lang="zh" type="exclude">%name% 不能用Magic Link交易</message>
-      <message lang="zh" type="include">只有末到期的票才可以用Magic Link交易</message>
+      <message lang="en" type="exclude">%name% can't be traded with MagicLink</message>
+      <message type="include">Only %name% can be traded with MagicLink</message>
+      <message lang="zh" type="exclude">%name% 不能用MagicLink交易</message>
+      <message lang="zh" type="include">只有末到期的票才可以用MagicLink交易</message>
     </feature>
     <feature type="transfer-link">
       <exclude>discounted</exclude>
@@ -117,13 +118,13 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
     <feature type="qr-redeem">
       <include>valid</include>
       <redeem format="Aztec"/>
-      <message lang="en" type="include">Only %name% can be redeemd for paper tickets</message>
+      <message lang="en" type="include">Only %name% can be redeemed for paper tickets</message>
       <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
     </feature>
     <feature type="nfc-redeem">
       <include>valid</include>
       <device>decafbaddecafbad</device>
-      <message lang="en" type="include">Only %name% can be redeemd for paper tickets</message>
+      <message lang="en" type="include">Only %name% can be redeemed for paper tickets</message>
       <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
     </feature>
   </features>
