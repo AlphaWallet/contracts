@@ -570,31 +570,19 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
       <name lang="en">Team A</name>
       <name lang="zh">甲队</name>
       <name lang="es">Equipo A</name>
-      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000">
-        <option key="1">
-          <value>AWT</value>
-        </option>
-      </origin>
+      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000"/>
     </attribute-type>
     <attribute-type id="countryB" syntax="1.3.6.1.4.1.1466.115.121.1.26">
       <name lang="en">Team B</name>
       <name lang="zh">乙队</name>
       <name lang="es">Equipo B</name>
-      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000">
-        <option key="1">
-          <value>INV</value>
-        </option>
-      </origin>
+      <origin as="utf8" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000"/>
     </attribute-type>
     <attribute-type id="match" syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <name lang="en">Match</name>
       <name lang="zh">场次</name>
       <name lang="es">Evento</name>
-      <origin as="mapping" bitmask="00000000000000000000000000000000000000000000000000000000FF000000">
-        <option key="1">
-          <value>M1</value>
-        </option>
-      </origin>
+      <origin as="unsigned" bitmask="00000000000000000000000000000000000000000000000000000000FF000000"/>
     </attribute-type>
     <attribute-type id="category" syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <name lang="en">Cat</name>
