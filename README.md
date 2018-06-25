@@ -74,7 +74,7 @@ Notice that the server completely doesn't care the network ID (mainnet / testnet
 
 When the client connects to URI like this:
 https://repo.awallet.io/0xA66A3F08068174e8F005112A8b2c7A507a822335
-the server either returns the file which claims to define the behaviour of the contract in the URI, with the `Last-Modified` field being the XML signature signing date. In other words, the repo server provides a facade as if all files are modified by the signing, which should be true often. This is because the repo manager might want to swap in and swap out different versions of XML to experiment and that should not fool the application; also because version management (git etc) not always keep modification date aligned with content modification.
+the server either returns the file which claims to define the behaviour of the contract in the URI, with the `Last-Modified` field being the XML signature signing time (in case of multi-signature XML file, the last signer's signing time). In other words, the repo server provides a facade as if all files are modified by the same time as its last signature, which should be true, usually, but not always (e.g. when the repo manager might want to swap in and swap out different versions of XML to experiment, or when version management (git etc) breaks the modification timestampe).
 
 In the case that there are multiple files which claim to define the behaviour of the contract in the URI, one of the two things happens.
 
