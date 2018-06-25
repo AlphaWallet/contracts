@@ -20,9 +20,9 @@ The XML file is downloaded to the mobile phone, validated for signature (in the 
 
 ## For checking updates ##
 
-First, request through HTTP HEAD and get the header, examine if `Last-Modified` returned by the HTTP header signifies an update by comparing it against the time of the locally cached file. Be careful with timezone! Put a bit of thinking cases like this: the user moves from timezone A to timezone B and missing a latest update for up to 24 hours.
+Include the `IF-Modified-Since` header HTTP header with the local XML's last modified date in the GET request. If the XML on the server has not been modified, a `304` will be returned with an empty body. Be careful with timezone! Put a bit of thinking cases like this: the user moves from timezone A to timezone B and missing a latest update for up to 24 hours.
 
-If an update is needed, download the new file from the URI, validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it and set the modified timestamp again:
+If an update is needed, the new file will be available in the body. Validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it and set the modified timestamp again:
 
     mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
 
