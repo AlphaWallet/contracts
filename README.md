@@ -14,9 +14,9 @@ The link will change to https://app.awallet.io if I found that it is impractical
 
 ## For downloading the first time ##
 
-The XML file is downloaded to the mobile phone, validated for signature (in the future, also validated against schemas). If invalid - delete it immediately, otherwise move to the mobile's file storage, under the directory which represents the network.
+The XML file is downloaded to the mobile phone, validated for signature (in the future, also validated against schemas). If invalid - delete it immediately, otherwise saved to the mobile's file storage by adding .xml extension.
 
-    mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
+    0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
 
 ## For checking updates ##
 
@@ -24,26 +24,42 @@ Include the `IF-Modified-Since` header HTTP header with the local XML's last mod
 
 If an update is needed, the new file will be available in the body. Validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it and set the modified timestamp again:
 
-    mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
+    0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
 
 In the future, the server might return HTTP 300 and 204, for situations that I will document later. Such case will happen once the XML files / Schemas are versioned.
 
-Note that it is intended that an XML document's author tests his work by directly replacing the file in the mobile phone's file storage (this is easily done in Android - unsure about iOS) because we can't, in quite a few months, give them a facility to test upload their XML to our repository and then pass it to the mobile. Therefore, it is expected that sometimes XML document's last modification date is later than the server's `Last-Modified` header. When this happens, just treat it as "no updates from server". This is also why file extension ".xml" is added when the XML resource is saved, when such extension does not appear in the URI.
+Note that it is intended that an XML document's author tests his work by directly replacing the file in the mobile phone's file storage (this is easily done in Android - with a bit of trouble in iOS too) because we can't, in a month or two, give them a facility to test upload their XML to our repository and then pass it to the mobile. Therefore, it is expected that sometimes XML document's last modification date is later than the server's `Last-Modified` header. When this happens, just treat it as "no updates from server". This is also why file extension ".xml" is added when the XML resource is saved, when such extension does not appear in the URI.
 
 Note that when the mobile app requests the XML file from the link, it does not specify network ID (mainnet, Ropsten etc). However, when it stores the XML file locally, it saves the file in the corresponding directory named after network ID. The logic behind this is that: for the server, there is no need to mention network ID, because contracts of the same address on different networks must be deployed by the same person anyway. However, when the client stores the file, it must have already done its content-negotiation (choosing between schema version, crypto-kitty skin vs crypto-pony skin, signature trust level etc.). Therefore it saves the version of XML resulted from the negotiation. For now, the repo server doesn't give HTTP 300 or HTTP 204 so this is out of the question, but when we do add content-negotiation in the future we want to introduce as little change as possible.
 
 This design also means at the current stage, 
 
-    mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
-    ropsten/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3.xml
+    0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
+    0xd8e5f58de3933e1e35f9c65eb72cb188674624f3.xml
 
 These are two identical files stored *twice* on the mobile's file storage, and that is intended.
+
+## HTTP Headers ##
+
+These headers should be included with every request:
+
+    "Accept": "application/xml"
+    "X-Client-Name": "AlphaWallet"
+    "X-Client-Version": "1.0.3"
+    "X-Platform-Name": "iOS"
+    "X-Platform-Version": "11.1.2"
+
+`X-Platform-Name` should be set to `iOS` or `Android`.
+
+The `If-Modified-Since` header should be included if the XML requested for is already cached on the device:
+
+    "If-Modified-Since": "Wed, 21 Oct 2015 07:28:00 GMT"
 
 # Repo specification #
 
 All XML files in the repository are named like this:
 
-    FIFA WC2018/www.sktravel.com-signed-schema1.xml
+    FIFA WC2018/schema1/www.sktravel.com-signed.xml
 
 Where the directory name "FIFA WC2018" is the Contract's name as returned by the Contract, followed by signer's certificate name (CN, CommonName), followed by schema version. For contracts that share the same contract-name, there are multiple XML files for each contract.
 
@@ -62,7 +78,7 @@ The XML signature's time stamp is used to determine which file is the latest, th
 
 When the server starts, it scans for all XML files in all directories and indexes the validate (by schema and by signature) in a table in memory:
 
-| contract | 0xA66A3F08068174e8F005112A8b2c7A507a822335 | 0xd8e5f58de3933e1e35f9c65eb72cb188674624f3 |
+| contract | 0xA66A...35 | 0xd8e5f...f3 |
 | -------- | ------------------------------------------ | ------------------------------------------ |
 | contract name | FIFA WC2018 | FIFA WC2018 |
 | schema version | 1 | 1 |
@@ -74,7 +90,7 @@ Notice that the server completely doesn't care the network ID (mainnet / testnet
 
 When the client connects to URI like this:
 https://repo.awallet.io/0xA66A3F08068174e8F005112A8b2c7A507a822335
-the server either returns the file which claims to define the behaviour of the contract in the URI, with the `Last-Modified` field being the XML signature signing date. In other words, the repo server provides a facade as if all files are modified by the signing, which should be true often. This is because the repo manager might want to swap in and swap out different versions of XML to experiment and that should not fool the application; also because version management (git etc) not always keep modification date aligned with content modification.
+the server either returns the file which claims to define the behaviour of the contract in the URI, with the `Last-Modified` field being the XML signature signing time (in case of multi-signature XML file, the last signer's signing time). In other words, the repo server provides a facade as if all files are modified by the same time as its last signature, which should be true, usually, but not always (e.g. when the repo manager might want to swap in and swap out different versions of XML to experiment, or when version management (git etc) breaks the modification timestampe).
 
 In the case that there are multiple files which claim to define the behaviour of the contract in the URI, one of the two things happens.
 
