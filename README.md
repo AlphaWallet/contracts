@@ -39,6 +39,22 @@ This design also means at the current stage,
 
 These are two identical files stored *twice* on the mobile's file storage, and that is intended.
 
+## HTTP Headers ##
+
+These headers should be included with every request:
+
+    "Accept": "application/xml"
+    "X-Client-Name": "AlphaWallet"
+    "X-Client-Version": "1.0.3"
+    "X-Platform-Name": "iOS"
+    "X-Platform-Version": "11.1.2"
+
+`X-Platform-Name` should be set to `iOS` or `Android`.
+
+The `If-Modified-Since` header should be included if the XML requested for is already cached on the device:
+
+    "If-Modified-Since": "Wed, 21 Oct 2015 07:28:00 GMT"
+
 # Repo specification #
 
 All XML files in the repository are named like this:
