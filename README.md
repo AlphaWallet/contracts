@@ -16,28 +16,26 @@ The link will change to https://app.awallet.io if I found that it is impractical
 
 The XML file is downloaded to the mobile phone, validated for signature (in the future, also validated against schemas). If invalid - delete it immediately, otherwise move to the mobile's file storage, under the directory which represents the network.
 
-mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
-
-The file's modification date should be set to the same as returned by HTTP GET. Be careful with timezone!
+    mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
 
 ## For checking updates ##
 
-First, request through HTTP HEAD and get the header, examine if `Last-Modified` returned by the HTTP header signifies an update by comparing it against the time of the locally cached file. Be careful with timezone!
+First, request through HTTP HEAD and get the header, examine if `Last-Modified` returned by the HTTP header signifies an update by comparing it against the time of the locally cached file. Be careful with timezone! Put a bit of thinking cases like this: the user moves from timezone A to timezone B and missing a latest update for up to 24 hours.
 
-If an update is needed, download the new file from the URI, validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or prompt the user). If valid, replace the local file with it and set the modified timestamp again:
+If an update is needed, download the new file from the URI, validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it and set the modified timestamp again:
 
-mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
+    mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
 
 In the future, the server might return HTTP 300 and 204, for situations that I will document later. Such case will happen once the XML files / Schemas are versioned.
 
-Note that it is intended that an XML document's author tests his work by directly replacing the file in the mobile phone's file storage (this is easily done in Android - unsure about iOS) because we can't give them a facility to test upload their XML to our repository and then pass it to the mobile. Therefore, it is expected that sometimes XML document's last modification date is later than the server's `Last-Modified` header. When this happens, just treat it as "no updates from server". This is also why file extension ".xml" is added when the XML resource is saved, when such extension does not appear in the URI.
+Note that it is intended that an XML document's author tests his work by directly replacing the file in the mobile phone's file storage (this is easily done in Android - unsure about iOS) because we can't, in quite a few months, give them a facility to test upload their XML to our repository and then pass it to the mobile. Therefore, it is expected that sometimes XML document's last modification date is later than the server's `Last-Modified` header. When this happens, just treat it as "no updates from server". This is also why file extension ".xml" is added when the XML resource is saved, when such extension does not appear in the URI.
 
 Note that when the mobile app requests the XML file from the link, it does not specify network ID (mainnet, Ropsten etc). However, when it stores the XML file locally, it saves the file in the corresponding directory named after network ID. The logic behind this is that: for the server, there is no need to mention network ID, because contracts of the same address on different networks must be deployed by the same person anyway. However, when the client stores the file, it must have already done its content-negotiation (choosing between schema version, crypto-kitty skin vs crypto-pony skin, signature trust level etc.). Therefore it saves the version of XML resulted from the negotiation. For now, the repo server doesn't give HTTP 300 or HTTP 204 so this is out of the question, but when we do add content-negotiation in the future we want to introduce as little change as possible.
 
 This design also means at the current stage, 
 
-mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
-ropsten/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3.xml
+    mainnet/0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
+    ropsten/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3.xml
 
 These are two identical files stored *twice* on the mobile's file storage, and that is intended.
 
@@ -64,9 +62,13 @@ The XML signature's time stamp is used to determine which file is the latest, th
 
 When the server starts, it scans for all XML files in all directories and indexes the validate (by schema and by signature) in a table in memory:
 
-| contract | contract name | schema version | signature date | signer | path |
-| 0xA66A3F08068174e8F005112A8b2c7A507a822335 | FIFA WC2018 | 1 | 2019-10-10 | www.sktravel.com | FIFA WC2018/schema1/www.sktravel.com-signed.xml |
-| 0xd8e5f58de3933e1e35f9c65eb72cb188674624f3 | FIFA WC2018 | 1 | 2019-10-10 | www.sktravel.com | FIFA WC2018/schema1/www.sktravel.com-signed.xml |
+| contract | 0xA66A3F08068174e8F005112A8b2c7A507a822335 | 0xd8e5f58de3933e1e35f9c65eb72cb188674624f3 |
+| -------- | ------------------------------------------ | ------------------------------------------ |
+| contract name | FIFA WC2018 | FIFA WC2018 |
+| schema version | 1 | 1 |
+| signature date | 2019-10-10 | 2019-10-10
+| signer | www.sktravel.com | www.sktravel.com |
+| path | `FIFA WC2018/schema1/www.sktravel.com-signed.xml` | `FIFA WC2018/schema1/www.sktravel.com-signed.xml` |
 
 Notice that the server completely doesn't care the network ID (mainnet / testnet).
 
