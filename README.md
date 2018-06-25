@@ -20,9 +20,9 @@ The XML file is downloaded to the mobile phone, validated for signature (in the 
 
 ## For checking updates ##
 
-First, request through HTTP HEAD and get the header, examine if `Last-Modified` returned by the HTTP header signifies an update by comparing it against the time of the locally cached file. Be careful with timezone! Put a bit of thinking cases like this: the user moves from timezone A to timezone B and missing a latest update for up to 24 hours.
+Include the `IF-Modified-Since` header HTTP header with the local XML's last modified date in the GET request. If the XML on the server has not been modified, a `304` will be returned with an empty body. Be careful with timezone! Put a bit of thinking cases like this: the user moves from timezone A to timezone B and missing a latest update for up to 24 hours.
 
-If an update is needed, download the new file from the URI, validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it:
+If an update is needed, the new file will be available in the body. Validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it and set the modified timestamp again:
 
     0xA66A3F08068174e8F005112A8b2c7A507a822335.xml
 
@@ -78,7 +78,7 @@ The XML signature's time stamp is used to determine which file is the latest, th
 
 When the server starts, it scans for all XML files in all directories and indexes the validate (by schema and by signature) in a table in memory:
 
-| contract | 0xA66A3F08068174e8F005112A8b2c7A507a822335 | 0xd8e5f58de3933e1e35f9c65eb72cb188674624f3 |
+| contract | 0xA66A...35 | 0xd8e5f...f3 |
 | -------- | ------------------------------------------ | ------------------------------------------ |
 | contract name | FIFA WC2018 | FIFA WC2018 |
 | schema version | 1 | 1 |
