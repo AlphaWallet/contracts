@@ -41,7 +41,7 @@ ropsten/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3.xml
 
 These are two identical files stored *twice* on the mobile's file storage, and that is intended.
 
-## Repo specification ##
+# Repo specification #
 
 All XML files in the repository are named like this:
 
@@ -51,20 +51,28 @@ Where the directory name "FIFA WC2018" is the Contract's name as returned by the
 
 It's possible to have multiple versions:
 
-    FIFA WC2018/www.sktravel.com-signed-schema1.xml
-    FIFA WC2018/www.sktravel.com-signed-schema2.xml
-    FIFA WC2018/www.awallet.io-signed-schema1.xml
-    FIFA WC2018/signed-schema1.xml
+    FIFA WC2018/schema1/www.sktravel.com-signed.xml
+    FIFA WC2018/schema2/www.sktravel.com-signed.xml
+    FIFA WC2018/schema1/www.awallet.io-signed.xml
+    FIFA WC2018/schema1/signed.xml
 
 The last format is a special one - there is no certificate CN, since the contract's deployment key signs it, which needs no certification.
 
-## Server specication ##
+The XML signature's time stamp is used to determine which file is the latest, thus it is very important to make it correct. This data is however unreliable as we don't have a blockchain timestamp implementation yet, but it will be done in the future.
 
-When the server starts, it scans for all XML files in all directories and indexes them by the contracts referred to in them.
+## Repo Server specication ##
+
+When the server starts, it scans for all XML files in all directories and indexes the validate (by schema and by signature) in a table in memory:
+
+| contract | contract name | schema version | signature date | signer | path |
+| 0xA66A3F08068174e8F005112A8b2c7A507a822335 | FIFA WC2018 | 1 | 2019-10-10 | www.sktravel.com | FIFA WC2018/schema1/www.sktravel.com-signed.xml |
+| 0xd8e5f58de3933e1e35f9c65eb72cb188674624f3 | FIFA WC2018 | 1 | 2019-10-10 | www.sktravel.com | FIFA WC2018/schema1/www.sktravel.com-signed.xml |
+
+Notice that the server completely doesn't care the network ID (mainnet / testnet).
 
 When the client connects to URI like this:
 https://repo.awallet.io/0xA66A3F08068174e8F005112A8b2c7A507a822335
-the server either returns the file which claims to define the behaviour of the contract in the URI.
+the server either returns the file which claims to define the behaviour of the contract in the URI, with the `Last-Modified` field being the XML signature signing date. In other words, the repo server provides a facade as if all files are modified by the signing, which should be true often. This is because the repo manager might want to swap in and swap out different versions of XML to experiment and that should not fool the application; also because version management (git etc) not always keep modification date aligned with content modification.
 
 In the case that there are multiple files which claim to define the behaviour of the contract in the URI, one of the two things happens.
 
