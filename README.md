@@ -6,6 +6,7 @@ When the user accesses a contract, the client downloads or updates the XML files
 - the app discovers that the user has (or had) tokens under a Contract;
 - the user actively seek to use a Contract (scan its QR code or copying its address from the Internet);
 - the user gets sent Universal Link which refers to a Contract or its assets
+- the app launches
 
 The XML file is downloaded or updated by accessing a link like this:
 https://repo.awallet.io/0xA66A3F08068174e8F005112A8b2c7A507a822335
