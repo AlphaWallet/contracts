@@ -44,7 +44,7 @@ These are two identical files stored *twice* on the mobile's file storage, and t
 
 These headers should be included with every request:
 
-    "Accept": "application/xml"
+    "Accept": "text/xml; charset=UTF-8"
     "X-Client-Name": "AlphaWallet"
     "X-Client-Version": "1.0.3"
     "X-Platform-Name": "iOS"
