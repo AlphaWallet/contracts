@@ -566,14 +566,14 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
           <value>20180706210000+0300</value>
         </option>
         <!-- $ TZ=Europe/Moscow date -d @1531576800 +%Y%m%d%H%M%S%z -->
-        <option key="1531576800">
+        <option key="1531328400">
           <value>20180714170000+0300</value>
         </option>
         <!-- For RISE conference in Hong Kong. The key is not UnixTime as UnixTime should be 1531299600
          $ TZ=Asia/Hong_Kong date -d @1531299600 +%Y%m%d%H%M%S%z
          20180711170000+0800--> 
         <option key="1531328400">
-          <value>20180711170000+0800</value>
+          <value>20180711090000+8000</value>
         </option>
       </origin>
     </attribute-type>
