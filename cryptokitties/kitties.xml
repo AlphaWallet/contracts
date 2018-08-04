@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><token><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+<ds:DigestValue>MJVWADdSI8p7RwR3uptlPL5LZmwtwBsclKTwVPEmWYs=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+kporx19FbGkNJaJAF4hMmpT6riH/lv2wdJdoMOIj8JVva5KIBc4eY0TW3tGz6sH7QwtAkDtb+n92
+41/ebewwRVGHqYQ6lsNiS1AXq14e3nnSQkBEB4IwJ/4svy57e2TqQsPgiYfyf0kNpvQnhIUbHX6z
+zSg6McerMl4TIo7sE/+gUw==
+</ds:SignatureValue>
+<ds:KeyInfo>
+  <ds:KeyName>Shankai</ds:KeyName>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFBzCCBK2gAwIBAgIQKCMFmlBLtxz6L27XkUOsHjAKBggqhkjOPQQDAjCBkDELMAkGA1UEBhMC
+R0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UE
+ChMRQ09NT0RPIENBIExpbWl0ZWQxNjA0BgNVBAMTLUNPTU9ETyBFQ0MgRG9tYWluIFZhbGlkYXRp
+b24gU2VjdXJlIFNlcnZlciBDQTAeFw0xODA1MTEwMDAwMDBaFw0xOTA1MTEyMzU5NTlaMFAxITAf
+BgNVBAsTGERvbWFpbiBDb250cm9sIFZhbGlkYXRlZDEUMBIGA1UECxMLUG9zaXRpdmVTU0wxFTAT
+BgNVBAMTDHNrc3RyYXZlbC5jbjCBmzAQBgcqhkjOPQIBBgUrgQQAIwOBhgAEADc2VNAGlEOcdqeU
+A0vaxIC8gCFb9FDF8ZrrlJwqhpO/ZmnTCWUfe4LoI1a37Zv7QejC2+vPhyP0q55PvUtJT9INARfc
+VaG5jRpTw3ukSF1+ww/E/T6YqtrRV44U7rSF8XPTH0CmDrJD6z/b2aCXwcix4PByn8O6skTdZXOj
+LEXifqcjo4IC4zCCAt8wHwYDVR0jBBgwFoAUu/oI4L9U7lr9FqQ1AgmppMjs/UswHQYDVR0OBBYE
+FGyswybdwCsAau7aZaBGFEcL2XXmMA4GA1UdDwEB/wQEAwIFgDAMBgNVHRMBAf8EAjAAMB0GA1Ud
+JQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBPBgNVHSAESDBGMDoGCysGAQQBsjEBAgIHMCswKQYI
+KwYBBQUHAgEWHWh0dHBzOi8vc2VjdXJlLmNvbW9kby5jb20vQ1BTMAgGBmeBDAECATBUBgNVHR8E
+TTBLMEmgR6BFhkNodHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9DT01PRE9FQ0NEb21haW5WYWxpZGF0
+aW9uU2VjdXJlU2VydmVyQ0EuY3JsMIGFBggrBgEFBQcBAQR5MHcwTwYIKwYBBQUHMAKGQ2h0dHA6
+Ly9jcnQuY29tb2RvY2EuY29tL0NPTU9ET0VDQ0RvbWFpblZhbGlkYXRpb25TZWN1cmVTZXJ2ZXJD
+QS5jcnQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9kb2NhLmNvbTApBgNVHREEIjAgggxz
+a3N0cmF2ZWwuY26CEHd3dy5za3N0cmF2ZWwuY24wggEEBgorBgEEAdZ5AgQCBIH1BIHyAPAAdgDu
+S723dc5guuFCaR+r4Z5mow9+X7By2IMAxHuJeqj9ywAAAWNOX8kpAAAEAwBHMEUCIEIb/jymAGpZ
+LG4umW1TbfCe/7Sr5MEIYknkdRdd6I6qAiEA2pHlmnby7PaQwoZrFGqIPQEyJ6oChl+7VRrcoA4t
+5JsAdgB0ftqDMa0zEJEhnM4lT0Jwwr/9XkIgCMY3NXnmEHvMVgAAAWNOX8mcAAAEAwBHMEUCIQC/
+LOBZaO136CYN7GYr+OODcLZ/AG2r7ge7BigCRSk8fQIgC/n33uxEZD+w3ENTxTdOhCTxvSW6BL71
+wFYJPkFHYWkwCgYIKoZIzj0EAwIDSAAwRQIhAIi6VxP/HzmR3rGw6f9M6FLiH0TNgn1EbARAluAV
+bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature>
+  <contract id="holding_contract" type="holding">
+    <address network="1">0x06012c8cf97BEaD5deAe237070F9587f8E7A266d</address>
+    <name lang="ru">Kitties</name>
+    <name lang="en">Kitties</name>
+    <name lang="zh">Kitties</name>
+    <name lang="es">Kitties</name>
+    <interface>erc721</interface>
+  </contract>
+  <contract type="market">
+    <name>Blind Auction</name>
+  </contract>
+  <contract type="wallet">
+    <!-- users can buy tickets using SPG points -->
+    <address network="1">0xdecafbaddecafbaddecafbaddecafbaddecafbad</address>
+    <name>Starwood Preferred Guest</name>
+  </contract>
+  <!-- consider metadata of tokens, e.g. quantifier in each languages -->
+  <features>
+    <!-- a feature is only usable if all tokens are included, but, if
+         only some are excluded, the feature is still available for
+         the ones that are not excluded. Think about redeem function,
+         the button should be grayed out with the "include" message
+         there -->
+    <feature type="market-queue">
+      <include>valid</include>
+      <exclude>invited</exclude>
+      <exclude>discounted</exclude>
+      <gateway>https://482kdh4npg.execute-api.ap-southeast-1.amazonaws.com/dev/</gateway>
+      <message lang="en" type="exclude">%name% can't be traded on the market</message>
+      <message lang="zh" type="exclude">%name% 不能再在市场上交易</message>
+      <message type="include">Only %name% can be traded on the market</message>
+      <message type="include">只有%name%才可以在市场上交易</message>
+    </feature>
+    <feature type="market-contract">
+      <include>valid</include>
+      <exclude>discounted</exclude>
+      <exclude>invited</exclude>
+      <!-- buy and sell tokens on this contract -->
+      <address network="1">0xb1690C08E213a35Ed9bAb7B318DE14420FB57d8C</address>
+      <message lang="en" type="exclude">%name% can't be traded on the market</message>
+      <message lang="zh" type="exclude">%name% 不能再在市场上交易</message>
+      <message type="include">Only %name% can be traded on the market</message>
+      <message type="include">只有%name%才可以在市场上交易</message>
+    </feature>
+    <feature type="magic-link">
+      <include>valid</include>
+      <exclude>discounted</exclude>
+      <prefix>https://app.awallet.io/</prefix>
+      <message lang="en" type="exclude">%name% can't be traded with MagicLink</message>
+      <message type="include">Only %name% can be traded with MagicLink</message>
+      <message lang="zh" type="exclude">%name% 不能用MagicLink交易</message>
+      <message lang="zh" type="include">只有末到期的票才可以用MagicLink交易</message>
+    </feature>
+    <feature type="transfer-link">
+      <exclude>discounted</exclude>
+      <exclude>invited</exclude>
+      <prefix>https://app.awallet.io/</prefix>
+      <message lang="en" type="exclude">%name% can't be traded on the market</message>
+      <message lang="zh" type="exclude">%name% 不能再在市场上交易</message>
+    </feature>
+    <feature type="feemaster">
+      <exclude>expired</exclude>
+      <feemaster>https://app.awallet.io:80/api/claimToken</feemaster>
+      <message lang="en" type="include">%name% can't be imported</message>
+      <message lang="zh" type="include">不能收下%name%</message>
+    </feature>
+    <feature type="qr-redeem">
+      <include>valid</include>
+      <redeem format="Aztec"/>
+      <message lang="en" type="include">Only %name% can be redeemed for paper tickets</message>
+      <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
+    </feature>
+    <feature type="nfc-redeem">
+      <include>valid</include>
+      <device>decafbaddecafbad</device>
+      <message lang="en" type="include">Only %name% can be redeemed for paper tickets</message>
+      <message lang="zh" type="include">只有%name%才可以兑换纸票</message>
+    </feature>
+  </features>
+  <grouping>
+    <group bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" name="default">
+      <consecutive_groups/>
+    </group>
+  </grouping>
+
+  <!-- token UI definition can happen here -->
+  <attribute-types>
+    <!--
+     bits: 012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234012340123401234
+     blok: 0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3    0    1    2    3
+     
+     mask: 000000000000000111110000000000000001111100000000000000011111000000000000000111110000000000000001111100000000000000011111000000000000000111110000000000000001111100000000000000011111000000000000000111110000000000000001111100000000000000011111
+     
+     mask for the first kattribute is body:
+     000000000000000111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+     src: https://medium.com/@kaigani/the-cryptokitties-genome-project-on-dominance-inheritance-and-mutation-b73059dcd0a4
+  -->
+    <attribute-type id="BODY" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+      <name lang="en">BODY</name>
+      <origin as="mapping" bitmask="000000000000000111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+        <option key="1">
+          <value lang="en">selkirk</value>
+        </option>
+        <option key="9">
+          <value lang="en">cymric</value>
+        </option>
+        <option key="10">
+          <value lang="en">chartreux</value>
+        </option>
+        <option key="11">
+          <value lang="en">himalayan</value>
+        </option>
+        <option key="12">
+          <value lang="en">munchkin</value>
+        </option>
+        <option key="13">
+          <value lang="en">sphynx</value>
+        </option>
+        <option key="14">
+          <value lang="en">ragamuffin</value>
+        </option>
+        <option key="15">
+          <value lang="en">ragdoll</value>
+        </option>
+        <option key="21">
+          <value lang="en">mainecon</value>
+        </option>
+        <option key="22">
+          <value lang="en">laperm</value>
+        </option>
+        <option key="23">
+          <value lang="en">persian</value>
+        </option>
+        <option key="27">
+          <value lang="en">manx</value>
+        </option>
+      </origin>
+     </attribute-type>
+    <attribute-type id="PATTERN-TYPE" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+      <name lang="en">PATTERN-TYPE</name>
+      <origin as="mapping" bitmask="000000000000000000000000000000000001111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+        <option key="6">
+          <value lang="en">totesbasic_7</value>
+        </option>
+        <option key="7">
+            <value lang="en">totesbasic_8</value>
+        </option>
+        <option key="8">
+            <value lang="en">calicool</value>
+        </option>
+        <option key="9">
+            <value lang="en">luckystripe</value>
+        </option>
+        <option key="10">
+            <value lang="en">amur</value>
+        </option>
+        <option key="11">
+            <value lang="en">jaguar</value>
+        </option>
+        <option key="12">
+            <value lang="en">spock</value>
+        </option>
+        <option key="14">
+            <value lang="en">totesbasic_f</value>
+        </option>
+        <option key="15">
+            <value lang="en">totesbasic_g</value>
+        </option>
+        <option key="20">
+            <value lang="en">tigerpunk</value>
+        </option>
+        <option key="21">
+            <value lang="en">henna</value>
+        </option>
+        <option key="22">
+            <value lang="en">totesbasic_o</value>
+        </option>
+        <option key="23">
+            <value lang="en">totesbasic_p</value>
+        </option>
+        <option key="26">
+            <value lang="en">hotrod</value>
+        </option>
+        <option key="30">
+            <value lang="en">totesbasic_w</value>
+        </option>
+        <option key="31">
+            <value lang="en">totesbasic_x</value>
+        </option>
+      </origin>
+    </attribute-type>
+    <attribute-type id="EYE-COLOR" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+      <name lang="en">EYE-COLOR</name>
+      <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000011111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+        <option key="1">
+          <value lang="en">gold</value>
+        </option>
+        <option key="2">
+            <value lang="en">topaz</value>
+        </option>
+        <option key="3">
+            <value lang="en">mintgreen</value>
+        </option>
+        <option key="5">
+            <value lang="en">sizzurp</value>
+        </option>
+        <option key="6">
+            <value lang="en">chestnut</value>
+        </option>
+        <option key="7">
+            <value lang="en">strawberry</value>
+        </option>
+        <option key="16">
+            <value lang="en">pumpkin</value>
+        </option>
+        <option key="17">
+            <value lang="en">limegreen</value>
+        </option>
+        <option key="19">
+            <value lang="en">bubblegum</value>
+        </option>
+      </origin>
+    </attribute-type>
+    <attribute-type id="EYE-TYPE" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">EYE-TYPE</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+            <option key="2">
+                <value lang="en">serpent</value>
+            </option>
+            <option key="3">
+                <value lang="en">googly</value>
+            </option>
+            <option key="4">
+                <value lang="en">otaku</value>
+            </option>
+            <option key="5">
+                <value lang="en">simple</value>
+            </option>
+            <option key="6">
+                <value lang="en">crazy</value>
+            </option>
+            <option key="7">
+                <value lang="en">thiccbrowz</value>
+            </option>
+            <option key="17">
+                <value lang="en">alien</value>
+            </option>
+            <option key="18">
+                <value lang="en">fabulous</value>
+            </option>
+            <option key="19">
+                <value lang="en">raisedbrow</value>
+            </option>
+            <option key="25">
+                <value lang="en">wingtips</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="COLOR-1" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">COLOR-1</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+            <option key="0">
+                <value lang="en">shadowgrey</value>
+            </option>
+            <option key="1">
+                <value lang="en">salmon</value>
+            </option>
+            <option key="3">
+                <value lang="en">orangesoda</value>
+            </option>
+            <option key="4">
+                <value lang="en">cottoncandy</value>
+            </option>
+            <option key="5">
+                <value lang="en">mauveover</value>
+            </option>
+            <option key="6">
+                <value lang="en">aquamarine</value>
+            </option>
+            <option key="10">
+                <value lang="en">greymatter</value>
+            </option>
+            <option key="14">
+                <value lang="en">hintomint</value>
+            </option>
+            <option key="16">
+                <value lang="en">cloudwhite</value>
+            </option>
+            <option key="18">
+                <value lang="en">oldlace</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="PATTERN-COLOR" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">PATTERN-COLOR</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+            <option key="6">
+                <value lang="en">royalpurple</value>
+            </option>
+            <option key="8">
+                <value lang="en">swampgreen</value>
+            </option>
+            <option key="9">
+                <value lang="en">violet</value>
+            </option>
+            <option key="10">
+                <value lang="en">scarlet</value>
+            </option>
+            <option key="11">
+                <value lang="en">barkbrown</value>
+            </option>
+            <option key="12">
+                <value lang="en">coffee</value>
+            </option>
+            <option key="13">
+                <value lang="en">lemonade</value>
+            </option>
+            <option key="14">
+                <value lang="en">chocolate</value>
+            </option>
+            <option key="20">
+                <value lang="en">wolfgrey</value>
+            </option>
+            <option key="21">
+                <value lang="en">cerulian</value>
+            </option>
+            <option key="22">
+                <value lang="en">skyblue</value>
+            </option>
+            <option key="26">
+                <value lang="en">royalblue</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="COLOR-2" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">COLOR-2</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+            <option key="0">
+                <value lang="en">belleblue</value>
+            </option>
+            <option key="1">
+                <value lang="en">sandalwood</value>
+            </option>
+            <option key="2">
+                <value lang="en">peach</value>
+            </option>
+            <option key="3">
+                <value lang="en">icy</value>
+            </option>
+            <option key="4">
+                <value lang="en">granite grey</value>
+            </option>
+            <option key="6">
+                <value lang="en">kittencream</value>
+            </option>
+            <option key="7">
+                <value lang="en">emeraldgreen</value>
+            </option>
+            <option key="16">
+                <value lang="en">daffodil</value>
+            </option>
+            <option key="17">
+                <value lang="en">flamingo</value>
+            </option>
+            <option key="19">
+                <value lang="en">bloodred</value>
+            </option>
+            <option key="24">
+                <value lang="en">seafoam</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="WILD" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">WILD</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111100000000000000000000000000000000000000000000000000000000000000000000000000000000">
+            <option key="0">
+                <value lang="en">dracula</value>
+            </option>
+            <option key="2">
+                <value lang="en">wild_3</value>
+            </option>
+            <option key="3">
+                <value lang="en">wild_4</value>
+            </option>
+            <option key="5">
+                <value lang="en">wild_6</value>
+            </option>
+            <option key="10">
+                <value lang="en">wild_8</value>
+            </option>
+            <option key="15">
+                <value lang="en">santaclaws</value>
+            </option>
+            <option key="20">
+                <value lang="en">elk</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="MOUTH" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">MOUTH</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111000000000000000000000000000000000000000000000000000000000000">
+            <option key="0">
+                <value lang="en">whixtensions</value>
+            </option>
+            <option key="3">
+                <value lang="en">gerbil</value>
+            </option>
+            <option key="8">
+                <value lang="en">beard</value>
+            </option>
+            <option key="9">
+                <value lang="en">pouty</value>
+            </option>
+            <option key="10">
+                <value lang="en">saycheese</value>
+            </option>
+            <option key="14">
+                <value lang="en">happygokitty</value>
+            </option>
+            <option key="15">
+                <value lang="en">soserious</value>
+            </option>
+            <option key="20">
+                <value lang="en">dali</value>
+            </option>
+            <option key="23">
+                <value lang="en">tongue</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="FUTURE_1" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">FUTURE_1</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111110000000000000000000000000000000000000000">
+            <option key="1">
+                <value lang="en">alpha_2</value>
+            </option>
+            <option key="3">
+                <value lang="en">alpha_4</value>
+            </option>
+            <option key="6">
+                <value lang="en">alpha_7</value>
+            </option>
+            <option key="9">
+                <value lang="en">alpha_a</value>
+            </option>
+            <option key="14">
+                <value lang="en">alpha_f</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="FUTURE_2" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">FUTURE_2</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111100000000000000000000">
+            <option key="4">
+                <value lang="en">beta_5</value>
+            </option>
+            <option key="5">
+                <value lang="en">beta_6</value>
+            </option>
+            <option key="6">
+                <value lang="en">beta_7</value>
+            </option>
+            <option key="7">
+                <value lang="en">beta_8</value>
+            </option>
+            <option key="18">
+                <value lang="en">beta_j</value>
+            </option>
+            <option key="19">
+                <value lang="en">beta_k</value>
+            </option>
+            <option key="25">
+                <value lang="en">beta_r</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="FUTURE_3" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
+        <name lang="en">FUTURE_3</name>
+        <origin as="mapping" bitmask="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111">
+            <option key="8">
+                <value lang="en">gamma_9</value>
+            </option>
+            <option key="9">
+                <value lang="en">gamma_a</value>
+            </option>
+            <option key="11">
+                <value lang="en">gamma_c</value>
+            </option>
+            <option key="12">
+                <value lang="en">gamma_d</value>
+            </option>
+            <option key="20">
+                <value lang="en">gamma_m</value>
+            </option>
+        </origin>
+    </attribute-type>
+    <attribute-type id="numero" syntax="1.3.6.1.4.1.1466.115.121.1.27">
+      <name>№</name>
+      <origin as="unsigned" bitmask="000000000000000000000000000000000000000000000000000000000000FFFF"/>
+    </attribute-type>
+    <attribute-type id="expired" syntax="1.3.6.1.4.1.1466.115.121.1.7">
+      <origin contract="holding-contract">
+        <function>isExpired</function>
+      </origin>
+    </attribute-type>
+    <attribute-type id="gifted" syntax="1.3.6.1.4.1.1466.115.121.1.7">
+      <origin contract="holding-contract">
+        <function>isGifted</function>
+        <parameter>TokenID</parameter><!-- place holder - actual format undefined yet -->
+      </origin>
+    </attribute-type>
+  </attribute-types>
+</token>
