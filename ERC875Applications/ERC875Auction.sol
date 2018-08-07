@@ -11,7 +11,6 @@ contract ERC875Interface {
     function myBalance() public view returns(bytes32[]);
     function transfer(address _to, uint16[] ticketIndices) public;
     function transferFrom(address _from, address _to, uint16[] ticketIndices) public;
-    function transferFromContract(address _from, address _to, uint16[] ticketIndices) public returns (bool);
     function approve(address _approved, uint16[] ticketIndices) public;
     function endContract() public;
     function contractType() public pure returns (string);
@@ -22,8 +21,7 @@ contract ERC875Interface {
     event Trade(address indexed seller, uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
     event PassTo(uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
     event Approval(address indexed owner, address indexed _approved, uint indexed ticketCount);
-    event TransferFromContract(address indexed _from, address indexed _to, address indexed senderContract, uint ticketCount);
-}
+ }
 
 contract ERC875Auction 
 {
@@ -36,7 +34,7 @@ contract ERC875Auction
 
     mapping(address => uint) public bids;
 
-      // Events that will be fired on changes.
+    // Events that will be fired on changes.
     event HighestBidIncreased(address bidder, uint amount);
     event AuctionEnded(address winner, uint highestBid);
 
@@ -107,7 +105,7 @@ contract ERC875Auction
         ERC875Interface ticketContract = ERC875Interface(holdingContract);
         
         //Atomic swap the ERC875 token(s) and the highestBidder's ETH 
-        bool completed = ticketContract.transferFromContract(beneficiary, highestBidder, contractIndices);
+        bool completed = ticketContract.transferFrom(beneficiary, highestBidder, contractIndices);
         //only have two outcomes from transferFromContract() - all tickets are transferred or none (uses revert)
         if (completed) beneficiary.transfer(msg.value);
 
