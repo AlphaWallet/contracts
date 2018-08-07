@@ -10,7 +10,6 @@ contract ERC875Interface {
     function myBalance() public view returns(bytes32[]);
     function transfer(address _to, uint16[] ticketIndices) public;
     function transferFrom(address _from, address _to, uint16[] ticketIndices) public;
-    function transferFromContract(address _from, address _to, uint16[] ticketIndices) public;
     function approve(address _approved, uint16[] ticketIndices) public;
     function checkAllowed(address owner, address proxy) public view returns (uint16[] ticketIndices);
     function endContract() public;
@@ -22,5 +21,4 @@ contract ERC875Interface {
     event Trade(address indexed seller, uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
     event PassTo(uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
     event Approval(address indexed owner, address indexed _approved, uint indexed ticketCount);
-    event TransferFromContract(address indexed _from, address indexed _to, address indexed senderContract, uint ticketCount);
 }
