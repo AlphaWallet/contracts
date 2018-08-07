@@ -71,7 +71,6 @@ contract TicketPro
     }
     
     function() public { revert(); } //should not send any ether directly
-
      
     constructor (
         bytes32[] tickets,
@@ -223,16 +222,22 @@ contract TicketPro
         emit Transfer(_to, ticketIndices);
     }
 
-    function transferFrom(address _from, address _to, uint16[] ticketIndices)
-        organiserOnly public
+    function transferFrom(address _from, address _to, uint16[] ticketIndices) public
     {
         for(uint i = 0; i < ticketIndices.length; i++)
         {
             uint index = uint(ticketIndices[i]);
-            assert(inventory[_from][index] != bytes32(0));
-            //pushes each element with ordering
-            inventory[_to].push(inventory[msg.sender][index]);
-            delete inventory[_from][index];
+            if (inventory[_from][index] == bytes32(0)) revert("NFT not owned by _from address");
+            if (msg.sender == organiserAddr || allowed[_from][msg.sender][i] == ticketIndices[i])
+            {
+                //pushes each element with ordering
+                inventory[_to].push(inventory[msg.sender][index]);
+                delete inventory[_from][index];
+            }
+            else
+            {
+                revert("indices need to be consistant with approve()");
+            }
         }
         
         emit TransferFrom(_from, _to, ticketIndices);
@@ -244,30 +249,14 @@ contract TicketPro
         return allowed[owner][proxy];
     }
 
-    // Allows an external contract to move NFTs on behalf of the token owner
-    // This is similar mechanism to ERC20 but adapted to ERC875
-    function transferFromContract(address _from, address _to, uint16[] ticketIndices) public returns (bool) 
-    {
-        //indices sent to contract must be in the same order
-        for(uint i = 0; i < ticketIndices.length; i++)
-        {
-            uint index = uint(ticketIndices[i]);
-            if (allowed[_from][msg.sender][i] != ticketIndices[i]) revert("indices need to be consistant with approve()");
-            if (inventory[_from][index] == bytes32(0)) revert("NFT not owned by _from address");
-            inventory[_to].push(inventory[_from][index]);
-            delete inventory[_from][index];
-        }
-
-        delete allowed[_from][msg.sender];
-        
-        emit TransferFromContract(_from, _to, msg.sender, ticketIndices.length);
-        return true;
-    }
-
     // This function approves specific NTFs to be available for use in an external contract
     // See transferFromContract() above.
     function approve(address _approved, uint16[] ticketIndices) public
     {
+        // allow caller to cancel approval - each approval call resets previous approval
+        // putting 0 indices resets approval
+        delete allowed[msg.sender][_approved];
+
         for(uint i = 0; i < ticketIndices.length; i++)
         {
             uint index = uint(ticketIndices[i]);
