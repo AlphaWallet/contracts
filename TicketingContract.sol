@@ -40,7 +40,6 @@ pragma solidity ^0.4.17;
 contract TicketPro
 {
     mapping(address => uint256[]) inventory;
-    uint16 ticketIndex = 0; //to track mapping in tickets
     address organiser;
     address paymaster;
     string public name;
@@ -93,20 +92,20 @@ contract TicketPro
         //increment sellers tickets to make sure they have them
         for(uint i = 0; i < tickets.length; i++)
         {
-            for(uint j = 0; j < tickets.length; i++)
+            bool found = false;
+            for(uint j = 0; j < tickets.length; j++)
             {
-                bool found = false;
                 if(inventory[seller][j] == tickets[i])
                 {
                     found = true;
+                    inventory[msg.sender].push(inventory[seller][j]);
+                    delete inventory[seller][j];
                     break;
                 }
             }
             //if any ticket up for sale is not found, revert state
             //assert will revert all changes back to pre transaction
             assert(found);
-            inventory[msg.sender].push(tickets[i]);
-            delete inventory[seller][i];
         }
         emit Trade(seller, tickets, v, r, s);
     }
@@ -156,9 +155,9 @@ contract TicketPro
         //increment givers tickets to make sure they have them
         for(uint i = 0; i < tickets.length; i++)
         {
-            for(uint j = 0; j < tickets.length; i++)
+            bool found = false;
+            for(uint j = 0; j < tickets.length; j++)
             {
-                bool found = false;
                 if(inventory[giver][j] == tickets[i])
                 {
                     found = true;
@@ -232,9 +231,9 @@ contract TicketPro
         //increment sellers tickets to make sure they have them
         for(uint i = 0; i < tickets.length; i++)
         {
-            for(uint j = 0; j < tickets.length; i++)
+            bool found = false;
+            for(uint j = 0; j < tickets.length; j++)
             {
-                bool found = false;
                 if(inventory[msg.sender][j] == tickets[i])
                 {
                     found = true;
@@ -252,13 +251,13 @@ contract TicketPro
 
     function transferFrom(address _from, address _to, uint256[] tickets) public
     {
-        require(msg.sender == paymaster);
+        require(msg.sender == organiser);
         //increment sellers tickets to make sure they have them
         for(uint i = 0; i < tickets.length; i++)
         {
-            for(uint j = 0; j < tickets.length; i++)
+            bool found = false;
+            for(uint j = 0; j < tickets.length; j++)
             {
-                bool found = false;
                 if(inventory[_from][j] == tickets[i])
                 {
                     found = true;
