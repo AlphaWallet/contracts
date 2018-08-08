@@ -40,10 +40,8 @@ pragma solidity ^0.4.17;
 contract TicketPro
 {
     mapping(address => uint256[]) inventory;
-    uint16 ticketIndex = 0; //to track mapping in tickets
     address organiser;
     address paymaster;
-    uint numOfTransfers = 0;
     string public name;
     string public symbol;
     uint8 public constant decimals = 0; //no decimals as tickets cannot be split
@@ -272,11 +270,6 @@ contract TicketPro
     function symbol() public view returns(string)
     {
         return symbol;
-    }
-
-    function getAmountTransferred() public view returns (uint)
-    {
-        return numOfTransfers;
     }
 
     function balanceOf(address _owner) public view returns (uint256[])
