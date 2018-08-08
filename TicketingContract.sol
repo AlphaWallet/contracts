@@ -39,7 +39,7 @@
 pragma solidity ^0.4.17;
 contract TicketPro
 {
-    mapping(address => bytes32[]) inventory;
+    mapping(address => uint256[]) inventory;
     uint16 ticketIndex = 0; //to track mapping in tickets
     address organiser;
     address paymaster;
@@ -69,7 +69,7 @@ contract TicketPro
 
 
     constructor (
-        bytes32[] tickets,
+        uint256[] tickets,
         string nameOfContract,
         string symbolForContract,
         address organiserAddr,
@@ -107,7 +107,7 @@ contract TicketPro
         for(uint i = 0; i < ticketIndices.length; i++)
         { // transfer each individual tickets in the ask order
             uint16 index = ticketIndices[i];
-            assert(inventory[seller][index] != bytes32(0)); // 0 means ticket gone.
+            assert(inventory[seller][index] != uint256(0)); // 0 means ticket gone.
             inventory[msg.sender].push(inventory[seller][index]);
             // 0 means ticket gone.
             delete inventory[seller][index];
@@ -117,8 +117,9 @@ contract TicketPro
         emit Trade(seller, ticketIndices, v, r, s);
     }
 
-    function loadNewTickets(bytes32[] tickets) public organiserOnly
+    function loadNewTickets(uint256[] tickets) public
     {
+        require(msg.sender == organiser);
         for(uint i = 0; i < tickets.length; i++)
         {
             inventory[organiser].push(tickets[i]);
@@ -126,6 +127,7 @@ contract TicketPro
     }
 
     //for new tickets to be created and given over
+    //this requires a special magic link format with tokenids inside rather than indicies
     function spawnPassTo(uint256 expiry,
                     uint256[] tickets,
                     uint8 v,
@@ -134,7 +136,7 @@ contract TicketPro
                     address recipient) public
     {
         require(expiry > block.timestamp || expiry == 0);
-        bytes32 message = encodeMessage(0, expiry, tickets);
+        bytes32 message = encodeMessageSpawnable(0, expiry, tickets);
         address giver = ecrecover(message, v, r, s);
         //only the organiser can authorise this
         require(giver == organiser);
@@ -142,7 +144,6 @@ contract TicketPro
         {
             inventory[recipient].push(tickets[i]);
         }
-        emit PassTo(tickets, v, r, s, recipient);
     }
 
     function passTo(uint256 expiry,
@@ -160,8 +161,8 @@ contract TicketPro
             uint16 index = ticketIndices[i];
             //needs to use revert as all changes should be reversed
             //if the user doesnt't hold all the tickets
-            assert(inventory[giver][index] != bytes32(0));
-            bytes32 ticket = inventory[giver][index];
+            assert(inventory[giver][index] != uint256(0));
+            uint256 ticket = inventory[giver][index];
             inventory[recipient].push(ticket);
             delete inventory[giver][index];
         }
@@ -201,6 +202,68 @@ contract TicketPro
         return keccak256(message);
     }
 
+        //must also sign in the contractAddress
+    function encodeMessageSpawnable(uint value, uint expiry, uint256[] tickets)
+        internal view returns (bytes32)
+    {
+        bytes memory message = new bytes(84 + tickets.length * 32);
+        address contractAddress = getContractAddress();
+        for (uint i = 0; i < 32; i++)
+        {   // convert bytes32 to bytes[32]
+            // this adds the price to the message
+            message[i] = byte(bytes32(value << (8 * i)));
+        }
+
+        for (i = 0; i < 32; i++)
+        {
+            message[i + 32] = byte(bytes32(expiry << (8 * i)));
+        }
+
+        for(i = 0; i < 20; i++)
+        {
+            message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
+        }
+
+        for (i = 0; i < tickets.length; i++)
+        {
+            // convert uint256[] to bytes
+            message[84 + i * 32 + 32] = byte(tickets[i]);
+            message[84 + i * 32 + 31] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 30] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 29] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 28] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 27] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 26] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 25] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 24] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 23] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 22] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 21] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 20] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 19] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 18] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 17] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 16] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 15] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 14] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 13] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 12] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 11] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 10] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 9] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 8] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 7] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 6] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 5] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 4] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 3] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 2] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 + 1] = byte(tickets[i] = tickets[i >> 8]);
+            message[84 + i * 32 ] = byte(tickets[i] = tickets[i >> 8]);
+        }
+        return keccak256(message);
+    }
+
     function name() public view returns(string)
     {
         return name;
@@ -216,12 +279,12 @@ contract TicketPro
         return numOfTransfers;
     }
 
-    function balanceOf(address _owner) public view returns (bytes32[])
+    function balanceOf(address _owner) public view returns (uint256[])
     {
         return inventory[_owner];
     }
 
-    function myBalance() public view returns(bytes32[]){
+    function myBalance() public view returns(uint256[]){
         return inventory[msg.sender];
     }
 
@@ -230,7 +293,7 @@ contract TicketPro
         for(uint i = 0; i < ticketIndices.length; i++)
         {
             uint index = uint(ticketIndices[i]);
-            assert(inventory[msg.sender][index] != bytes32(0));
+            assert(inventory[msg.sender][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[msg.sender][index];
@@ -244,7 +307,7 @@ contract TicketPro
         for(uint i = 0; i < ticketIndices.length; i++)
         {
             uint index = uint(ticketIndices[i]);
-            assert(inventory[_from][index] != bytes32(0));
+            assert(inventory[_from][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[_from][index];
