@@ -224,12 +224,12 @@ contract TicketPro
 
         for (i = 0; i < tickets.length; i++)
         {
+            message[84 + i * 32 ] = byte(tickets[i]);
             // convert uint256[] to bytes
-            for (uint j = 31; j == 0; j--)
+            for (uint j = 0; j < 32; j++)
             {
                 message[84 + i * 32 + j] = byte(tickets[i] = tickets[i] >> 8);
             }
-            message[84 + i * 32 ] = byte(tickets[i]);
         }
         return keccak256(message);
     }
