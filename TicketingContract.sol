@@ -225,39 +225,11 @@ contract TicketPro
         for (i = 0; i < tickets.length; i++)
         {
             // convert uint256[] to bytes
-            message[84 + i * 32 + 32] = byte(tickets[i]);
-            message[84 + i * 32 + 31] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 30] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 29] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 28] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 27] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 26] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 25] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 24] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 23] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 22] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 21] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 20] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 19] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 18] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 17] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 16] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 15] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 14] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 13] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 12] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 11] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 10] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 9] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 8] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 7] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 6] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 5] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 4] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 3] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 2] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 + 1] = byte(tickets[i] = tickets[i] >> 8);
-            message[84 + i * 32 ] = byte(tickets[i] = tickets[i] >> 8);
+            for (uint j = 31; j == 0; j--)
+            {
+                message[84 + i * 32 + j] = byte(tickets[i] = tickets[i] >> 8);
+            }
+            message[84 + i * 32 ] = byte(tickets[i]);
         }
         return keccak256(message);
     }
