@@ -226,7 +226,7 @@ contract TicketPro
         {
             message[84 + i * 32 ] = byte(tickets[i]);
             // convert uint256[] to bytes
-            for (uint j = 0; j < 32; j++)
+            for (uint j = 1; j < 32; j++)
             {
                 message[84 + i * 32 + j] = byte(tickets[i] = tickets[i] >> 8);
             }
