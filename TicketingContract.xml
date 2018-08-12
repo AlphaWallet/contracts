@@ -854,12 +854,6 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
         <function>isExpired</function>
       </origin>
     </attribute-type>
-    <attribute-type id="gifted" syntax="1.3.6.1.4.1.1466.115.121.1.7">
-      <origin contract="holding-contract">
-        <function>isGifted</function>
-        <parameter>TokenID</parameter><!-- place holder - actual format undefined yet -->
-      </origin>
-    </attribute-type>
     <attribute-type id="street" syntax="1.3.6.1.4.1.1466.115.121.1.7">
       <origin contract="holding-contract">
         <function>getStreet</function>
