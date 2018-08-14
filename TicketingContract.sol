@@ -46,6 +46,10 @@ contract TicketPro
     string public name;
     string public symbol;
     uint8 public constant decimals = 0; //no decimals as tickets cannot be split
+    bool isExpired;
+    string state;
+    string street; 
+    string building;
 
     event Transfer(address indexed _to, uint16[] _indices);
     event TransferFrom(address indexed _from, address indexed _to, uint16[] _indices);
@@ -73,18 +77,50 @@ contract TicketPro
         string symbolForContract,
         address organiserAddr,
         address paymasterAddr,
-        address recipientAddr) public
+        address recipientAddr,
+        string streetInfo,
+        string buildingName,
+        string stateInfo) public
     {
         name = nameOfContract;
         symbol = symbolForContract;
         organiser = organiserAddr;
         paymaster = paymasterAddr;
         inventory[recipientAddr] = tickets;
+        street = streetInfo;
+        building = buildingName;
+        state = stateInfo;
+    }
+    
+    function checkExpired() public view returns(bool) 
+    {
+        return isExpired;
+    }
+    
+    function getStreet() public view returns(string) 
+    {
+        return street;
+    }
+    
+    function getBuildingName() public view returns(string) 
+    {
+        return building;
+    }
+    
+    function getState() public view returns(string) 
+    {
+        return state;
     }
 
     function getDecimals() public pure returns(uint)
     {
         return decimals;
+    }
+    
+    function setExpired() public 
+    {
+        require(msg.sender == organiser);
+        isExpired = true;
     }
 
     // example: 0, [3, 4], 27, "0x9CAF1C785074F5948310CD1AA44CE2EFDA0AB19C308307610D7BA2C74604AE98", "0x23D8D97AB44A2389043ECB3C1FB29C40EC702282DB6EE1D2B2204F8954E4B451"
