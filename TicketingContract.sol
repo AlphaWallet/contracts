@@ -40,7 +40,7 @@ pragma solidity ^0.4.17;
 contract TicketPro
 {
     mapping(address => uint256[]) inventory;
-    bytes32[] usedSignatures;
+    mapping(bytes32 => bool) signatureChecked; 
     address organiser;
     address paymaster;
     string public name;
@@ -175,23 +175,11 @@ contract TicketPro
         address giver = ecrecover(message, v, r, s);
         //only the organiser can authorise this
         require(giver == organiser);
-        require(!checkSignaturesAreClaimed(s));
+        require(!signatureChecked[s]);
         for(uint i = 0; i < tickets.length; i++)
         {
             inventory[recipient].push(tickets[i]);
         }
-    }
-    
-    //prevent double spending of signatures
-    function checkSignaturesAreClaimed(bytes32 s) internal view returns(bool) 
-    {
-        for(uint i = 0; i < usedSignatures.length; i++) {
-            if(s == usedSignatures[i]) 
-            {
-                return true;
-            }
-        }
-        return false; 
     }
 
     function passTo(uint256 expiry,
