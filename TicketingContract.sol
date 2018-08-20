@@ -73,54 +73,38 @@ contract TicketPro
 
     constructor (
         uint256[] tickets,
-        string nameOfContract,
-        string symbolForContract,
         address organiserAddr,
         address paymasterAddr,
-        address recipientAddr,
-        string streetInfo,
-        string buildingName,
-        string stateInfo) public
+        address recipientAddr) public
     {
-        name = nameOfContract;
-        symbol = symbolForContract;
         organiser = organiserAddr;
         paymaster = paymasterAddr;
         inventory[recipientAddr] = tickets;
-        street = streetInfo;
-        building = buildingName;
-        state = stateInfo;
     }
     
-    function checkExpired() public view returns(bool) 
+    function checkExpired(uint256 tokenId) public view returns(bool) 
     {
-        return isExpired;
+        return true;
     }
     
-    function getStreet() public view returns(string) 
+    function getStreet(uint256 tokenId) public view returns(string) 
     {
-        return street;
+        return "";
     }
     
-    function getBuildingName() public view returns(string) 
+    function getBuildingName(uint256 tokenId) public view returns(string) 
     {
-        return building;
+        return "";
     }
     
-    function getState() public view returns(string) 
+    function getState(uint256 tokenId) public view returns(string) 
     {
-        return state;
-    }
-
-    function getDecimals() public pure returns(uint)
-    {
-        return decimals;
+        return "";
     }
     
-    function setExpired() public 
+    function setExpired(uint256 tokenId) public 
     {
         require(msg.sender == organiser);
-        isExpired = true;
     }
 
     // example: 0, [3, 4], 27, "0x9CAF1C785074F5948310CD1AA44CE2EFDA0AB19C308307610D7BA2C74604AE98", "0x23D8D97AB44A2389043ECB3C1FB29C40EC702282DB6EE1D2B2204F8954E4B451"
@@ -272,14 +256,14 @@ contract TicketPro
         return keccak256(message);
     }
 
-    function name() public view returns(string)
+    function name(uint256 tokenId) public view returns(string)
     {
-        return name;
+        return "";
     }
 
-    function symbol() public view returns(string)
+    function symbol(uint256 tokenId) public view returns(string)
     {
-        return symbol;
+        return "";
     }
 
     function balanceOf(address _owner) public view returns (uint256[])
