@@ -56,7 +56,6 @@ contract TicketPro
     event Trade(address indexed seller, uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
     event PassTo(uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
     event Approval(address indexed owner, address indexed _approved, uint indexed ticketCount);
-    event TransferFromContract(address indexed _from, address indexed _to, address indexed senderContract, uint ticketCount);
 
     modifier organiserOnly()
     {
