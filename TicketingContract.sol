@@ -40,6 +40,9 @@ pragma solidity ^0.4.17;
 contract TicketPro
 {
     mapping(address => bytes32[]) inventory;
+    // Owner of account approves the transfer of specific indices by another account
+    mapping(address => mapping (address => uint16[])) allowed;
+    
     uint16 ticketIndex = 0; //to track mapping in tickets
     address organiser;
     address paymaster;
@@ -52,6 +55,7 @@ contract TicketPro
     event TransferFrom(address indexed _from, address indexed _to, uint16[] _indices);
     event Trade(address indexed seller, uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
     event PassTo(uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
+    event Approval(address indexed owner, address indexed _approved, uint indexed ticketCount);
 
     modifier organiserOnly()
     {
@@ -66,7 +70,6 @@ contract TicketPro
     }
     
     function() public { revert(); } //should not send any ether directly
-
      
     constructor (
         bytes32[] tickets,
@@ -218,19 +221,50 @@ contract TicketPro
         emit Transfer(_to, ticketIndices);
     }
 
-    function transferFrom(address _from, address _to, uint16[] ticketIndices)
-        organiserOnly public
+    function transferFrom(address _from, address _to, uint16[] ticketIndices) public
     {
         for(uint i = 0; i < ticketIndices.length; i++)
         {
             uint index = uint(ticketIndices[i]);
-            assert(inventory[_from][index] != bytes32(0));
-            //pushes each element with ordering
-            inventory[_to].push(inventory[msg.sender][index]);
-            delete inventory[_from][index];
+            if (inventory[_from][index] == bytes32(0)) revert("NFT not owned by _from address");
+            if (msg.sender == organiserAddr || allowed[_from][msg.sender][i] == ticketIndices[i])
+            {
+                //pushes each element with ordering
+                inventory[_to].push(inventory[msg.sender][index]);
+                delete inventory[_from][index];
+            }
+            else
+            {
+                revert("indices need to be consistant with approve()");
+            }
         }
         
         emit TransferFrom(_from, _to, ticketIndices);
+    }
+
+    // Function can be used by external smart contract to ensure it is allowed to move NFTs
+    function checkAllowed(address owner, address proxy) public view returns (uint16[])
+    {
+        return allowed[owner][proxy];
+    }
+
+    // This function approves specific NTFs to be available for use in an external contract
+    // See transferFromContract() above.
+    function approve(address _approved, uint16[] ticketIndices) public
+    {
+        // allow caller to cancel approval - each approval call resets previous approval
+        // putting 0 indices resets approval
+        delete allowed[msg.sender][_approved];
+
+        for(uint i = 0; i < ticketIndices.length; i++)
+        {
+            uint index = uint(ticketIndices[i]);
+            //check token ownership, abort function and revert changes if any problems
+            if(inventory[msg.sender][index] == bytes32(0)) revert();
+        }
+        //Confirmed that msg.sender owns these tokens; can now allow external contract to move them
+        allowed[msg.sender][_approved] = ticketIndices;
+        emit Approval(msg.sender, _approved, ticketIndices.length);
     }
 
     function endContract() public organiserOnly
@@ -247,5 +281,4 @@ contract TicketPro
     {
         return this;
     }
-
 }
