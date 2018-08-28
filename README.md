@@ -1,6 +1,12 @@
+# Contract Behaviour repository
+
+This repo is intended to store and distribute contract behaviour XML files. In the following paragraphs, the behaviours for the wallet clients to fetch the XML files is specified. To provide convenience for cross referencing those XML files with their contract source code, the contracts issued under an opensource license is stored next to its XML file.
+
+Any pull request adding smart contract files (*.sol) without the corrisponding XML file will be closed out-right. This is not the dumping ground for smart contract source code floating around.
+
 # Client specification #
 
-When the user accesses a contract, the client downloads or updates the XML files.
+When a user accesses a contract through its Ethereum address, the user's agent (mobile client) downloads or updates the XML files from this repo.
 
 “access” happens when:
 - the app discovers that the user has (or had) tokens under a Contract;
