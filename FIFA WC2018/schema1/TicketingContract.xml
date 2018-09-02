@@ -4,8 +4,8 @@
     <address network="1">0xA66A3F08068174e8F005112A8b2c7A507a822335</address>
     <address network="3">0xd8e5f58de3933e1e35f9c65eb72cb188674624f3</address>
     <name lang="ru">Ваучеры</name>
-    <name lang="en">Vouchers</name>
-    <name lang="zh">门票兑换券</name>
+    <name lang="en">Tickets</name>
+    <name lang="zh">门票</name>
     <name lang="es">Cupones</name>
     <name lang="ru">Ваучеры</name>
     <interface>erc875</interface>
@@ -488,6 +488,10 @@
           <value lang="en">P2联合创业办公社 中关村e世界</value>
           <value lang="zh">P2联合创业办公社 中关村e世界</value>
         </option>
+        <option key="235">
+          <value lang="en">Fortune coffee@The Bund</value>
+          <value lang="zh">泛合金融咖啡@上海外滩</value>
+        </option>
       </origin>
     </attribute-type>
     <attribute-type id="time" syntax="1.3.6.1.4.1.1466.115.121.1.24">
@@ -684,6 +688,10 @@
         <option key="234">
           <value lang="en">ERC875 Meetup</value>
           <value lang="zh">ERC875线下聚会</value>
+        </option>
+        <option key="233">
+          <value lang="en">Nervos and AlphaWallet Meetup</value>
+          <value lang="zh">Nervos和AlphaWallet见面会</value>
         </option>
       </origin>
     </attribute-type>
