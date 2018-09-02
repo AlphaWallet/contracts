@@ -3,6 +3,7 @@
   <contract id="holding_contract" type="holding">
     <address network="1">0xA66A3F08068174e8F005112A8b2c7A507a822335</address>
     <address network="3">0xd8e5f58de3933e1e35f9c65eb72cb188674624f3</address>
+    <address network="1">0x830E1650a87a754e37ca7ED76b700395A7C61614</address>
     <name lang="ru">Ваучеры</name>
     <name lang="en">Tickets</name>
     <name lang="zh">门票</name>
