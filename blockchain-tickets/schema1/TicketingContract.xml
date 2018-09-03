@@ -11,14 +11,6 @@
     <name lang="ru">Ваучеры</name>
     <interface>erc875</interface>
   </contract>
-  <contract type="market">
-    <name>Blind Auction</name>
-  </contract>
-  <contract type="wallet">
-    <!-- users can buy tickets using SPG points -->
-    <address network="1">0xdecafbaddecafbaddecafbaddecafbaddecafbad</address>
-    <name>Starwood Preferred Guest</name>
-  </contract>
   <!-- consider metadata of tokens, e.g. quantifier in each languages -->
   <features>
     <!-- a feature is only usable if all tokens are included, but, if
@@ -503,33 +495,11 @@
       <!-- keys used here are BinaryTime (RFC6019) for backward compatibility,
            don't copy this behaviour when creating new assets -->
       <origin as="mapping" bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000">
-        <!-- $ TZ=Europe/Moscow date -d @1528988400 +%Y%m%d%H%M%S%z -->
-        <option key="1528988400">
-          <value>20180614180000+0300</value>
-        </option>
-        <!-- $ TZ=Europe/Moscow date -d @1529074800 +%Y%m%d%H%M%S%z -->
-        <option key="1529074800">
-          <value>20180615180000+0300</value>
-        </option>
-        <!-- $ TZ=Europe/Moscow date -d @1529420400 +%Y%m%d%H%M%S%z -->
-        <option key="1529420400">
-          <value>20180619180000+0300</value>
-        </option>
-        <!-- $ TZ=Europe/Moscow date -d @1529431200 +%Y%m%d%H%M%S%z -->
-        <option key="1529431200">
-          <value>20180619210000+0300</value>
-        </option>
-        <!-- $ TZ=Europe/Moscow date -d @1530900000 +%Y%m%d%H%M%S%z -->
-        <option key="1530900000">
-          <value>20180706210000+0300</value>
-        </option>
-        <!-- $ TZ=Europe/Moscow date -d @1531576800 +%Y%m%d%H%M%S%z -->
+	<!-- Shanghai -->
         <option key="1531576800">
           <value>20180714170000+0300</value>
         </option>
-        <!-- For RISE conference in Hong Kong. The key is not UnixTime as UnixTime should be 1531299600
-         $ TZ=Asia/Hong_Kong date -d @1531299600 +%Y%m%d%H%M%S%z
-         20180711170000+0800--> 
+	<!-- Hong Kong -->
         <option key="1531328400">
           <value>20180711090000+0800</value>
         </option>
