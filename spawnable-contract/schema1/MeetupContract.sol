@@ -53,6 +53,7 @@ contract TicketPro is ERC165
 {
     uint16 ticketIndex = 0; //to track mapping in tickets
     mapping(address => uint256[]) inventory;
+	uint256[] spawnedTickets;
     mapping(bytes32 => bool) signatureChecked; 
     address organiser;
     address paymaster;
@@ -200,9 +201,20 @@ contract TicketPro is ERC165
         for(uint i = 0; i < tickets.length; i++)
         {
             inventory[recipient].push(tickets[i]);
+			spawnedTickets.push(tickets[i]);
         }
     }
 
+	//check if a spawnable ticket that created in a magic link is redeemed
+    function spawned(uint256 ticket) public view returns (bool){
+      for(uint i=0; i<spawnedTickets.length; i++){
+        if(spawnedTickets[i] == ticket){
+          return true;
+        }
+      }
+      return false;
+    }
+	
     function passTo(uint256 expiry,
                     uint16[] ticketIndices,
                     uint8 v,
