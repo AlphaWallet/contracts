@@ -29,7 +29,7 @@ Include the `IF-Modified-Since` header HTTP header with the local XML's last mod
 
 Example for the client to enquire repo.awallet.io for the latest update.
 
-    curl "Accept: text/xml; charset=UTF-8" -H "IF-Modified-Since: Mon, 02 Jul 2018 13:23:00 GMT" -H "X-Client-Name: AlphaWallet" -H "X-Client-Version: 1.0.3" -H "X-Platform-Name: iOS" -H "X-Platform-Version: 11.1.2".   https://repo.awallet.io:8080/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3
+    curl -H "Accept: text/xml; charset=UTF-8" -H "IF-Modified-Since: Mon, 02 Jul 2018 13:23:00 GMT" -H "X-Client-Name: AlphaWallet" -H "X-Client-Version: 1.0.3" -H "X-Platform-Name: iOS" -H "X-Platform-Version: 11.1.2" https://repo.awallet.io/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3
 
 If an update is needed, the new file will be available in the body. Validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it and set the modified timestamp again:
 
