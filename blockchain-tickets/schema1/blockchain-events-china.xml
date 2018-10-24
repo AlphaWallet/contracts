@@ -339,6 +339,10 @@
           <value lang="en">Exhibition stand A311</value>
           <value lang="zh">展台A311</value>
         </option>
+        <option key="231">
+          <value lang="en">Prague</value>
+          <value lang="zh">布拉格</value>
+        </option>
       </origin>
     </attribute-type>
     <attribute-type id="venue" syntax="1.3.6.1.4.1.1466.115.121.1.15">
@@ -489,6 +493,10 @@
           <value lang="en">Fortune coffee@The Bund</value>
           <value lang="zh">泛合金融咖啡@上海外滩</value>
         </option>
+        <option key="234">
+          <value lang="en">Paralelní Polis</value>
+          <value lang="zh">Paralelní Polis</value>
+        </option>        
       </origin>
     </attribute-type>
     <attribute-type id="time" syntax="1.3.6.1.4.1.1466.115.121.1.24">
@@ -700,6 +708,10 @@
           <value lang="en">AlphaWallet and our friends</value>
           <value lang="zh">AlphaWallet和小伙伴们</value>
         </option>
+        <option key="232">
+          <value lang="en">The Future of LAYER 2: Prague Edition</value>
+          <value lang="zh">The Future of LAYER 2: Prague Edition</value>
+        </option>        
       </origin>
     </attribute-type>
     <attribute-type id="numero" syntax="1.3.6.1.4.1.1466.115.121.1.27">
