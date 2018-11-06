@@ -1,41 +1,3 @@
-//mainnet: 0xA66A3F08068174e8F005112A8b2c7A507a822335
-
-// ["0x474d542b330000000000000000000000020b5b23d4704d415249524e04050001",
-// "0x474d542b330000000000000000000000020b5b23d4704d415249524e04050002",
-// "0x474d542b330000000000000000000000010a5b291a70504f4c53454e0f050001",
-// "0x474d542b330000000000000000000000010a5b291a70504f4c53454e0f050002",
-// "0x474d542b330000000000000000000000020b5b2944a052555345475911050001",
-// "0x474d542b330000000000000000000000020b5b2944a052555345475911050002",
-// "0x474d542b33000000000000000000000006055b3fae205735335735343a050001",
-// "0x474d542b33000000000000000000000006055b3fae205735335735343a050002",
-// "0x474d542b330000000000000000000000020b5b4a01e04c36314c36323f050001",
-// "0x474d542b330000000000000000000000020b5b4a01e04c36314c36323f050002",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050001",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050002",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050003",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050004",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050005",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050006",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050007",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050008",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050009",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000a",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000b",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000c",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000d",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000e",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000f",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050010",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050011",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050012",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050013",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050014"],
-// "FIFA WC2018",
-// "SHANKAI",
-// "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca",
-// "0xFE6d4bC2De2D0b0E6FE47f08A28Ed52F9d052A02",
-// "0x2e558Bc42E2e37aB638daebA5CD1062e5b9923De"
-
 pragma solidity ^0.4.17;
 contract TicketPro
 {
@@ -46,10 +8,10 @@ contract TicketPro
     string public symbol;
     uint8 public constant decimals = 0; //no decimals as tickets cannot be split
 
-    event Transfer(address indexed _to, uint16[] _indices);
-    event TransferFrom(address indexed _from, address indexed _to, uint16[] _indices);
-    event Trade(address indexed seller, uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
-    event PassTo(uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
+    event Transfer(address indexed _to, uint256[] _indices);
+    event TransferFrom(address indexed _from, address indexed _to, uint256[] _indices);
+    event Trade(address indexed seller, uint256[] indices, uint8 v, bytes32 r, bytes32 s);
+    event PassTo(uint256[] indices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
 
     modifier organiserOnly()
     {
@@ -90,7 +52,7 @@ contract TicketPro
     // price is encoded in the server and the msg.value is added to the message digest,
     // if the message digest is thus invalid then either the price or something else in the message is invalid
     function trade(uint256 expiry,
-                   uint16[] ticketIndices,
+                   uint256[] indices,
                    uint8 v,
                    bytes32 r,
                    bytes32 s) public payable
@@ -99,12 +61,12 @@ contract TicketPro
         //if fake timestamp is added then message verification will fail
         require(expiry > block.timestamp || expiry == 0);
 
-        bytes32 message = encodeMessage(msg.value, expiry, ticketIndices);
+        bytes32 message = encodeMessage(msg.value, expiry, indices);
         address seller = ecrecover(message, v, r, s);
 
-        for(uint i = 0; i < ticketIndices.length; i++)
+        for(uint i = 0; i < indices.length; i++)
         { // transfer each individual tickets in the ask order
-            uint16 index = ticketIndices[i];
+            uint256 index = indices[i];
             assert(inventory[seller][index] != uint256(0)); // 0 means ticket gone.
             inventory[msg.sender].push(inventory[seller][index]);
             // 0 means ticket gone.
@@ -112,7 +74,7 @@ contract TicketPro
         }
         seller.transfer(msg.value);
 
-        emit Trade(seller, ticketIndices, v, r, s);
+        emit Trade(seller, indices, v, r, s);
     }
 
     function loadNewTickets(uint256[] tickets) public
@@ -145,18 +107,18 @@ contract TicketPro
     }
 
     function passTo(uint256 expiry,
-                    uint16[] ticketIndices,
+                    uint256[] indices,
                     uint8 v,
                     bytes32 r,
                     bytes32 s,
                     address recipient) public payMasterOnly
     {
         require(expiry > block.timestamp || expiry == 0);
-        bytes32 message = encodeMessage(0, expiry, ticketIndices);
+        bytes32 message = encodeMessage(0, expiry, indices);
         address giver = ecrecover(message, v, r, s);
-        for(uint i = 0; i < ticketIndices.length; i++)
+        for(uint i = 0; i < indices.length; i++)
         {
-            uint16 index = ticketIndices[i];
+            uint256 index = indices[i];
             //needs to use revert as all changes should be reversed
             //if the user doesnt't hold all the tickets
             assert(inventory[giver][index] != uint256(0));
@@ -165,14 +127,14 @@ contract TicketPro
             delete inventory[giver][index];
         }
 
-        emit PassTo(ticketIndices, v, r, s, recipient);
+        emit PassTo(indices, v, r, s, recipient);
     }
 
     //must also sign in the contractAddress
-    function encodeMessage(uint value, uint expiry, uint16[] ticketIndices)
+    function encodeMessage(uint value, uint expiry, uint256[] indices)
         internal view returns (bytes32)
     {
-        bytes memory message = new bytes(84 + ticketIndices.length * 2);
+        bytes memory message = new bytes(84 + indices.length * 2);
         address contractAddress = getContractAddress();
         for (uint i = 0; i < 32; i++)
         {   // convert bytes32 to bytes[32]
@@ -190,11 +152,11 @@ contract TicketPro
             message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
         }
 
-        for (i = 0; i < ticketIndices.length; i++)
+        for (i = 0; i < indices.length; i++)
         {
             // convert int[] to bytes
-            message[84 + i * 2 ] = byte(ticketIndices[i] >> 8);
-            message[84 + i * 2 + 1] = byte(ticketIndices[i]);
+            message[84 + i * 2 ] = byte(indices[i] >> 8);
+            message[84 + i * 2 + 1] = byte(indices[i]);
         }
 
         return keccak256(message);
@@ -253,32 +215,32 @@ contract TicketPro
         return inventory[msg.sender];
     }
 
-    function transfer(address _to, uint16[] ticketIndices) public
+    function transfer(address _to, uint256[] indices) public
     {
-        for(uint i = 0; i < ticketIndices.length; i++)
+        for(uint i = 0; i < indices.length; i++)
         {
-            uint index = uint(ticketIndices[i]);
+            uint index = uint(indices[i]);
             assert(inventory[msg.sender][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[msg.sender][index];
         }
-        emit Transfer(_to, ticketIndices);
+        emit Transfer(_to, indices);
     }
 
-    function transferFrom(address _from, address _to, uint16[] ticketIndices)
+    function transferFrom(address _from, address _to, uint256[] indices)
         organiserOnly public
     {
-        for(uint i = 0; i < ticketIndices.length; i++)
+        for(uint i = 0; i < indices.length; i++)
         {
-            uint index = uint(ticketIndices[i]);
+            uint index = uint(indices[i]);
             assert(inventory[_from][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[_from][index];
         }
 
-        emit TransferFrom(_from, _to, ticketIndices);
+        emit TransferFrom(_from, _to, indices);
     }
 
     function endContract() public organiserOnly
