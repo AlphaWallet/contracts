@@ -89,23 +89,22 @@ contract TicketPro
         return state;
     }
 
-    function setExpired(uint256 tokenId) public
+    function setExpired(uint256[] tokenIds) public organiserOnly
     {
-        require(msg.sender == organiser);
         isExpired = true;
     }
 
-    function setStreet(uint256 tokenId, string streetName) public view organiserOnly returns(string)
+    function setStreet(uint256[] tokenIds, string streetName) public view organiserOnly returns(string)
     {
         street = streetName;
     }
 
-    function setBuilding(uint256 tokenId, string buildingName) public view organiserOnly returns(string)
+    function setBuilding(uint256[] tokenIds, string buildingName) public view organiserOnly returns(string)
     {
         building = buildingName;
     }
 
-    function setState(uint256 tokenId, string stateName) public view organiserOnly returns(string)
+    function setState(uint256[] tokenIds, string stateName) public view organiserOnly returns(string)
     {
         state = stateName;
     }
