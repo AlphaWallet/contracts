@@ -130,7 +130,8 @@ contract TicketPro
         emit PassTo(indices, v, r, s, recipient);
     }
 
-    //must also sign in the contractAddress
+    // although not in the parameter list, contractAddress will be
+    // included in the message to be signed as well
     function encodeMessage(uint value, uint expiry, uint256[] indices)
         internal view returns (bytes32)
     {
@@ -147,6 +148,7 @@ contract TicketPro
             message[i + 32] = byte(bytes32(expiry << (8 * i)));
         }
 
+        // including contractAddress in the message to be signed.
         for(i = 0; i < 20; i++)
         {
             message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
@@ -162,7 +164,8 @@ contract TicketPro
         return keccak256(message);
     }
 
-    //must also sign in the contractAddress
+    // although not in the parameter list, contractAddress will be
+    // included in the message to be signed as well
     function encodeMessageSpawnable(uint value, uint expiry, uint256[] tickets)
         internal view returns (bytes32)
     {
@@ -179,6 +182,7 @@ contract TicketPro
             message[i + 32] = byte(bytes32(expiry << (8 * i)));
         }
 
+        // including contractAddress in the message to be signed.
         for(i = 0; i < 20; i++)
         {
             message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
