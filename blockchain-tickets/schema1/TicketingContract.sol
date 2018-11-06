@@ -162,7 +162,7 @@ contract TicketPro
         return keccak256(message);
     }
 
-        //must also sign in the contractAddress
+    //must also sign in the contractAddress
     function encodeMessageSpawnable(uint value, uint expiry, uint256[] tickets)
         internal view returns (bytes32)
     {
