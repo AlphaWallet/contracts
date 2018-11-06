@@ -69,7 +69,7 @@ contract TicketPro
         return false;
     }
 
-    function checkExpired(uint256 tokenId) public view returns(bool)
+    function expired(uint256 tokenId) public view returns(bool)
     {
         return true;
     }
