@@ -1,57 +1,6 @@
-//ropsten: 0xCC646F18c7C22F4dF8eBFe7fA45a49F1634bF6aF
-
-// ["0x474d542b330000000000000000000000020b5b23d4704d415249524e04050001",
-// "0x474d542b330000000000000000000000020b5b23d4704d415249524e04050002",
-// "0x474d542b330000000000000000000000010a5b291a70504f4c53454e0f050001", 
-// "0x474d542b330000000000000000000000010a5b291a70504f4c53454e0f050002", 
-// "0x474d542b330000000000000000000000020b5b2944a052555345475911050001", 
-// "0x474d542b330000000000000000000000020b5b2944a052555345475911050002", 
-// "0x474d542b33000000000000000000000006055b3fae205735335735343a050001",
-// "0x474d542b33000000000000000000000006055b3fae205735335735343a050002", 
-// "0x474d542b330000000000000000000000020b5b4a01e04c36314c36323f050001",
-// "0x474d542b330000000000000000000000020b5b4a01e04c36314c36323f050002",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050001",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050002", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050003", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050004", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050005",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050006",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050007",
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050008", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050009",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000a",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000b",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000c",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000d",
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000e", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b53410105000f", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050010", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050011", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050012", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050013", 
-// "0x474d542b33000000000000000000000001075b2282f05255534b534101050014"], 
-// "0xFE6d4bC2De2D0b0E6FE47f08A28Ed52F9d052A02", 
-// "0xFE6d4bC2De2D0b0E6FE47f08A28Ed52F9d052A02",
-// "0xFE6d4bC2De2D0b0E6FE47f08A28Ed52F9d052A02",
-// "Hong leong building",
-// "SGP",
-// "HSBC",
-// "HSBC Blockchain Bashathon"
-
-contract ERC165 {
-    /// @notice Query if a contract implements an interface
-    /// @param interfaceID The interface identifier, as specified in ERC-165
-    /// @dev Interface identification is specified in ERC-165. This function
-    ///  uses less than 30,000 gas.
-    /// @return `true` if the contract implements `interfaceID` and
-    ///  `interfaceID` is not 0xffffffff, `false` otherwise
-    function supportsInterface(bytes4 interfaceID) external view returns (bool);
-}
-
 pragma solidity ^0.4.17;
-contract TicketPro is ERC165
+contract TicketPro
 {
-    uint16 ticketIndex = 0; //to track mapping in tickets
     mapping(address => uint256[]) inventory;
 	uint256[] spawnedTickets;
     mapping(bytes32 => bool) signatureChecked; 
@@ -66,30 +15,29 @@ contract TicketPro is ERC165
     string building;
     string symbol;
     bytes4 balHash = bytes4(keccak256('balanceOf(address)'));
-    bytes4 tradeHash = bytes4(keccak256('trade(uint256,uint16[],uint8,bytes32,bytes32)'));
-    bytes4 passToHash = bytes4(keccak256('passTo(uint256,uint16[],uint8,bytes32,bytes32,address)'));
+    bytes4 tradeHash = bytes4(keccak256('trade(uint256,uint256[],uint8,bytes32,bytes32)'));
+    bytes4 passToHash = bytes4(keccak256('passTo(uint256,uint256[],uint8,bytes32,bytes32,address)'));
     bytes4 spawnPassToHash = bytes4(keccak256('spawnPassTo(uint256,uint256[],uint8,bytes32,bytes32,address)'));
 
     event Transfer(address indexed _to, uint256 count);
     event TransferFrom(address indexed _from, address indexed _to, uint256 count);
-    event Trade(address indexed seller, uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
-    event PassTo(uint16[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
+    event Trade(address indexed seller, uint256[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
+    event PassTo(uint256[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
 
     modifier organiserOnly()
     {
-        if(msg.sender != organiser) revert();
-        else _;
+        require(msg.sender == organiser);
+        _;
     }
     
     modifier payMasterOnly()
     {
-        if(msg.sender != paymaster) revert();
-        else _;
+        require(msg.sender == paymaster);
+        _;
     }
     
-    function() public { revert(); } //should not send any ether directly
+    function() payable public { revert(); } //should not send any ether directly
 
-     
     constructor (
         uint256[] tickets,
         address organiserAddr,
@@ -150,7 +98,7 @@ contract TicketPro is ERC165
     // price is encoded in the server and the msg.value is added to the message digest,
     // if the message digest is thus invalid then either the price or something else in the message is invalid
     function trade(uint256 expiry,
-                   uint16[] ticketIndices,
+                   uint256[] ticketIndices,
                    uint8 v,
                    bytes32 r,
                    bytes32 s) public payable
@@ -164,7 +112,7 @@ contract TicketPro is ERC165
 
         for(uint i = 0; i < ticketIndices.length; i++)
         { // transfer each individual tickets in the ask order
-            uint16 index = ticketIndices[i];
+            uint256 index = ticketIndices[i];
             assert(inventory[seller][index] != uint256(0)); // 0 means ticket gone.
             inventory[msg.sender].push(inventory[seller][index]);
             // 0 means ticket gone.
@@ -206,17 +154,20 @@ contract TicketPro is ERC165
     }
 
 	//check if a spawnable ticket that created in a magic link is redeemed
-    function spawned(uint256 ticket) public view returns (bool){
-      for(uint i=0; i<spawnedTickets.length; i++){
-        if(spawnedTickets[i] == ticket){
-          return true;
+    function spawned(uint256 ticket) public view returns (bool)
+    {
+        for(uint i=0; i<spawnedTickets.length; i++)
+        {
+            if(spawnedTickets[i] == ticket)
+            {
+              return true;
+            }
         }
-      }
-      return false;
+        return false;
     }
 	
     function passTo(uint256 expiry,
-                    uint16[] ticketIndices,
+                    uint256[] ticketIndices,
                     uint8 v,
                     bytes32 r,
                     bytes32 s,
@@ -227,7 +178,7 @@ contract TicketPro is ERC165
         address giver = ecrecover(message, v, r, s);
         for(uint i = 0; i < ticketIndices.length; i++)
         {
-            uint16 index = ticketIndices[i];
+            uint256 index = ticketIndices[i];
             //needs to use revert as all changes should be reversed
             //if the user doesnt't hold all the tickets 
             assert(inventory[giver][index] != uint256(0));
@@ -240,7 +191,7 @@ contract TicketPro is ERC165
     }
 
     //must also sign in the contractAddress
-    function encodeMessage(uint value, uint expiry, uint16[] ticketIndices)
+    function encodeMessage(uint value, uint expiry, uint256[] ticketIndices)
         internal view returns (bytes32)
     {
         bytes memory message = new bytes(84 + ticketIndices.length * 2);
@@ -292,7 +243,7 @@ contract TicketPro is ERC165
         {
             message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
         }
-        uint256[] memory _tickets=new uint256[](tickets.length);
+        uint256[] memory _tickets = new uint256[](tickets.length);
         for (i = 0; i < tickets.length; i++)
         {
             _tickets[i]=tickets[i];
@@ -303,10 +254,6 @@ contract TicketPro is ERC165
                 message[84 + i * 32 + 31 - j] = byte(tickets[i] = tickets[i] >> 8);
             }
         }
-        for(i=0; i< _tickets.length;i++){
-          tickets[i] = _tickets[i];
-        }
-
         return keccak256(message);
     }
 
@@ -325,11 +272,12 @@ contract TicketPro is ERC165
         return inventory[_owner];
     }
 
-    function myBalance() public view returns(uint256[]){
+    function myBalance() public view returns(uint256[])
+    {
         return inventory[msg.sender];
     }
 
-    function transfer(address _to, uint16[] ticketIndices) public 
+    function transfer(address _to, uint256[] ticketIndices) public 
     {
         for(uint i = 0; i < ticketIndices.length; i++)
         {
@@ -342,7 +290,7 @@ contract TicketPro is ERC165
         emit Transfer(_to, ticketIndices.length);
     }
 
-    function transferFrom(address _from, address _to, uint16[] ticketIndices)
+    function transferFrom(address _from, address _to, uint256[] ticketIndices)
         organiserOnly public
     {
         for(uint i = 0; i < ticketIndices.length; i++)
