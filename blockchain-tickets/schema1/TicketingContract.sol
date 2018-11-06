@@ -86,26 +86,6 @@ contract TicketPro
         }
     }
 
-    //for new tickets to be created and given over
-    //this requires a special magic link format with tokenids inside rather than indicies
-    function spawnPassTo(uint256 expiry,
-                    uint256[] tickets,
-                    uint8 v,
-                    bytes32 r,
-                    bytes32 s,
-                    address recipient) public
-    {
-        require(expiry > block.timestamp || expiry == 0);
-        bytes32 message = encodeMessageSpawnable(0, expiry, tickets);
-        address giver = ecrecover(message, v, r, s);
-        //only the organiser can authorise this
-        require(giver == organiser);
-        for(uint i = 0; i < tickets.length; i++)
-        {
-            inventory[recipient].push(tickets[i]);
-        }
-    }
-
     function passTo(uint256 expiry,
                     uint256[] indices,
                     uint8 v,
@@ -161,42 +141,6 @@ contract TicketPro
             message[84 + i * 2 + 1] = byte(indices[i]);
         }
 
-        return keccak256(message);
-    }
-
-    // although not in the parameter list, contractAddress will be
-    // included in the message to be signed as well
-    function encodeMessageSpawnable(uint value, uint expiry, uint256[] tickets)
-        internal view returns (bytes32)
-    {
-        bytes memory message = new bytes(84 + tickets.length * 32);
-        address contractAddress = getContractAddress();
-        for (uint i = 0; i < 32; i++)
-        {   // convert bytes32 to bytes[32]
-            // this adds the price to the message
-            message[i] = byte(bytes32(value << (8 * i)));
-        }
-
-        for (i = 0; i < 32; i++)
-        {
-            message[i + 32] = byte(bytes32(expiry << (8 * i)));
-        }
-
-        // including contractAddress in the message to be signed.
-        for(i = 0; i < 20; i++)
-        {
-            message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
-        }
-
-        for (i = 0; i < tickets.length; i++)
-        {
-            message[84 + i * 32 ] = byte(tickets[i]);
-            // convert uint256[] to bytes
-            for (uint j = 1; j < 32; j++)
-            {
-                message[84 + i * 32 + j] = byte(tickets[i] = tickets[i] >> 8);
-            }
-        }
         return keccak256(message);
     }
 
