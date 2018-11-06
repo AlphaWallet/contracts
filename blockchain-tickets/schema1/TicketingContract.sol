@@ -86,8 +86,10 @@ contract TicketPro
         }
     }
 
-    //for new tickets to be created and given over
-    //this requires a special magic link format with tokenids inside rather than indicies
+    /* for new tickets to be created and given over. This requires a
+       special signed message in which with tokenids are used instead
+       of indicies, because before it is spawned it doesn't have
+       indicies. */
     function spawnPassTo(uint256 expiry,
                     uint256[] tickets,
                     uint8 v,

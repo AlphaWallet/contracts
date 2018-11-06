@@ -1,6 +1,6 @@
-# Contract Behaviour repository
+# Token Behaviour repository
 
-This repo is intended to store and distribute contract behaviour XML files. In the following paragraphs, the behaviours for the wallet clients to fetch the XML files is specified. To provide convenience for cross referencing those XML files with their contract source code, the contracts issued under an opensource license is stored next to its XML file.
+This repo is intended to store and distribute token behaviour XML files. In the following paragraphs, the behaviours for the wallet clients to fetch the XML files is specified. To provide convenience for cross referencing those XML files with their contract source code, the contracts issued under an opensource license is stored next to its XML file.
 
 Any pull request adding smart contract files (*.sol) without the corrisponding XML file will be closed out-right. This is not the dumping ground for smart contract source code floating around.
 
