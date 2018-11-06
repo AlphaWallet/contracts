@@ -53,6 +53,7 @@ contract TicketPro is ERC165
 {
     uint16 ticketIndex = 0; //to track mapping in tickets
     mapping(address => uint256[]) inventory;
+	uint256[] spawnedTickets;
     mapping(bytes32 => bool) signatureChecked; 
     address organiser;
     address paymaster;
@@ -200,9 +201,20 @@ contract TicketPro is ERC165
         for(uint i = 0; i < tickets.length; i++)
         {
             inventory[recipient].push(tickets[i]);
+			spawnedTickets.push(tickets[i]);
         }
     }
 
+	//check if a spawnable ticket that created in a magic link is redeemed
+    function spawned(uint256 ticket) public view returns (bool){
+      for(uint i=0; i<spawnedTickets.length; i++){
+        if(spawnedTickets[i] == ticket){
+          return true;
+        }
+      }
+      return false;
+    }
+	
     function passTo(uint256 expiry,
                     uint16[] ticketIndices,
                     uint8 v,
@@ -280,16 +292,21 @@ contract TicketPro is ERC165
         {
             message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
         }
-
+        uint256[] memory _tickets=new uint256[](tickets.length);
         for (i = 0; i < tickets.length; i++)
         {
-            message[84 + i * 32 ] = byte(tickets[i]);
+            _tickets[i]=tickets[i];
+            message[84 + i * 32 +31] = byte(tickets[i]);
             // convert uint256[] to bytes
             for (uint j = 1; j < 32; j++)
             {
-                message[84 + i * 32 + j] = byte(tickets[i] = tickets[i] >> 8);
+                message[84 + i * 32 + 31 - j] = byte(tickets[i] = tickets[i] >> 8);
             }
         }
+        for(i=0; i< _tickets.length;i++){
+          tickets[i] = _tickets[i];
+        }
+
         return keccak256(message);
     }
 
