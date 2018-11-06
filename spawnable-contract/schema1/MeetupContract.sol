@@ -1,20 +1,21 @@
-// [1,2], "0xEdd6D7ba0FF9f4bC501a12529cb736CA76A4fe7e", "0xEdd6D7ba0FF9f4bC501a12529cb736CA76A4fe7e", "0xEdd6D7ba0FF9f4bC501a12529cb736CA76A4fe7e", "test info", "test info", "test info", "test info", "test info"
+// [1,2], "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Weiwu's Haven"
+//ropsten: 0x86E074f6006Fe2D5cbAD7A364D50aF83DC2C93ec
 pragma solidity ^0.4.17;
 contract TicketPro
 {
     mapping(address => uint256[]) inventory;
-	uint256[] spawnedTickets;
+    uint256[] public spawnedTickets;
     mapping(bytes32 => bool) signatureChecked;
-    address organiser;
-    address paymaster;
+    address public organiser;
+    address public paymaster;
     uint numOfTransfers = 0;
     string public name;
     uint8 public constant decimals = 0; //no decimals as tickets cannot be split
-    bool isExpired;
-    string state;
-    string street;
-    string building;
-    string symbol;
+    bool isExpired = false;
+    string public state;
+    string public street;
+    string public building;
+    string public symbol;
     bytes4 balHash = bytes4(keccak256('balanceOf(address)'));
     bytes4 tradeHash = bytes4(keccak256('trade(uint256,uint256[],uint8,bytes32,bytes32)'));
     bytes4 passToHash = bytes4(keccak256('passTo(uint256,uint256[],uint8,bytes32,bytes32,address)'));
@@ -71,7 +72,7 @@ contract TicketPro
 
     function expired(uint256 tokenId) public view returns(bool)
     {
-        return true;
+        return false;
     }
 
     function getStreet(uint256 tokenId) public view returns(string)
@@ -88,7 +89,17 @@ contract TicketPro
     {
         return state;
     }
+    
+    function getDecimals() public pure returns(uint)
+    {
+        return decimals;
+    }
 
+    function name() public view returns(string)
+    {
+        return name;
+    }
+    
     function setExpired(uint256[] tokenIds) public organiserOnly
     {
         isExpired = true;
@@ -164,11 +175,11 @@ contract TicketPro
         for(uint i = 0; i < tickets.length; i++)
         {
             inventory[recipient].push(tickets[i]);
-		        spawnedTickets.push(tickets[i]);
+		    spawnedTickets.push(tickets[i]);
         }
     }
 
-	  //check if a spawnable ticket that created in a magic link is redeemed
+	//check if a spawnable ticket that created in a magic link is redeemed
     function spawned(uint256 ticket) public view returns (bool)
     {
         for(uint i = 0; i < spawnedTickets.length; i++)
@@ -201,7 +212,6 @@ contract TicketPro
             inventory[recipient].push(ticket);
             delete inventory[giver][index];
         }
-
         emit PassTo(ticketIndices, v, r, s, recipient);
     }
 
@@ -294,7 +304,7 @@ contract TicketPro
         for(uint i = 0; i < ticketIndices.length; i++)
         {
             uint index = uint(ticketIndices[i]);
-            assert(inventory[msg.sender][index] != uint256(0));
+            require(inventory[msg.sender][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[msg.sender][index];
@@ -308,7 +318,7 @@ contract TicketPro
         for(uint i = 0; i < ticketIndices.length; i++)
         {
             uint index = uint(ticketIndices[i]);
-            assert(inventory[_from][index] != uint256(0));
+            require(inventory[_from][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[_from][index];
