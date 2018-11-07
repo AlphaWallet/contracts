@@ -70,9 +70,9 @@ contract TicketPro
         return false;
     }
 
-    function expired(uint256 tokenId) public view returns(bool)
+    function isExpired(uint256 tokenId) public view returns(bool)
     {
-        return false;
+        return isExpired;
     }
 
     function getStreet(uint256 tokenId) public view returns(string)
@@ -80,7 +80,7 @@ contract TicketPro
         return street;
     }
 
-    function getBuilding(uint256 tokenId) public view returns(string)
+    function getBuildingName(uint256 tokenId) public view returns(string)
     {
         return building;
     }
