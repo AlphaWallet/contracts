@@ -105,17 +105,17 @@ contract TicketPro
         isExpired = true;
     }
 
-    function setStreet(uint256[] tokenIds, string streetName) public view organiserOnly returns(string)
+    function setStreet(uint256[] tokenIds, string streetName) public view organiserOnly
     {
         street = streetName;
     }
 
-    function setBuilding(uint256[] tokenIds, string buildingName) public view organiserOnly returns(string)
+    function setBuilding(uint256[] tokenIds, string buildingName) public view organiserOnly
     {
         building = buildingName;
     }
 
-    function setState(uint256[] tokenIds, string stateName) public view organiserOnly returns(string)
+    function setState(uint256[] tokenIds, string stateName) public view organiserOnly 
     {
         state = stateName;
     }
