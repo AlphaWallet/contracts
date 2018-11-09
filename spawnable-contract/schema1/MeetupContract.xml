@@ -48,7 +48,7 @@ bFTFAiBKJSQRqq66kI9yMPc1NJISGi8btpWfPiB78twtjuHe7A==
 </ds:KeyInfo>
 </ds:Signature>
   <contract id="holding_contract" type="holding">
-    <address network="3">0x86E074f6006Fe2D5cbAD7A364D50aF83DC2C93ec</address>
+    <address network="3">0xcE398B8bc99DF760d267de379d38888A1DE72889</address>
     <name lang="ru">Ваучеры</name>
     <name lang="en">Vouchers</name>
     <name lang="zh">门票兑换券</name>

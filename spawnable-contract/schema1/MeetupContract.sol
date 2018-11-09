@@ -1,5 +1,4 @@
-// [1,2], "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Weiwu's Haven"
-//ropsten: 0x86E074f6006Fe2D5cbAD7A364D50aF83DC2C93ec
+// [1,2], "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Abandoned Building Tokens"
 pragma solidity ^0.4.17;
 contract TicketPro
 {
@@ -11,7 +10,7 @@ contract TicketPro
     uint numOfTransfers = 0;
     string public name;
     uint8 public constant decimals = 0; //no decimals as tickets cannot be split
-    bool isExpired = false;
+    bool expired = false;
     string public state;
     string public street;
     string public building;
@@ -72,7 +71,7 @@ contract TicketPro
 
     function isExpired(uint256 tokenId) public view returns(bool)
     {
-        return isExpired;
+        return expired;
     }
 
     function getStreet(uint256 tokenId) public view returns(string)
@@ -89,7 +88,7 @@ contract TicketPro
     {
         return state;
     }
-    
+
     function getDecimals() public pure returns(uint)
     {
         return decimals;
@@ -99,10 +98,10 @@ contract TicketPro
     {
         return name;
     }
-    
-    function setExpired(uint256[] tokenIds) public organiserOnly
+
+    function setExpired(uint256[] tokenIds, bool isExpired) public organiserOnly
     {
-        isExpired = true;
+        expired = isExpired;
     }
 
     function setStreet(uint256[] tokenIds, string streetName) public view organiserOnly
@@ -115,7 +114,7 @@ contract TicketPro
         building = buildingName;
     }
 
-    function setState(uint256[] tokenIds, string stateName) public view organiserOnly 
+    function setState(uint256[] tokenIds, string stateName) public view organiserOnly
     {
         state = stateName;
     }
@@ -219,7 +218,7 @@ contract TicketPro
         internal view returns (bytes32)
     {
         bytes memory message = new bytes(84 + ticketIndices.length * 2);
-        address contractAddress = getContractAddress();
+        address contractAddress = getThisContractAddress();
         for (uint i = 0; i < 32; i++)
         {   // convert bytes32 to bytes[32]
             // this adds the price to the message
@@ -250,7 +249,7 @@ contract TicketPro
         internal view returns (bytes32)
     {
         bytes memory message = new bytes(84 + tickets.length * 32);
-        address contractAddress = getContractAddress();
+        address contractAddress = getThisContractAddress();
         for (uint i = 0; i < 32; i++)
         {   // convert bytes32 to bytes[32]
             // this adds the price to the message
@@ -337,7 +336,7 @@ contract TicketPro
         return true;
     }
 
-    function getContractAddress() public view returns(address)
+    function getThisContractAddress() public view returns(address)
     {
         return this;
     }
