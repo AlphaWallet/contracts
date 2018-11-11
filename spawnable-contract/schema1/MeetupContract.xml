@@ -125,7 +125,7 @@
     <!--
 
     Information about a meetup, like Country, City, time,
-	can all be looked up by TokenID. There are
+	can all be looked up by tokenID. There are
     advantages and disadvantages in encoding them by a look up table
     or by a bit field.
 
@@ -166,7 +166,7 @@
       <tb:origin contract="holding-contract">
         <tb:function name="getLocality">
           <tb:inputs>
-            <tb:uint256 ref="TokenID"/>
+            <tb:uint256 ref="tokenID"/>
           </tb:inputs>
         </tb:function>
       </tb:origin>
@@ -195,7 +195,7 @@
       <tb:value-sourcing>
         <tb:function contract="holding-contract" name="isExpired">
           <tb:inputs>
-            <tb:uint256 ref="TokenID"/>
+            <tb:uint256 ref="tokenID"/>
           </tb:inputs>
         </tb:function>
       </tb:value-sourcing>
@@ -204,7 +204,7 @@
       <tb:value-sourcing>
         <tb:function contract="holding-contract" name="getStreet">
           <tb:inputs>
-            <tb:uint256 ref="TokenID"/>
+            <tb:uint256 ref="tokenID"/>
           </tb:inputs>
         </tb:function>
       </tb:value-sourcing>
@@ -213,7 +213,7 @@
       <tb:origin contract="holding-contract">
         <tb:function contract="holding-contract" name="getBuildingName">
           <tb:inputs>
-            <tb:uint256 ref="TokenID"/>
+            <tb:uint256 ref="tokenID"/>
           </tb:inputs>
         </tb:function>
       </tb:origin>
@@ -222,7 +222,7 @@
       <tb:origin contract="holding-contract">
         <tb:function name="getState">
           <tb:inputs>
-            <tb:uint256 ref="TokenID"/>
+            <tb:uint256 ref="tokenID"/>
           </tb:inputs>
         </tb:function>
       </tb:origin>
