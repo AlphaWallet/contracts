@@ -1,6 +1,7 @@
-// [1,2], "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Abandoned Building Tokens"
+// [1,2], "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Weiwu's Haven"
+//ropsten: 0x86E074f6006Fe2D5cbAD7A364D50aF83DC2C93ec
 pragma solidity ^0.4.17;
-contract TicketPro
+contract Meetup
 {
     mapping(address => uint256[]) inventory;
     uint256[] public spawnedTickets;
@@ -12,6 +13,7 @@ contract TicketPro
     uint8 public constant decimals = 0; //no decimals as tickets cannot be split
     bool expired = false;
     string public state;
+    string public locality;
     string public street;
     string public building;
     string public symbol;
@@ -44,8 +46,9 @@ contract TicketPro
         address organiserAddr,
         address paymasterAddr,
         address recipientAddr,
-        string streetName,
         string buildingName,
+        string streetName,
+        string localityName,
         string stateName,
         string symbolName,
         string contractName) public
@@ -53,8 +56,9 @@ contract TicketPro
         organiser = organiserAddr;
         paymaster = paymasterAddr;
         inventory[recipientAddr] = tickets;
-        street = streetName;
         building = buildingName;
+        street = streetName;
+        locality = localityName;
         state = stateName;
         symbol = symbolName;
         name = contractName;
@@ -89,6 +93,11 @@ contract TicketPro
         return state;
     }
 
+    function getLocality(uint256 tokenId) public view returns(string)
+    {
+        return locality;
+    }
+
     function getDecimals() public pure returns(uint)
     {
         return decimals;
@@ -98,25 +107,30 @@ contract TicketPro
     {
         return name;
     }
-
-    function setExpired(uint256[] tokenIds, bool isExpired) public organiserOnly
+    
+    function setExpired(uint256[] tokenIds) public organiserOnly
     {
-        expired = isExpired;
+        expired = true;
     }
 
-    function setStreet(uint256[] tokenIds, string streetName) public view organiserOnly
+    function setStreet(uint256[] tokenIds, string newStreet) public view organiserOnly returns(string)
     {
-        street = streetName;
+        street = newStreet;
     }
 
-    function setBuilding(uint256[] tokenIds, string buildingName) public view organiserOnly
+    function setBuilding(uint256[] tokenIds, string newBuildingName) public view organiserOnly returns(string)
     {
-        building = buildingName;
+        building = newBuildingName;
     }
 
-    function setState(uint256[] tokenIds, string stateName) public view organiserOnly
+    function setState(uint256[] tokenIds, string newState) public view organiserOnly returns(string)
     {
-        state = stateName;
+        state = newState;
+    }
+
+    function setLocality(uint256[] tokenIds, string newLocality) public view organiserOnly returns(string)
+    {
+        locality = newLocality;
     }
 
     // example: 0, [3, 4], 27, "0x9CAF1C785074F5948310CD1AA44CE2EFDA0AB19C308307610D7BA2C74604AE98", "0x23D8D97AB44A2389043ECB3C1FB29C40EC702282DB6EE1D2B2204F8954E4B451"
