@@ -158,8 +158,8 @@
       <tb:name lang="zh">区号</tb:name>
       <tb:origin bitmask="000000000000000000000000000000000000000000000000000000FFFFFFFFFF" as="utf8"/>
     </tb:attribute-type>
-    <tb:attribute-type id="expired" syntax="1.3.6.1.4.1.1466.115.121.1.7" as="mapping"> <!-- boolean -->
-      <tb:origin contract="holding-contract">
+    <tb:attribute-type id="expired" syntax="1.3.6.1.4.1.1466.115.121.1.7"> <!-- boolean -->
+      <tb:origin contract="holding-contract" as="mapping">
         <tb:function name="isExpired">
           <tb:inputs>
             <tb:uint256 ref="tokenID"/>
