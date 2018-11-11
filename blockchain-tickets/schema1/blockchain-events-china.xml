@@ -172,7 +172,7 @@
       <tbml:name lang="zh">城市</tbml:name>
       <tbml:name lang="es">Ciudad</tbml:name>
       <tbml:name lang="ru">город</tbml:name>
-      <tbml:origin as="mapping" bitmask="00000000000000000000000000000000FF000000000000000000000000000000">
+      <tbml:origin bitmask="00000000000000000000000000000000FF000000000000000000000000000000" as="mapping">
         <tbml:option key="1">
           <tbml:value lang="ru">Москва́</tbml:value>
           <tbml:value lang="en">Moscow</tbml:value>
@@ -350,7 +350,7 @@
       <tbml:name lang="zh">场馆</tbml:name>
       <tbml:name lang="es">Lugar</tbml:name>
       <tbml:name lang="ru">место встречи</tbml:name>
-      <tbml:origin as="mapping" bitmask="0000000000000000000000000000000000FF0000000000000000000000000000">
+      <tbml:origin bitmask="0000000000000000000000000000000000FF0000000000000000000000000000" as="mapping">
         <tbml:option key="1">
           <tbml:value lang="ru">Стадион Калининград</tbml:value>
           <tbml:value lang="en">Kaliningrad Stadium</tbml:value>
@@ -506,7 +506,7 @@
       <tbml:name lang="ru">время</tbml:name>
       <!-- keys used here are BinaryTime (RFC6019) for backward compatibility,
            don't copy this behaviour when creating new assets -->
-      <tbml:origin as="mapping" bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000">
+      <tbml:origin bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000" as="mapping">
         <!-- $ TZ=Europe/Moscow date -d @1528988400 +%Y%m%d%H%M%S%z -->
         <tbml:option key="1528988400">
           <tbml:value>20180614180000+0300</tbml:value>
@@ -553,25 +553,25 @@
       <tbml:name lang="en">Team A</tbml:name>
       <tbml:name lang="zh">甲队</tbml:name>
       <tbml:name lang="es">Equipo A</tbml:name>
-      <tbml:origin as="utf8" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000"/>
+      <tbml:origin bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000" as="utf8"/>
     </tbml:attribute-type>
     <tbml:attribute-type id="countryB" syntax="1.3.6.1.4.1.1466.115.121.1.26">
       <tbml:name lang="en">Team B</tbml:name>
       <tbml:name lang="zh">乙队</tbml:name>
       <tbml:name lang="es">Equipo B</tbml:name>
-      <tbml:origin as="utf8" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000"/>
+      <tbml:origin bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000" as="utf8"/>
     </tbml:attribute-type>
     <tbml:attribute-type id="match" syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <tbml:name lang="en">Match</tbml:name>
       <tbml:name lang="zh">场次</tbml:name>
       <tbml:name lang="es">Evento</tbml:name>
-      <tbml:origin as="unsigned" bitmask="00000000000000000000000000000000000000000000000000000000FF000000"/>
+      <tbml:origin bitmask="00000000000000000000000000000000000000000000000000000000FF000000" as="unsigned"/>
     </tbml:attribute-type>
     <tbml:attribute-type id="category" syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <tbml:name lang="en">Cat</tbml:name>
       <tbml:name lang="zh">等级</tbml:name>
       <tbml:name lang="es">Cat</tbml:name>
-      <tbml:origin as="mapping" bitmask="0000000000000000000000000000000000000000000000000000000000FF0000">
+      <tbml:origin bitmask="0000000000000000000000000000000000000000000000000000000000FF0000" as="mapping">
         <tbml:option key="1">
           <tbml:value lang="en">Category 1</tbml:value>
           <tbml:value lang="zh">一类票</tbml:value>
@@ -716,7 +716,7 @@
     </tbml:attribute-type>
     <tbml:attribute-type id="numero" syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <tbml:name>№</tbml:name>
-      <tbml:origin as="unsigned" bitmask="000000000000000000000000000000000000000000000000000000000000FFFF"/>
+      <tbml:origin bitmask="000000000000000000000000000000000000000000000000000000000000FFFF" as="unsigned"/>
     </tbml:attribute-type>
   </tbml:attribute-types>
 </tbml:token>

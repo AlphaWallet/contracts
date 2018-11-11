@@ -167,7 +167,7 @@
       <t:name lang="zh">城市</t:name>
       <t:name lang="es">Ciudad</t:name>
       <t:name lang="ru">город</t:name>
-      <t:origin as="mapping" bitmask="00000000000000000000000000000000FF000000000000000000000000000000">
+      <t:origin bitmask="00000000000000000000000000000000FF000000000000000000000000000000" as="mapping">
         <t:option key="1">
           <t:value lang="ru">Москва́</t:value>
           <t:value lang="en">Moscow</t:value>
@@ -341,7 +341,7 @@
       <t:name lang="zh">场馆</t:name>
       <t:name lang="es">Lugar</t:name>
       <t:name lang="ru">место встречи</t:name>
-      <t:origin as="mapping" bitmask="0000000000000000000000000000000000FF0000000000000000000000000000">
+      <t:origin bitmask="0000000000000000000000000000000000FF0000000000000000000000000000" as="mapping">
         <t:option key="1">
           <t:value lang="ru">Стадион Калининград</t:value>
           <t:value lang="en">Kaliningrad Stadium</t:value>
@@ -493,7 +493,7 @@
       <t:name lang="ru">время</t:name>
       <!-- keys used here are BinaryTime (RFC6019) for backward compatibility,
            don't copy this behaviour when creating new assets -->
-      <t:origin as="mapping" bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000">
+      <t:origin bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000" as="mapping">
 	<!-- Shanghai -->
         <t:option key="1531576800">
           <t:value>20180714170000+0300</t:value>
@@ -512,25 +512,25 @@
       <t:name lang="en">Team A</t:name>
       <t:name lang="zh">甲队</t:name>
       <t:name lang="es">Equipo A</t:name>
-      <t:origin as="utf8" bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000"/>
+      <t:origin bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000" as="utf8"/>
     </t:attribute-type>
     <t:attribute-type id="countryB" syntax="1.3.6.1.4.1.1466.115.121.1.26">
       <t:name lang="en">Team B</t:name>
       <t:name lang="zh">乙队</t:name>
       <t:name lang="es">Equipo B</t:name>
-      <t:origin as="utf8" bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000"/>
+      <t:origin bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000" as="utf8"/>
     </t:attribute-type>
     <t:attribute-type id="match" syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <t:name lang="en">Match</t:name>
       <t:name lang="zh">场次</t:name>
       <t:name lang="es">Evento</t:name>
-      <t:origin as="unsigned" bitmask="00000000000000000000000000000000000000000000000000000000FF000000"/>
+      <t:origin bitmask="00000000000000000000000000000000000000000000000000000000FF000000" as="unsigned"/>
     </t:attribute-type>
     <t:attribute-type id="category" syntax="1.3.6.1.4.1.1466.115.121.1.15">
       <t:name lang="en">Cat</t:name>
       <t:name lang="zh">等级</t:name>
       <t:name lang="es">Cat</t:name>
-      <t:origin as="mapping" bitmask="0000000000000000000000000000000000000000000000000000000000FF0000">
+      <t:origin bitmask="0000000000000000000000000000000000000000000000000000000000FF0000" as="mapping">
         <t:option key="1">
           <t:value lang="en">Category 1</t:value>
           <t:value lang="zh">一类票</t:value>
@@ -667,7 +667,7 @@
     </t:attribute-type>
     <t:attribute-type id="numero" syntax="1.3.6.1.4.1.1466.115.121.1.27">
       <t:name>№</t:name>
-      <t:origin as="unsigned" bitmask="000000000000000000000000000000000000000000000000000000000000FFFF"/>
+      <t:origin bitmask="000000000000000000000000000000000000000000000000000000000000FFFF" as="unsigned"/>
     </t:attribute-type>
   </t:attribute-types>
 </t:token>
