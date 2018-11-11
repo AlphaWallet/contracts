@@ -107,9 +107,9 @@ contract Meetup
         return name;
     }
 
-    function setExpired(uint256[] tokenIds) public organiserOnly
+    function setExpired(uint256[] tokenIds, bool isExpired) public organiserOnly
     {
-        expired = true;
+        expired = isExpired;
     }
 
     function setStreet(uint256[] tokenIds, string newStreet) public view organiserOnly returns(string)
