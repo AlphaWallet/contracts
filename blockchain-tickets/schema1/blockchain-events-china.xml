@@ -718,16 +718,5 @@
       <tbml:name>№</tbml:name>
       <tbml:origin as="unsigned" bitmask="000000000000000000000000000000000000000000000000000000000000FFFF"/>
     </tbml:attribute-type>
-    <tbml:attribute-type id="expired" syntax="1.3.6.1.4.1.1466.115.121.1.7">
-      <tbml:origin contract="holding-contract">
-        <tbml:function>isExpired</tbml:function>
-      </tbml:origin>
-    </tbml:attribute-type>
-    <tbml:attribute-type id="gifted" syntax="1.3.6.1.4.1.1466.115.121.1.7">
-      <tbml:origin contract="holding-contract">
-        <tbml:function>isGifted</tbml:function>
-        <tbml:parameter>TokenID</tbml:parameter><!-- place holder - actual format undefined yet -->
-      </tbml:origin>
-    </tbml:attribute-type>
   </tbml:attribute-types>
 </tbml:token>
