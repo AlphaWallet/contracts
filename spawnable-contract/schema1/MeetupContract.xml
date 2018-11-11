@@ -158,7 +158,7 @@
       <tb:name lang="zh">区号</tb:name>
       <tb:origin bitmask="000000000000000000000000000000000000000000000000000000FFFFFFFFFF" as="utf8"/>
     </tb:attribute-type>
-    <tb:attribute-type id="expired" syntax="1.3.6.1.4.1.1466.115.121.1.7"> <!-- boolean -->
+    <tb:attribute-type id="expired" syntax="1.3.6.1.4.1.1466.115.121.1.7" as="mapping"> <!-- boolean -->
       <tb:origin contract="holding-contract">
         <tb:function contract="holding-contract" name="isExpired">
           <tb:inputs>
@@ -166,8 +166,12 @@
           </tb:inputs>
         </tb:function>
       </tb:origin>
+      <tb:mapping>
+        <option key="0">FALSE</option>
+        <option key="1">TRUE</option>
+      </tb:mapping>
     </tb:attribute-type>
-    <tb:attribute-type id="street" syntax="1.3.6.1.4.1.1466.115.121.1.15"> <!-- string -->
+    <tb:attribute-type id="street" syntax="1.3.6.1.4.1.1466.115.121.1.15" as="utf8"> <!-- string -->
       <tb:origin contract="holding-contract">
         <tb:function name="getStreet">
           <tb:inputs>
@@ -176,7 +180,7 @@
         </tb:function>
       </tb:origin>
     </tb:attribute-type>
-    <tb:attribute-type id="building" syntax="1.3.6.1.4.1.1466.115.121.1.15"> <!-- string -->
+    <tb:attribute-type id="building" syntax="1.3.6.1.4.1.1466.115.121.1.15" as="utf8"> <!-- string -->
       <tb:origin contract="holding-contract">
         <tb:function name="getBuildingName">
           <tb:inputs>
@@ -185,7 +189,7 @@
         </tb:function>
       </tb:origin>
     </tb:attribute-type>
-    <tb:attribute-type id="state" syntax="1.3.6.1.4.1.1466.115.121.1.15"> <!-- string -->
+    <tb:attribute-type id="state" syntax="1.3.6.1.4.1.1466.115.121.1.15" as="utf8"> <!-- string -->
       <tb:origin contract="holding-contract">
         <tb:function name="getState">
           <tb:inputs>
