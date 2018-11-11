@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <tb:token xmlns:tb="http://attestation.id/ns/tbml">
   <tb:contract id="holding_contract" type="holding">
-    <tb:address network="3">0x86E074f6006Fe2D5cbAD7A364D50aF83DC2C93ec</tb:address>
+    <tb:address network="3">0x999641E21f6C3e008CB7Ff0e221402F336b9777f</tb:address>
     <tb:name lang="ru">Ваучеры</tb:name>
     <tb:name lang="en">Vouchers</tb:name>
     <tb:name lang="zh">门票兑换券</tb:name>
