@@ -112,22 +112,22 @@ contract Meetup
         expired = isExpired;
     }
 
-    function setStreet(uint256[] tokenIds, string newStreet) public view organiserOnly returns(string)
+    function setStreet(uint256[] tokenIds, string newStreet) public organiserOnly returns(string)
     {
         street = newStreet;
     }
 
-    function setBuilding(uint256[] tokenIds, string newBuildingName) public view organiserOnly returns(string)
+    function setBuilding(uint256[] tokenIds, string newBuildingName) public organiserOnly returns(string)
     {
         building = newBuildingName;
     }
 
-    function setState(uint256[] tokenIds, string newState) public view organiserOnly returns(string)
+    function setState(uint256[] tokenIds, string newState) public organiserOnly returns(string)
     {
         state = newState;
     }
 
-    function setLocality(uint256[] tokenIds, string newLocality) public view organiserOnly returns(string)
+    function setLocality(uint256[] tokenIds, string newLocality) public organiserOnly returns(string)
     {
         locality = newLocality;
     }
