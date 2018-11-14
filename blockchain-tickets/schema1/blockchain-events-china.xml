@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<tbml:token xmlns:tbml="http://attestation.id/ns/tbml">
+<tbml:token xmlns:tbml="http://attestation.id/ns/tbml"
+            xmlns:xml="http://www.w3.org/XML/1998/namespace">
   <tbml:contract id="holding_contract" type="holding">
     <tbml:address network="1">0x830E1650a87a754e37ca7ED76b700395A7C61614</tbml:address>
-    <tbml:name lang="en">Tickets</tbml:name>
-    <tbml:name lang="zh">门票</tbml:name>
-    <tbml:name lang="es">Entradas</tbml:name>
+    <tbml:name xml:lang="en">Tickets</tbml:name>
+    <tbml:name xml:lang="zh">门票</tbml:name>
+    <tbml:name xml:lang="es">Entradas</tbml:name>
     <tbml:interface>erc875</tbml:interface>
-  </tbml:contract>
-  <tbml:contract type="market">
-    <tbml:name>Blind Auction</tbml:name>
   </tbml:contract>
   <tbml:contract type="wallet">
     <!-- users can buy tickets using SPG points -->
@@ -27,8 +25,8 @@
       <tbml:exclude>invited</tbml:exclude>
       <tbml:exclude>discounted</tbml:exclude>
       <tbml:gateway>https://482kdh4npg.execute-api.ap-southeast-1.amazonaws.com/dev/</tbml:gateway>
-      <tbml:message lang="en" type="exclude">%name% can't be traded on the market</tbml:message>
-      <tbml:message lang="zh" type="exclude">%name% 不能再在市场上交易</tbml:message>
+      <tbml:message xml:lang="en" type="exclude">%name% can't be traded on the market</tbml:message>
+      <tbml:message xml:lang="zh" type="exclude">%name% 不能再在市场上交易</tbml:message>
       <tbml:message type="include">Only %name% can be traded on the market</tbml:message>
       <tbml:message type="include">只有%name%才可以在市场上交易</tbml:message>
     </tbml:feature>
@@ -38,8 +36,8 @@
       <tbml:exclude>invited</tbml:exclude>
       <!-- buy and sell tokens on this contract -->
       <tbml:address network="1">0xdecafbaddecafbaddecafbaddecafbaddecafbad</tbml:address>
-      <tbml:message lang="en" type="exclude">%name% can't be traded on the market</tbml:message>
-      <tbml:message lang="zh" type="exclude">%name% 不能再在市场上交易</tbml:message>
+      <tbml:message xml:lang="en" type="exclude">%name% can't be traded on the market</tbml:message>
+      <tbml:message xml:lang="zh" type="exclude">%name% 不能再在市场上交易</tbml:message>
       <tbml:message type="include">Only %name% can be traded on the market</tbml:message>
       <tbml:message type="include">只有%name%才可以在市场上交易</tbml:message>
     </tbml:feature>
@@ -47,56 +45,56 @@
       <tbml:include>valid</tbml:include>
       <tbml:exclude>discounted</tbml:exclude>
       <tbml:prefix>https://app.awallet.io/</tbml:prefix>
-      <tbml:message lang="en" type="exclude">%name% can't be traded with MagicLink</tbml:message>
+      <tbml:message xml:lang="en" type="exclude">%name% can't be traded with MagicLink</tbml:message>
       <tbml:message type="include">Only %name% can be traded with MagicLink</tbml:message>
-      <tbml:message lang="zh" type="exclude">%name% 不能用MagicLink交易</tbml:message>
-      <tbml:message lang="zh" type="include">只有末到期的票才可以用MagicLink交易</tbml:message>
+      <tbml:message xml:lang="zh" type="exclude">%name% 不能用MagicLink交易</tbml:message>
+      <tbml:message xml:lang="zh" type="include">只有末到期的票才可以用MagicLink交易</tbml:message>
     </tbml:feature>
     <tbml:feature type="transfer-link">
       <tbml:exclude>discounted</tbml:exclude>
       <tbml:exclude>invited</tbml:exclude>
       <tbml:prefix>https://app.awallet.io/</tbml:prefix>
-      <tbml:message lang="en" type="exclude">%name% can't be traded on the market</tbml:message>
-      <tbml:message lang="zh" type="exclude">%name% 不能再在市场上交易</tbml:message>
+      <tbml:message xml:lang="en" type="exclude">%name% can't be traded on the market</tbml:message>
+      <tbml:message xml:lang="zh" type="exclude">%name% 不能再在市场上交易</tbml:message>
     </tbml:feature>
     <tbml:feature type="feemaster">
       <tbml:exclude>expired</tbml:exclude>
       <tbml:feemaster>https://app.awallet.io:80/api/claimToken</tbml:feemaster>
-      <tbml:message lang="en" type="include">%name% can't be imported</tbml:message>
-      <tbml:message lang="zh" type="include">不能收下%name%</tbml:message>
+      <tbml:message xml:lang="en" type="include">%name% can't be imported</tbml:message>
+      <tbml:message xml:lang="zh" type="include">不能收下%name%</tbml:message>
     </tbml:feature>
     <tbml:feature type="qr-redeem">
       <tbml:include>valid</tbml:include>
       <tbml:redeem format="Aztec"/>
-      <tbml:message lang="en" type="include">Only %name% can be redeemed for paper tickets</tbml:message>
-      <tbml:message lang="zh" type="include">只有%name%才可以兑换纸票</tbml:message>
+      <tbml:message xml:lang="en" type="include">Only %name% can be redeemed for paper tickets</tbml:message>
+      <tbml:message xml:lang="zh" type="include">只有%name%才可以兑换纸票</tbml:message>
     </tbml:feature>
     <tbml:feature type="nfc-redeem">
       <tbml:include>valid</tbml:include>
       <tbml:device>decafbaddecafbad</tbml:device>
-      <tbml:message lang="en" type="include">Only %name% can be redeemed for paper tickets</tbml:message>
-      <tbml:message lang="zh" type="include">只有%name%才可以兑换纸票</tbml:message>
+      <tbml:message xml:lang="en" type="include">Only %name% can be redeemed for paper tickets</tbml:message>
+      <tbml:message xml:lang="zh" type="include">只有%name%才可以兑换纸票</tbml:message>
     </tbml:feature>
   </tbml:features>
   <tbml:selections>
     <tbml:selection id="discounted">
-      <tbml:name lang="en">Discount Tickets</tbml:name>
-      <tbml:name lang="zh">打折票</tbml:name>
+      <tbml:name xml:lang="en">Discount Tickets</tbml:name>
+      <tbml:name xml:lang="zh">打折票</tbml:name>
       <tbml:filter>(|category=打折票)(category=Discounted))</tbml:filter>
     </tbml:selection>
     <tbml:selection id="invited">
-      <tbml:name lang="en">Gift Ticket</tbml:name>
-      <tbml:name lang="zh">赠票</tbml:name>
+      <tbml:name xml:lang="en">Gift Ticket</tbml:name>
+      <tbml:name xml:lang="zh">赠票</tbml:name>
       <tbml:filter>gifted</tbml:filter>
     </tbml:selection>
     <tbml:selection id="valid">
-      <tbml:name lang="en">Tickets not expired</tbml:name>
-      <tbml:name lang="zh">末到期票</tbml:name>
+      <tbml:name xml:lang="en">Tickets not expired</tbml:name>
+      <tbml:name xml:lang="zh">末到期票</tbml:name>
       <tbml:filter>!expired</tbml:filter>
     </tbml:selection>
     <tbml:selection id="expired">
-      <tbml:name lang="en">Expired Tickets</tbml:name>
-      <tbml:name lang="zh">已经过期的票</tbml:name>
+      <tbml:name xml:lang="en">Expired Tickets</tbml:name>
+      <tbml:name xml:lang="zh">已经过期的票</tbml:name>
       <tbml:filter>expired</tbml:filter>
     </tbml:selection>
   </tbml:selections>
@@ -168,282 +166,282 @@
     1.3.6.1.4.1.1466.115.121.1.27 is Integer
   -->
     <tbml:attribute-type id="locality" oid="2.5.4.7" syntax="1.3.6.1.4.1.1466.115.121.1.15">
-      <tbml:name lang="en">City</tbml:name>
-      <tbml:name lang="zh">城市</tbml:name>
-      <tbml:name lang="es">Ciudad</tbml:name>
-      <tbml:name lang="ru">город</tbml:name>
+      <tbml:name xml:lang="en">City</tbml:name>
+      <tbml:name xml:lang="zh">城市</tbml:name>
+      <tbml:name xml:lang="es">Ciudad</tbml:name>
+      <tbml:name xml:lang="ru">город</tbml:name>
       <tbml:origin bitmask="00000000000000000000000000000000FF000000000000000000000000000000" as="mapping">
         <tbml:mapping>
           <tbml:option key="1">
-            <tbml:value lang="ru">Москва́</tbml:value>
-            <tbml:value lang="en">Moscow</tbml:value>
-            <tbml:value lang="zh">莫斯科</tbml:value>
-            <tbml:value lang="es">Moscú</tbml:value>
+            <tbml:value xml:lang="ru">Москва́</tbml:value>
+            <tbml:value xml:lang="en">Moscow</tbml:value>
+            <tbml:value xml:lang="zh">莫斯科</tbml:value>
+            <tbml:value xml:lang="es">Moscú</tbml:value>
           </tbml:option>
           <tbml:option key="2">
-            <tbml:value lang="ru">Санкт-Петербу́рг</tbml:value>
-            <tbml:value lang="en">Saint Petersburg</tbml:value>
-            <tbml:value lang="zh">圣彼得堡</tbml:value>
-            <tbml:value lang="es">San Petersburgo</tbml:value>
+            <tbml:value xml:lang="ru">Санкт-Петербу́рг</tbml:value>
+            <tbml:value xml:lang="en">Saint Petersburg</tbml:value>
+            <tbml:value xml:lang="zh">圣彼得堡</tbml:value>
+            <tbml:value xml:lang="es">San Petersburgo</tbml:value>
           </tbml:option>
           <tbml:option key="3">
-            <tbml:value lang="ru">сочи</tbml:value>
-            <tbml:value lang="en">Sochi</tbml:value>
-            <tbml:value lang="zh">索契</tbml:value>
-            <tbml:value lang="es">Sochi</tbml:value>
+            <tbml:value xml:lang="ru">сочи</tbml:value>
+            <tbml:value xml:lang="en">Sochi</tbml:value>
+            <tbml:value xml:lang="zh">索契</tbml:value>
+            <tbml:value xml:lang="es">Sochi</tbml:value>
           </tbml:option>
           <tbml:option key="4">
-            <tbml:value lang="ru">екатеринбург</tbml:value>
-            <tbml:value lang="en">Ekaterinburg</tbml:value>
-            <tbml:value lang="zh">叶卡捷琳堡</tbml:value>
-            <tbml:value lang="es">Ekaterinburg</tbml:value>
+            <tbml:value xml:lang="ru">екатеринбург</tbml:value>
+            <tbml:value xml:lang="en">Ekaterinburg</tbml:value>
+            <tbml:value xml:lang="zh">叶卡捷琳堡</tbml:value>
+            <tbml:value xml:lang="es">Ekaterinburg</tbml:value>
           </tbml:option>
           <tbml:option key="5">
-            <tbml:value lang="ru">Саранск</tbml:value>
-            <tbml:value lang="en">Saransk</tbml:value>
-            <tbml:value lang="zh">萨兰斯克</tbml:value>
-            <tbml:value lang="es">Saransk</tbml:value>
+            <tbml:value xml:lang="ru">Саранск</tbml:value>
+            <tbml:value xml:lang="en">Saransk</tbml:value>
+            <tbml:value xml:lang="zh">萨兰斯克</tbml:value>
+            <tbml:value xml:lang="es">Saransk</tbml:value>
           </tbml:option>
           <tbml:option key="6">
-            <tbml:value lang="ru">казань</tbml:value>
-            <tbml:value lang="en">Kazan</tbml:value>
-            <tbml:value lang="zh">喀山</tbml:value>
-            <tbml:value lang="es">Kazan</tbml:value>
+            <tbml:value xml:lang="ru">казань</tbml:value>
+            <tbml:value xml:lang="en">Kazan</tbml:value>
+            <tbml:value xml:lang="zh">喀山</tbml:value>
+            <tbml:value xml:lang="es">Kazan</tbml:value>
           </tbml:option>
           <tbml:option key="7">
-            <tbml:value lang="ru">Нижний Новгород</tbml:value>
-            <tbml:value lang="en">Nizhny Novgorod</tbml:value>
-            <tbml:value lang="zh">下诺夫哥罗德</tbml:value>
-            <tbml:value lang="es">Nizhny Novgorod</tbml:value>
+            <tbml:value xml:lang="ru">Нижний Новгород</tbml:value>
+            <tbml:value xml:lang="en">Nizhny Novgorod</tbml:value>
+            <tbml:value xml:lang="zh">下诺夫哥罗德</tbml:value>
+            <tbml:value xml:lang="es">Nizhny Novgorod</tbml:value>
           </tbml:option>
           <tbml:option key="8">
-            <tbml:value lang="ru">Ростов-на-Дону</tbml:value>
-            <tbml:value lang="en">Rostov-on-Don</tbml:value>
-            <tbml:value lang="zh">顿河畔罗斯托夫</tbml:value>
-            <tbml:value lang="es">Rostov-on-Don</tbml:value>
+            <tbml:value xml:lang="ru">Ростов-на-Дону</tbml:value>
+            <tbml:value xml:lang="en">Rostov-on-Don</tbml:value>
+            <tbml:value xml:lang="zh">顿河畔罗斯托夫</tbml:value>
+            <tbml:value xml:lang="es">Rostov-on-Don</tbml:value>
           </tbml:option>
           <tbml:option key="9">
-            <tbml:value lang="ru">Самара</tbml:value>
-            <tbml:value lang="en">Samara</tbml:value>
-            <tbml:value lang="zh">萨马拉</tbml:value>
-            <tbml:value lang="es">Samara</tbml:value>
+            <tbml:value xml:lang="ru">Самара</tbml:value>
+            <tbml:value xml:lang="en">Samara</tbml:value>
+            <tbml:value xml:lang="zh">萨马拉</tbml:value>
+            <tbml:value xml:lang="es">Samara</tbml:value>
           </tbml:option>
           <tbml:option key="10">
-            <tbml:value lang="ru">Волгоград</tbml:value>
-            <tbml:value lang="en">Volgograd</tbml:value>
-            <tbml:value lang="zh">伏尔加格勒</tbml:value>
-            <tbml:value lang="es">Volgogrado</tbml:value>
+            <tbml:value xml:lang="ru">Волгоград</tbml:value>
+            <tbml:value xml:lang="en">Volgograd</tbml:value>
+            <tbml:value xml:lang="zh">伏尔加格勒</tbml:value>
+            <tbml:value xml:lang="es">Volgogrado</tbml:value>
           </tbml:option>
           <tbml:option key="11">
-            <tbml:value lang="ru">Калининград</tbml:value>
-            <tbml:value lang="en">Kaliningrad</tbml:value>
-            <tbml:value lang="zh">加里宁格勒</tbml:value>
-            <tbml:value lang="es">Kaliningrad</tbml:value>
+            <tbml:value xml:lang="ru">Калининград</tbml:value>
+            <tbml:value xml:lang="en">Kaliningrad</tbml:value>
+            <tbml:value xml:lang="zh">加里宁格勒</tbml:value>
+            <tbml:value xml:lang="es">Kaliningrad</tbml:value>
           </tbml:option>
           <tbml:option key="255">
-            <tbml:value lang="ru">Сидней</tbml:value>
-            <tbml:value lang="en">Sydney</tbml:value>
-            <tbml:value lang="zh">悉尼</tbml:value>
-            <tbml:value lang="es">Sídney</tbml:value>
+            <tbml:value xml:lang="ru">Сидней</tbml:value>
+            <tbml:value xml:lang="en">Sydney</tbml:value>
+            <tbml:value xml:lang="zh">悉尼</tbml:value>
+            <tbml:value xml:lang="es">Sídney</tbml:value>
           </tbml:option>
           <tbml:option key="254">
-            <tbml:value lang="ru">Сингапур</tbml:value>
-            <tbml:value lang="en">Singapore</tbml:value>
-            <tbml:value lang="zh">新加坡</tbml:value>
-            <tbml:value lang="es">Singapur</tbml:value>
+            <tbml:value xml:lang="ru">Сингапур</tbml:value>
+            <tbml:value xml:lang="en">Singapore</tbml:value>
+            <tbml:value xml:lang="zh">新加坡</tbml:value>
+            <tbml:value xml:lang="es">Singapur</tbml:value>
           </tbml:option>
           <tbml:option key="253">
-            <tbml:value lang="zh">深圳</tbml:value>
-            <tbml:value lang="en">Shenzhen</tbml:value>
+            <tbml:value xml:lang="zh">深圳</tbml:value>
+            <tbml:value xml:lang="en">Shenzhen</tbml:value>
           </tbml:option>
           <tbml:option key="252">
-            <tbml:value lang="zh">北京</tbml:value>
-            <tbml:value lang="en">Beijing</tbml:value>
+            <tbml:value xml:lang="zh">北京</tbml:value>
+            <tbml:value xml:lang="en">Beijing</tbml:value>
           </tbml:option>
           <tbml:option key="251">
-            <tbml:value lang="zh">上海</tbml:value>
-            <tbml:value lang="en">Shanghai</tbml:value>
+            <tbml:value xml:lang="zh">上海</tbml:value>
+            <tbml:value xml:lang="en">Shanghai</tbml:value>
           </tbml:option>
           <tbml:option key="250">
-            <tbml:value lang="en">Tokyo</tbml:value>
-            <tbml:value lang="zh">东京</tbml:value>
+            <tbml:value xml:lang="en">Tokyo</tbml:value>
+            <tbml:value xml:lang="zh">东京</tbml:value>
           </tbml:option>
           <tbml:option key="249">
-            <tbml:value lang="en">Seoul</tbml:value>
-            <tbml:value lang="zh">首尔</tbml:value>
+            <tbml:value xml:lang="en">Seoul</tbml:value>
+            <tbml:value xml:lang="zh">首尔</tbml:value>
           </tbml:option>
           <tbml:option key="248">
-            <tbml:value lang="zh">重庆</tbml:value>
-            <tbml:value lang="en">Chongqing</tbml:value>
+            <tbml:value xml:lang="zh">重庆</tbml:value>
+            <tbml:value xml:lang="en">Chongqing</tbml:value>
           </tbml:option>
           <tbml:option key="247">
-            <tbml:value lang="en">New York</tbml:value>
-            <tbml:value lang="zh">纽约</tbml:value>
+            <tbml:value xml:lang="en">New York</tbml:value>
+            <tbml:value xml:lang="zh">纽约</tbml:value>
           </tbml:option>
           <tbml:option key="246">
-            <tbml:value lang="en">Melbourne</tbml:value>
-            <tbml:value lang="zh">墨尔本</tbml:value>
+            <tbml:value xml:lang="en">Melbourne</tbml:value>
+            <tbml:value xml:lang="zh">墨尔本</tbml:value>
           </tbml:option>
           <tbml:option key="245">
-            <tbml:value lang="en">Hong Kong</tbml:value>
-            <tbml:value lang="zh">香港</tbml:value>
+            <tbml:value xml:lang="en">Hong Kong</tbml:value>
+            <tbml:value xml:lang="zh">香港</tbml:value>
           </tbml:option>
           <tbml:option key="244">
-            <tbml:value lang="zh">成都</tbml:value>
-            <tbml:value lang="en">Chengdu</tbml:value>
+            <tbml:value xml:lang="zh">成都</tbml:value>
+            <tbml:value xml:lang="en">Chengdu</tbml:value>
           </tbml:option>
           <tbml:option key="243">
-            <tbml:value lang="en">Kuala Lumpur</tbml:value>
-            <tbml:value lang="zh">吉隆坡</tbml:value>
+            <tbml:value xml:lang="en">Kuala Lumpur</tbml:value>
+            <tbml:value xml:lang="zh">吉隆坡</tbml:value>
           </tbml:option>
           <tbml:option key="242">
-            <tbml:value lang="en">Bangkok</tbml:value>
-            <tbml:value lang="zh">曼谷</tbml:value>
+            <tbml:value xml:lang="en">Bangkok</tbml:value>
+            <tbml:value xml:lang="zh">曼谷</tbml:value>
           </tbml:option>
           <tbml:option key="241">
-            <tbml:value lang="en">San Francisco</tbml:value>
-            <tbml:value lang="zh">三藩市</tbml:value>
+            <tbml:value xml:lang="en">San Francisco</tbml:value>
+            <tbml:value xml:lang="zh">三藩市</tbml:value>
           </tbml:option>
           <tbml:option key="240">
-            <tbml:value lang="en">Las Vegas</tbml:value>
-            <tbml:value lang="zh">拉斯维加斯</tbml:value>
+            <tbml:value xml:lang="en">Las Vegas</tbml:value>
+            <tbml:value xml:lang="zh">拉斯维加斯</tbml:value>
           </tbml:option>
           <tbml:option key="239">
-            <tbml:value lang="en">London</tbml:value>
-            <tbml:value lang="zh">伦敦</tbml:value>
+            <tbml:value xml:lang="en">London</tbml:value>
+            <tbml:value xml:lang="zh">伦敦</tbml:value>
           </tbml:option>
           <tbml:option key="238">
-            <tbml:value lang="en">Barcelona</tbml:value>
-            <tbml:value lang="zh">巴塞罗那</tbml:value>
+            <tbml:value xml:lang="en">Barcelona</tbml:value>
+            <tbml:value xml:lang="zh">巴塞罗那</tbml:value>
           </tbml:option>
           <tbml:option key="237">
-            <tbml:value lang="en">Madrid</tbml:value>
-            <tbml:value lang="zh">马德里</tbml:value>
+            <tbml:value xml:lang="en">Madrid</tbml:value>
+            <tbml:value xml:lang="zh">马德里</tbml:value>
           </tbml:option>
           <tbml:option key="236">
-            <tbml:value lang="en">Zug</tbml:value>
-            <tbml:value lang="zh">楚格</tbml:value>
+            <tbml:value xml:lang="en">Zug</tbml:value>
+            <tbml:value xml:lang="zh">楚格</tbml:value>
           </tbml:option>
           <tbml:option key="235">
-            <tbml:value lang="en">Paris</tbml:value>
-            <tbml:value lang="zh">巴黎</tbml:value>
+            <tbml:value xml:lang="en">Paris</tbml:value>
+            <tbml:value xml:lang="zh">巴黎</tbml:value>
           </tbml:option>
           <tbml:option key="234">
-            <tbml:value lang="en">Dubai</tbml:value>
-            <tbml:value lang="zh">迪拜</tbml:value>
+            <tbml:value xml:lang="en">Dubai</tbml:value>
+            <tbml:value xml:lang="zh">迪拜</tbml:value>
           </tbml:option>
           <tbml:option key="233">
-            <tbml:value lang="en">TBC</tbml:value>
-            <tbml:value lang="zh">待定</tbml:value>
+            <tbml:value xml:lang="en">TBC</tbml:value>
+            <tbml:value xml:lang="zh">待定</tbml:value>
           </tbml:option>
           <tbml:option key="232">
-            <tbml:value lang="en">Exhibition stand A311</tbml:value>
-            <tbml:value lang="zh">展台A311</tbml:value>
+            <tbml:value xml:lang="en">Exhibition stand A311</tbml:value>
+            <tbml:value xml:lang="zh">展台A311</tbml:value>
           </tbml:option>
           <tbml:option key="231">
-            <tbml:value lang="en">Prague</tbml:value>
-            <tbml:value lang="zh">布拉格</tbml:value>
+            <tbml:value xml:lang="en">Prague</tbml:value>
+            <tbml:value xml:lang="zh">布拉格</tbml:value>
           </tbml:option>
         </tbml:mapping>
       </tbml:origin>
     </tbml:attribute-type>
     <tbml:attribute-type id="venue" syntax="1.3.6.1.4.1.1466.115.121.1.15">
-      <tbml:name lang="en">Venue</tbml:name>
-      <tbml:name lang="zh">场馆</tbml:name>
-      <tbml:name lang="es">Lugar</tbml:name>
-      <tbml:name lang="ru">место встречи</tbml:name>
+      <tbml:name xml:lang="en">Venue</tbml:name>
+      <tbml:name xml:lang="zh">场馆</tbml:name>
+      <tbml:name xml:lang="es">Lugar</tbml:name>
+      <tbml:name xml:lang="ru">место встречи</tbml:name>
       <tbml:origin bitmask="0000000000000000000000000000000000FF0000000000000000000000000000" as="mapping">
         <tbml:mapping>
           <tbml:option key="1">
-            <tbml:value lang="ru">Стадион Калининград</tbml:value>
-            <tbml:value lang="en">Kaliningrad Stadium</tbml:value>
-            <tbml:value lang="zh">加里宁格勒体育场</tbml:value>
-            <tbml:value lang="es">Estadio de Kaliningrado</tbml:value>
+            <tbml:value xml:lang="ru">Стадион Калининград</tbml:value>
+            <tbml:value xml:lang="en">Kaliningrad Stadium</tbml:value>
+            <tbml:value xml:lang="zh">加里宁格勒体育场</tbml:value>
+            <tbml:value xml:lang="es">Estadio de Kaliningrado</tbml:value>
           </tbml:option>
           <tbml:option key="2">
-            <tbml:value lang="ru">Екатеринбург Арена</tbml:value>
-            <tbml:value lang="en">Volgograd Arena</tbml:value>
-            <tbml:value lang="zh">伏尔加格勒体育场</tbml:value>
-            <tbml:value lang="es">Volgogrado Arena</tbml:value>
+            <tbml:value xml:lang="ru">Екатеринбург Арена</tbml:value>
+            <tbml:value xml:lang="en">Volgograd Arena</tbml:value>
+            <tbml:value xml:lang="zh">伏尔加格勒体育场</tbml:value>
+            <tbml:value xml:lang="es">Volgogrado Arena</tbml:value>
           </tbml:option>
           <tbml:option key="3">
-            <tbml:value lang="ru">Казань Арена</tbml:value>
-            <tbml:value lang="en">Ekaterinburg Arena</tbml:value>
-            <tbml:value lang="zh">加里宁格勒体育场</tbml:value>
-            <tbml:value lang="es">Ekaterimburgo Arena</tbml:value>
+            <tbml:value xml:lang="ru">Казань Арена</tbml:value>
+            <tbml:value xml:lang="en">Ekaterinburg Arena</tbml:value>
+            <tbml:value xml:lang="zh">加里宁格勒体育场</tbml:value>
+            <tbml:value xml:lang="es">Ekaterimburgo Arena</tbml:value>
           </tbml:option>
           <tbml:option key="4">
-            <tbml:value lang="ru">Мордовия Арена</tbml:value>
-            <tbml:value lang="en">Fisht Stadium</tbml:value>
-            <tbml:value lang="zh">费什体育场</tbml:value>
-            <tbml:value lang="es">Estadio Fisht</tbml:value>
+            <tbml:value xml:lang="ru">Мордовия Арена</tbml:value>
+            <tbml:value xml:lang="en">Fisht Stadium</tbml:value>
+            <tbml:value xml:lang="zh">费什体育场</tbml:value>
+            <tbml:value xml:lang="es">Estadio Fisht</tbml:value>
           </tbml:option>
           <tbml:option key="5">
-            <tbml:value lang="ru">Ростов Арена</tbml:value>
-            <tbml:value lang="en">Kazan Arena</tbml:value>
-            <tbml:value lang="zh">喀山体育场</tbml:value>
-            <tbml:value lang="es">Kazan Arena</tbml:value>
+            <tbml:value xml:lang="ru">Ростов Арена</tbml:value>
+            <tbml:value xml:lang="en">Kazan Arena</tbml:value>
+            <tbml:value xml:lang="zh">喀山体育场</tbml:value>
+            <tbml:value xml:lang="es">Kazan Arena</tbml:value>
           </tbml:option>
           <tbml:option key="6">
-            <tbml:value lang="ru">Самара Арена</tbml:value>
-            <tbml:value lang="en">Nizhny Novgorod Stadium</tbml:value>
-            <tbml:value lang="zh">下诺夫哥罗德体育场</tbml:value>
-            <tbml:value lang="es">Estadio de Nizhni Novgorod</tbml:value>
+            <tbml:value xml:lang="ru">Самара Арена</tbml:value>
+            <tbml:value xml:lang="en">Nizhny Novgorod Stadium</tbml:value>
+            <tbml:value xml:lang="zh">下诺夫哥罗德体育场</tbml:value>
+            <tbml:value xml:lang="es">Estadio de Nizhni Novgorod</tbml:value>
           </tbml:option>
           <tbml:option key="7">
-            <tbml:value lang="ru">Стадион Калининград</tbml:value>
-            <tbml:value lang="en">Luzhniki Stadium</tbml:value>
-            <tbml:value lang="zh">卢日尼基体育场</tbml:value>
-            <tbml:value lang="es">Estadio Luzhniki</tbml:value>
+            <tbml:value xml:lang="ru">Стадион Калининград</tbml:value>
+            <tbml:value xml:lang="en">Luzhniki Stadium</tbml:value>
+            <tbml:value xml:lang="zh">卢日尼基体育场</tbml:value>
+            <tbml:value xml:lang="es">Estadio Luzhniki</tbml:value>
           </tbml:option>
           <tbml:option key="8">
-            <tbml:value lang="ru">Стадион Лужники</tbml:value>
-            <tbml:value lang="en">Samara Arena</tbml:value>
-            <tbml:value lang="zh">萨马拉体育场</tbml:value>
-            <tbml:value lang="es">Samara Arena</tbml:value>
+            <tbml:value xml:lang="ru">Стадион Лужники</tbml:value>
+            <tbml:value xml:lang="en">Samara Arena</tbml:value>
+            <tbml:value xml:lang="zh">萨马拉体育场</tbml:value>
+            <tbml:value xml:lang="es">Samara Arena</tbml:value>
           </tbml:option>
           <tbml:option key="9">
-            <tbml:value lang="ru">Стадион Нижний Новгород</tbml:value>
-            <tbml:value lang="en">Rostov Arena</tbml:value>
-            <tbml:value lang="zh">罗斯托夫体育场</tbml:value>
-            <tbml:value lang="es">Rostov Arena</tbml:value>
+            <tbml:value xml:lang="ru">Стадион Нижний Новгород</tbml:value>
+            <tbml:value xml:lang="en">Rostov Arena</tbml:value>
+            <tbml:value xml:lang="zh">罗斯托夫体育场</tbml:value>
+            <tbml:value xml:lang="es">Rostov Arena</tbml:value>
           </tbml:option>
           <tbml:option key="10">
-            <tbml:value lang="ru">Стадион Спартак</tbml:value>
-            <tbml:value lang="en">Spartak Stadium</tbml:value>
-            <tbml:value lang="zh">斯巴达克体育场</tbml:value>
-            <tbml:value lang="es">Estadio del Spartak</tbml:value>
+            <tbml:value xml:lang="ru">Стадион Спартак</tbml:value>
+            <tbml:value xml:lang="en">Spartak Stadium</tbml:value>
+            <tbml:value xml:lang="zh">斯巴达克体育场</tbml:value>
+            <tbml:value xml:lang="es">Estadio del Spartak</tbml:value>
           </tbml:option>
           <tbml:option key="11">
-            <tbml:value lang="ru">Стадион Санкт-Петербург</tbml:value>
-            <tbml:value lang="en">Saint Petersburg Stadium</tbml:value>
-            <tbml:value lang="zh">圣彼得堡体育场</tbml:value>
-            <tbml:value lang="es">Estadio de San Petersburgo</tbml:value>
+            <tbml:value xml:lang="ru">Стадион Санкт-Петербург</tbml:value>
+            <tbml:value xml:lang="en">Saint Petersburg Stadium</tbml:value>
+            <tbml:value xml:lang="zh">圣彼得堡体育场</tbml:value>
+            <tbml:value xml:lang="es">Estadio de San Petersburgo</tbml:value>
           </tbml:option>
           <tbml:option key="12">
-            <tbml:value lang="ru">Стадион Фишт</tbml:value>
-            <tbml:value lang="en">Mordovia Arena</tbml:value>
-            <tbml:value lang="zh">莫多维亚体育场</tbml:value>
-            <tbml:value lang="es">Mordovia Arena</tbml:value>
+            <tbml:value xml:lang="ru">Стадион Фишт</tbml:value>
+            <tbml:value xml:lang="en">Mordovia Arena</tbml:value>
+            <tbml:value xml:lang="zh">莫多维亚体育场</tbml:value>
+            <tbml:value xml:lang="es">Mordovia Arena</tbml:value>
           </tbml:option>
           <tbml:option key="255">
-            <tbml:value lang="en">UNSW Michael Crouch Innovation Center</tbml:value>
-            <tbml:value lang="zh">新南威尔大学Michael Crouch创新中心</tbml:value>
-            <tbml:value lang="es">Centro de Innovación de Michael Crouch UNSW</tbml:value>
+            <tbml:value xml:lang="en">UNSW Michael Crouch Innovation Center</tbml:value>
+            <tbml:value xml:lang="zh">新南威尔大学Michael Crouch创新中心</tbml:value>
+            <tbml:value xml:lang="es">Centro de Innovación de Michael Crouch UNSW</tbml:value>
           </tbml:option>
           <tbml:option key="254">
-            <tbml:value lang="en">FOUR SEASONS HOTEL SHENZHEN</tbml:value>
-            <tbml:value lang="zh">深圳四季酒店</tbml:value>
+            <tbml:value xml:lang="en">FOUR SEASONS HOTEL SHENZHEN</tbml:value>
+            <tbml:value xml:lang="zh">深圳四季酒店</tbml:value>
           </tbml:option>
           <tbml:option key="253">
-            <tbml:value lang="en">Paypal Innovation Lab</tbml:value>
+            <tbml:value xml:lang="en">Paypal Innovation Lab</tbml:value>
           </tbml:option>
           <tbml:option key="252">
-            <tbml:value lang="en">The Centrepoint</tbml:value>
+            <tbml:value xml:lang="en">The Centrepoint</tbml:value>
           </tbml:option>
           <tbml:option key="251">
-            <tbml:value lang="en">TBC</tbml:value>
-            <tbml:value lang="zh">待定</tbml:value>
+            <tbml:value xml:lang="en">TBC</tbml:value>
+            <tbml:value xml:lang="zh">待定</tbml:value>
           </tbml:option>
           <tbml:option key="250">
             <tbml:value>thebridge</tbml:value>
@@ -455,59 +453,59 @@
             <tbml:value>Spacemob</tbml:value>
           </tbml:option>
           <tbml:option key="247">
-            <tbml:value lang="en">32 Carpenter Street</tbml:value>
+            <tbml:value xml:lang="en">32 Carpenter Street</tbml:value>
           </tbml:option>
           <tbml:option key="246">
             <tbml:value>Block 71</tbml:value>
           </tbml:option>
           <tbml:option key="245">
-            <tbml:value lang="en">Microsoft Singapore</tbml:value>
-            <tbml:value lang="zh">微软新加坡</tbml:value>
+            <tbml:value xml:lang="en">Microsoft Singapore</tbml:value>
+            <tbml:value xml:lang="zh">微软新加坡</tbml:value>
           </tbml:option>
           <tbml:option key="243">
-            <tbml:value lang="en">Google Singapore</tbml:value>
+            <tbml:value xml:lang="en">Google Singapore</tbml:value>
           </tbml:option>
           <tbml:option key="242">
-            <tbml:value lang="en">The Blockchain Hub</tbml:value>
+            <tbml:value xml:lang="en">The Blockchain Hub</tbml:value>
           </tbml:option>
           <tbml:option key="241">
             <tbml:value>BitTemple</tbml:value>
           </tbml:option>
           <tbml:option key="240">
-            <tbml:value lang="en">ADD BLOCKCHAIN STUDIO</tbml:value>
+            <tbml:value xml:lang="en">ADD BLOCKCHAIN STUDIO</tbml:value>
           </tbml:option>
           <tbml:option key="239">
-            <tbml:value lang="en">Rosewood Beijing</tbml:value>
-            <tbml:value lang="zh">北京瑰丽酒店</tbml:value>
+            <tbml:value xml:lang="en">Rosewood Beijing</tbml:value>
+            <tbml:value xml:lang="zh">北京瑰丽酒店</tbml:value>
           </tbml:option>
           <tbml:option key="238">
-            <tbml:value lang="en">Stratum</tbml:value>
-            <tbml:value lang="zh">臻宛</tbml:value>
+            <tbml:value xml:lang="en">Stratum</tbml:value>
+            <tbml:value xml:lang="zh">臻宛</tbml:value>
           </tbml:option>
           <tbml:option key="237">
-            <tbml:value lang="en">Hong Kong Convention and Exhibition Centre</tbml:value>
-            <tbml:value lang="zh">香港会议展览中心</tbml:value>
+            <tbml:value xml:lang="en">Hong Kong Convention and Exhibition Centre</tbml:value>
+            <tbml:value xml:lang="zh">香港会议展览中心</tbml:value>
           </tbml:option>
           <tbml:option key="236">
-            <tbml:value lang="en">P2联合创业办公社 中关村e世界</tbml:value>
-            <tbml:value lang="zh">P2联合创业办公社 中关村e世界</tbml:value>
+            <tbml:value xml:lang="en">P2联合创业办公社 中关村e世界</tbml:value>
+            <tbml:value xml:lang="zh">P2联合创业办公社 中关村e世界</tbml:value>
           </tbml:option>
           <tbml:option key="235">
-            <tbml:value lang="en">Fortune coffee@The Bund</tbml:value>
-            <tbml:value lang="zh">泛合金融咖啡@上海外滩</tbml:value>
+            <tbml:value xml:lang="en">Fortune coffee@The Bund</tbml:value>
+            <tbml:value xml:lang="zh">泛合金融咖啡@上海外滩</tbml:value>
           </tbml:option>
           <tbml:option key="234">
-            <tbml:value lang="en">Paralelní Polis</tbml:value>
-            <tbml:value lang="zh">Paralelní Polis</tbml:value>
+            <tbml:value xml:lang="en">Paralelní Polis</tbml:value>
+            <tbml:value xml:lang="zh">Paralelní Polis</tbml:value>
           </tbml:option>
         </tbml:mapping>
       </tbml:origin>
     </tbml:attribute-type>
     <tbml:attribute-type id="time" syntax="1.3.6.1.4.1.1466.115.121.1.24">
-      <tbml:name lang="en">Time</tbml:name>
-      <tbml:name lang="zh">时间</tbml:name>
-      <tbml:name lang="es">Tiempo</tbml:name>
-      <tbml:name lang="ru">время</tbml:name>
+      <tbml:name xml:lang="en">Time</tbml:name>
+      <tbml:name xml:lang="zh">时间</tbml:name>
+      <tbml:name xml:lang="es">Tiempo</tbml:name>
+      <tbml:name xml:lang="ru">время</tbml:name>
       <!-- keys used here are BinaryTime (RFC6019) for backward compatibility,
            don't copy this behaviour when creating new assets -->
       <tbml:origin bitmask="000000000000000000000000000000000000FFFFFFFF00000000000000000000" as="mapping">
@@ -542,13 +540,13 @@
           <tbml:option key="1536692400">
             <tbml:value>20180911190000+0800</tbml:value>
           </tbml:option>
+          <!-- For RISE conference in Hong Kong. The key is not UnixTime as UnixTime should be 1531299600
+           $ TZ=Asia/Hong_Kong date -d @1531299600 +%Y%m%d%H%M%S%z
+           20180711170000+0800-->
+          <tbml:option key="1531328400">
+            <tbml:value>20180711090000+0800</tbml:value>
+          </tbml:option>
         </tbml:mapping>
-        <!-- For RISE conference in Hong Kong. The key is not UnixTime as UnixTime should be 1531299600
-         $ TZ=Asia/Hong_Kong date -d @1531299600 +%Y%m%d%H%M%S%z
-         20180711170000+0800-->
-        <tbml:option key="1531328400">
-          <tbml:value>20180711090000+0800</tbml:value>
-        </tbml:option>
       </tbml:origin>
     </tbml:attribute-type>
     <tbml:attribute-type id="countryA" syntax="1.3.6.1.4.1.1466.115.121.1.26">
@@ -556,168 +554,168 @@
        (SYNTAX 1.3.6.1.4.1.1466.115.121.1.11) per RFC 4519
            CountryName is two-characters long, not 3-characters.
        -->
-      <tbml:name lang="en">Team A</tbml:name>
-      <tbml:name lang="zh">甲队</tbml:name>
-      <tbml:name lang="es">Equipo A</tbml:name>
+      <tbml:name xml:lang="en">Team A</tbml:name>
+      <tbml:name xml:lang="zh">甲队</tbml:name>
+      <tbml:name xml:lang="es">Equipo A</tbml:name>
       <tbml:origin bitmask="00000000000000000000000000000000000000000000FFFFFF00000000000000" as="utf8"/>
     </tbml:attribute-type>
     <tbml:attribute-type id="countryB" syntax="1.3.6.1.4.1.1466.115.121.1.26">
-      <tbml:name lang="en">Team B</tbml:name>
-      <tbml:name lang="zh">乙队</tbml:name>
-      <tbml:name lang="es">Equipo B</tbml:name>
+      <tbml:name xml:lang="en">Team B</tbml:name>
+      <tbml:name xml:lang="zh">乙队</tbml:name>
+      <tbml:name xml:lang="es">Equipo B</tbml:name>
       <tbml:origin bitmask="00000000000000000000000000000000000000000000000000FFFFFF00000000" as="utf8"/>
     </tbml:attribute-type>
     <tbml:attribute-type id="match" syntax="1.3.6.1.4.1.1466.115.121.1.27">
-      <tbml:name lang="en">Match</tbml:name>
-      <tbml:name lang="zh">场次</tbml:name>
-      <tbml:name lang="es">Evento</tbml:name>
+      <tbml:name xml:lang="en">Match</tbml:name>
+      <tbml:name xml:lang="zh">场次</tbml:name>
+      <tbml:name xml:lang="es">Evento</tbml:name>
       <tbml:origin bitmask="00000000000000000000000000000000000000000000000000000000FF000000" as="unsigned"/>
     </tbml:attribute-type>
     <tbml:attribute-type id="category" syntax="1.3.6.1.4.1.1466.115.121.1.15">
-      <tbml:name lang="en">Cat</tbml:name>
-      <tbml:name lang="zh">等级</tbml:name>
-      <tbml:name lang="es">Cat</tbml:name>
+      <tbml:name xml:lang="en">Cat</tbml:name>
+      <tbml:name xml:lang="zh">等级</tbml:name>
+      <tbml:name xml:lang="es">Cat</tbml:name>
       <tbml:origin bitmask="0000000000000000000000000000000000000000000000000000000000FF0000" as="mapping">
         <tbml:mapping>
           <tbml:option key="1">
-            <tbml:value lang="en">Category 1</tbml:value>
-            <tbml:value lang="zh">一类票</tbml:value>
+            <tbml:value xml:lang="en">Category 1</tbml:value>
+            <tbml:value xml:lang="zh">一类票</tbml:value>
           </tbml:option>
           <tbml:option key="2">
-            <tbml:value lang="en">Category 2</tbml:value>
-            <tbml:value lang="zh">二类票</tbml:value>
+            <tbml:value xml:lang="en">Category 2</tbml:value>
+            <tbml:value xml:lang="zh">二类票</tbml:value>
           </tbml:option>
           <tbml:option key="3">
-            <tbml:value lang="en">Category 3</tbml:value>s
-            <tbml:value lang="zh">三类票</tbml:value>
+            <tbml:value xml:lang="en">Category 3</tbml:value>
+            <tbml:value xml:lang="zh">三类票</tbml:value>
           </tbml:option>
           <tbml:option key="4">
-            <tbml:value lang="en">Category 4</tbml:value>
-            <tbml:value lang="zh">四类票</tbml:value>
+            <tbml:value xml:lang="en">Category 4</tbml:value>
+            <tbml:value xml:lang="zh">四类票</tbml:value>
           </tbml:option>
           <tbml:option key="5">
-            <tbml:value lang="en">Match Club</tbml:value>
-            <tbml:value lang="zh">俱乐部坐席</tbml:value>
+            <tbml:value xml:lang="en">Match Club</tbml:value>
+            <tbml:value xml:lang="zh">俱乐部坐席</tbml:value>
           </tbml:option>
           <tbml:option key="6">
-            <tbml:value lang="en">Match House Premier</tbml:value>
-            <tbml:value lang="zh">比赛之家坐席</tbml:value>
+            <tbml:value xml:lang="en">Match House Premier</tbml:value>
+            <tbml:value xml:lang="zh">比赛之家坐席</tbml:value>
           </tbml:option>
           <tbml:option key="7">
-            <tbml:value lang="en">MATCH PAVILION</tbml:value>
-            <tbml:value lang="zh">款待大厅坐席</tbml:value>
+            <tbml:value xml:lang="en">MATCH PAVILION</tbml:value>
+            <tbml:value xml:lang="zh">款待大厅坐席</tbml:value>
           </tbml:option>
           <tbml:option key="8">
-            <tbml:value lang="en">MATCH BUSINESS SEAT</tbml:value>
-            <tbml:value lang="zh">商务坐席</tbml:value>
+            <tbml:value xml:lang="en">MATCH BUSINESS SEAT</tbml:value>
+            <tbml:value xml:lang="zh">商务坐席</tbml:value>
           </tbml:option>
           <tbml:option key="9">
-            <tbml:value lang="en">MATCH SHARED SUITE</tbml:value>
-            <tbml:value lang="zh">公共包厢</tbml:value>
+            <tbml:value xml:lang="en">MATCH SHARED SUITE</tbml:value>
+            <tbml:value xml:lang="zh">公共包厢</tbml:value>
           </tbml:option>
           <tbml:option key="10">
-            <tbml:value lang="en">TSARSKY LOUNGE</tbml:value>
-            <tbml:value lang="zh">特拉斯基豪华包厢</tbml:value>
+            <tbml:value xml:lang="en">TSARSKY LOUNGE</tbml:value>
+            <tbml:value xml:lang="zh">特拉斯基豪华包厢</tbml:value>
           </tbml:option>
           <tbml:option key="11">
-            <tbml:value lang="en">MATCH PRIVATE SUITE</tbml:value>
-            <tbml:value lang="zh">私人包厢</tbml:value>
+            <tbml:value xml:lang="en">MATCH PRIVATE SUITE</tbml:value>
+            <tbml:value xml:lang="zh">私人包厢</tbml:value>
           </tbml:option>
           <tbml:option key="255">
-            <tbml:value lang="en">Singapore Blockchain Event</tbml:value>
-            <tbml:value lang="zh">新加坡区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Singapore Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">新加坡区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="254">
-            <tbml:value lang="en">TECHNOLOGY RADAR SUMMIT 2018</tbml:value>
-            <tbml:value lang="zh">技术雷达峰会2018</tbml:value>
+            <tbml:value xml:lang="en">TECHNOLOGY RADAR SUMMIT 2018</tbml:value>
+            <tbml:value xml:lang="zh">技术雷达峰会2018</tbml:value>
           </tbml:option>
           <tbml:option key="253">
-            <tbml:value lang="en">Sydney Blockchain Event</tbml:value>
-            <tbml:value lang="zh">悉尼区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Sydney Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">悉尼区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="252">
-            <tbml:value lang="en">Beijing Blockchain Event</tbml:value>
-            <tbml:value lang="zh">北京区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Beijing Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">北京区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="251">
-            <tbml:value lang="en">Shanghai Blockchain Event</tbml:value>
-            <tbml:value lang="zh">上海区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Shanghai Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">上海区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="250">
-            <tbml:value lang="en">Tokyo Blockchain Event</tbml:value>
-            <tbml:value lang="zh">东京区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Tokyo Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">东京区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="249">
-            <tbml:value lang="en">Blockchain Event</tbml:value>
-            <tbml:value lang="zh">区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="248">
-            <tbml:value lang="en">Other Events</tbml:value>
-            <tbml:value lang="zh">其他活动</tbml:value>
+            <tbml:value xml:lang="en">Other Events</tbml:value>
+            <tbml:value xml:lang="zh">其他活动</tbml:value>
           </tbml:option>
           <tbml:option key="247">
-            <tbml:value lang="en">Seoul Blockchain Event</tbml:value>
-            <tbml:value lang="zh">首尔区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Seoul Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">首尔区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="246">
-            <tbml:value lang="en">Bangkok Blockchain Event</tbml:value>
-            <tbml:value lang="zh">曼谷区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Bangkok Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">曼谷区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="245">
-            <tbml:value lang="en">AlphaWallet Event</tbml:value>
-            <tbml:value lang="zh">AlphaWallet活动</tbml:value>
+            <tbml:value xml:lang="en">AlphaWallet Event</tbml:value>
+            <tbml:value xml:lang="zh">AlphaWallet活动</tbml:value>
           </tbml:option>
           <tbml:option key="243">
-            <tbml:value lang="en">Stormbird Event</tbml:value>
-            <tbml:value lang="zh">Stormbird活动</tbml:value>
+            <tbml:value xml:lang="en">Stormbird Event</tbml:value>
+            <tbml:value xml:lang="zh">Stormbird活动</tbml:value>
           </tbml:option>
           <tbml:option key="242">
-            <tbml:value lang="en">UNITY VENTURES Event</tbml:value>
-            <tbml:value lang="zh">九合创投活动</tbml:value>
+            <tbml:value xml:lang="en">UNITY VENTURES Event</tbml:value>
+            <tbml:value xml:lang="zh">九合创投活动</tbml:value>
           </tbml:option>
           <tbml:option key="241">
-            <tbml:value lang="en">Max's Event</tbml:value>
-            <tbml:value lang="zh">Max的活动</tbml:value>
+            <tbml:value xml:lang="en">Max's Event</tbml:value>
+            <tbml:value xml:lang="zh">Max的活动</tbml:value>
           </tbml:option>
           <tbml:option key="240">
-            <tbml:value lang="en">Chongqing Blockchain Event</tbml:value>
-            <tbml:value lang="zh">重庆区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Chongqing Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">重庆区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="239">
-            <tbml:value lang="en">Dubai Blockchain Event</tbml:value>
-            <tbml:value lang="zh">迪拜区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Dubai Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">迪拜区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="238">
-            <tbml:value lang="en">Silicon Valley Blockchain Event</tbml:value>
-            <tbml:value lang="zh">硅谷区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Silicon Valley Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">硅谷区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="237">
-            <tbml:value lang="en">Melbourne Blockchain Event</tbml:value>
-            <tbml:value lang="zh">墨尔本区块链活动</tbml:value>
+            <tbml:value xml:lang="en">Melbourne Blockchain Event</tbml:value>
+            <tbml:value xml:lang="zh">墨尔本区块链活动</tbml:value>
           </tbml:option>
           <tbml:option key="236">
-            <tbml:value lang="en">General Event</tbml:value>
-            <tbml:value lang="zh">通用活动</tbml:value>
+            <tbml:value xml:lang="en">General Event</tbml:value>
+            <tbml:value xml:lang="zh">通用活动</tbml:value>
           </tbml:option>
           <tbml:option key="235">
-            <tbml:value lang="en">AlphaWallet Meeting Slot</tbml:value>
-            <tbml:value lang="zh">AlphaWallet面议机会</tbml:value>
+            <tbml:value xml:lang="en">AlphaWallet Meeting Slot</tbml:value>
+            <tbml:value xml:lang="zh">AlphaWallet面议机会</tbml:value>
           </tbml:option>
           <tbml:option key="234">
-            <tbml:value lang="en">ERC875 Meetup</tbml:value>
-            <tbml:value lang="zh">ERC875线下聚会</tbml:value>
+            <tbml:value xml:lang="en">ERC875 Meetup</tbml:value>
+            <tbml:value xml:lang="zh">ERC875线下聚会</tbml:value>
           </tbml:option>
           <tbml:option key="144">
-            <tbml:value lang="en">Nervos and AlphaWallet Meetup</tbml:value>
-            <tbml:value lang="zh">Nervos和AlphaWallet见面会</tbml:value>
+            <tbml:value xml:lang="en">Nervos and AlphaWallet Meetup</tbml:value>
+            <tbml:value xml:lang="zh">Nervos和AlphaWallet见面会</tbml:value>
           </tbml:option>
           <tbml:option key="233">
-            <tbml:value lang="en">AlphaWallet and our friends</tbml:value>
-            <tbml:value lang="zh">AlphaWallet和小伙伴们</tbml:value>
+            <tbml:value xml:lang="en">AlphaWallet and our friends</tbml:value>
+            <tbml:value xml:lang="zh">AlphaWallet和小伙伴们</tbml:value>
           </tbml:option>
           <tbml:option key="232">
-            <tbml:value lang="en">The Future of LAYER 2: Prague Edition</tbml:value>
-            <tbml:value lang="zh">The Future of LAYER 2: Prague Edition</tbml:value>
+            <tbml:value xml:lang="en">The Future of LAYER 2: Prague Edition</tbml:value>
+            <tbml:value xml:lang="zh">The Future of LAYER 2: Prague Edition</tbml:value>
           </tbml:option>
         </tbml:mapping>
       </tbml:origin>
