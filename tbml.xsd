@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- commandline usage: 
+
+$ for i in */*/*.xml; do
+  java -classpath /usr/share/java/xercesImpl.jar:/usr/share/java/xmlParserAPIs.jar:/usr/share/java/xercesSamples.jar sax.Counter -n -s -f $i;
+  done;
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://attestation.id/ns/tbml" xmlns:tb="http://attestation.id/ns/tbml">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace"
+        schemaLocation="http://www.w3.org/2001/xml.xsd" />
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+        schemaLocation="https://www.w3.org/TR/2008/REC-xmldsig-core-20080610/xmldsig-core-schema.xsd"
+  />
+  <xs:element name="token">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:contract"/>
+        <xs:element ref="tb:features"/>
+        <xs:element ref="tb:selections"/>
+        <xs:element ref="tb:grouping"/>
+        <xs:element ref="tb:ordering"/>
+        <xs:element ref="tb:attribute-types"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="tb:address"/>
+        <xs:element maxOccurs="unbounded" ref="tb:name"/>
+        <xs:element minOccurs="0" ref="tb:interface"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interface" type="xs:NCName"/>
+  <xs:element name="features">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:feature"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="feature">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tb:include"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="tb:device"/>
+          <xs:element ref="tb:redeem"/>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tb:exclude"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="tb:address"/>
+          <xs:element ref="tb:feemaster"/>
+          <xs:element ref="tb:gateway"/>
+          <xs:element ref="tb:prefix"/>
+        </xs:choice>
+        <xs:element maxOccurs="unbounded" ref="tb:message"/>
+      </xs:sequence>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="include" type="xs:NCName"/>
+  <xs:element name="device" type="xs:NCName"/>
+  <xs:element name="redeem">
+    <xs:complexType>
+      <xs:attribute name="format" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="exclude" type="xs:NCName"/>
+  <xs:element name="feemaster" type="xs:anyURI"/>
+  <xs:element name="gateway" type="xs:anyURI"/>
+  <xs:element name="prefix" type="xs:anyURI"/>
+  <xs:element name="selections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:selection"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:name"/>
+        <xs:element ref="tb:filter"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="filter" type="xs:string"/>
+  <xs:element name="grouping">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tb:group"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tb:consecutive_groups"/>
+      </xs:sequence>
+      <xs:attribute name="bitmask" use="required"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consecutive_groups">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="ordering">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:order"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="order">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tb:byName"/>
+        <xs:element maxOccurs="unbounded" ref="tb:byValue"/>
+      </xs:sequence>
+      <xs:attribute name="bitmask" use="required"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="byName">
+    <xs:complexType>
+      <xs:attribute name="field" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="byValue">
+    <xs:complexType>
+      <xs:attribute name="field" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attribute-types">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:attribute-type"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attribute-type">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tb:name"/>
+        <xs:element ref="tb:origin"/>
+      </xs:sequence>
+      <xs:attribute name="as" type="xs:NCName"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="oid" type="xs:NMTOKEN"/>
+      <xs:attribute name="syntax" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="origin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tb:function"/>
+        <xs:element minOccurs="0" ref="tb:mapping"/>
+      </xs:sequence>
+      <xs:attribute name="as" type="xs:NCName"/>
+      <xs:attribute name="bitmask"/>
+      <xs:attribute name="contract" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="function">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tb:inputs"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inputs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tb:uint256"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="uint256">
+    <xs:complexType>
+      <xs:attribute name="ref" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mapping">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:option"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="option">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:value"/>
+      </xs:sequence>
+      <xs:attribute name="key" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="value">
+    <xs:complexType mixed="true">
+      <xs:attribute ref="xml:lang" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="address">
+    <xs:complexType mixed="true">
+      <xs:attribute name="network" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name">
+    <xs:complexType mixed="true">
+      <xs:attribute ref="xml:lang" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="message">
+    <xs:complexType mixed="true">
+      <xs:attribute ref="xml:lang" use="optional" />
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
