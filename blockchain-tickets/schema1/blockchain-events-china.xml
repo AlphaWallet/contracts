@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <tbml:token xmlns:tbml="http://attestation.id/ns/tbml"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://attestation.id/ns/tbml ../../tbml.xsd"
             xmlns:xml="http://www.w3.org/XML/1998/namespace">
   <tbml:contract id="holding_contract" type="holding">
     <tbml:address network="1">0x830E1650a87a754e37ca7ED76b700395A7C61614</tbml:address>

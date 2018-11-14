@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- commandline usage: 
+
+$ for i in */*/*.xml; do
+  java -classpath /usr/share/java/xercesImpl.jar:/usr/share/java/xmlParserAPIs.jar:/usr/share/java/xercesSamples.jar sax.Counter -n -s -f $i;
+  done;
+
+-->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://attestation.id/ns/tbml" xmlns:tb="http://attestation.id/ns/tbml">
   <xs:import namespace="http://www.w3.org/XML/1998/namespace"
         schemaLocation="http://www.w3.org/2001/xml.xsd" />
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+        schemaLocation="https://www.w3.org/TR/2008/REC-xmldsig-core-20080610/xmldsig-core-schema.xsd"
+  />
   <xs:element name="token">
     <xs:complexType>
       <xs:sequence>
