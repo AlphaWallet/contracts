@@ -281,11 +281,12 @@ contract Meetup
 
         for (i = 0; i < tickets.length; i++)
         {
-            message[84 + i * 32 +31] = byte(tickets[i]);
+            uint256 _tempTicket=tickets[i];
+            message[84 + i * 32] = byte(bytes32(_tempTicket));
             // convert uint256[] to bytes
             for (uint j = 1; j < 32; j++)
             {
-                message[84 + i * 32 + 31 - j] = byte(tickets[i] = tickets[i] >> 8);
+                message[84 + i * 32 + j] = byte(bytes32(_tempTicket = _tempTicket << 8));
             }
         }
         return keccak256(message);
