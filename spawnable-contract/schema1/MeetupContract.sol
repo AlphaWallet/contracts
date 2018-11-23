@@ -235,17 +235,17 @@ contract Meetup
         for (uint i = 0; i < 32; i++)
         {   // convert bytes32 to bytes[32]
             // this adds the price to the message
-            message[i] = byte(bytes32(value << (8 * i)));
+            message[i] = byte(value << (8 * i));
         }
 
         for (i = 0; i < 32; i++)
         {
-            message[i + 32] = byte(bytes32(expiry << (8 * i)));
+            message[i + 32] = byte(expiry << (8 * i));
         }
 
         for(i = 0; i < 20; i++)
         {
-            message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
+            message[64 + i] = byte(bytes20(contractAddress) << (8 * i));
         }
 
         for (i = 0; i < ticketIndices.length; i++)
@@ -266,27 +266,25 @@ contract Meetup
         for (uint i = 0; i < 32; i++)
         {   // convert bytes32 to bytes[32]
             // this adds the price to the message
-            message[i] = byte(bytes32(value << (8 * i)));
+            message[i] = byte(value << (8 * i));
         }
 
         for (i = 0; i < 32; i++)
         {
-            message[i + 32] = byte(bytes32(expiry << (8 * i)));
+            message[i + 32] = byte(expiry << (8 * i));
         }
 
         for(i = 0; i < 20; i++)
         {
-            message[64 + i] = byte(bytes20(bytes20(contractAddress) << (8 * i)));
+            message[64 + i] = byte(bytes20(contractAddress) << (8 * i));
         }
 
         for (i = 0; i < tickets.length; i++)
         {
-            uint256 _tempTicket=tickets[i];
-            message[84 + i * 32] = byte(bytes32(_tempTicket));
             // convert uint256[] to bytes
-            for (uint j = 1; j < 32; j++)
+            for (uint j = 0; j < 32; j++)
             {
-                message[84 + i * 32 + j] = byte(bytes32(_tempTicket = _tempTicket << 8));
+                message[84 + i * 32 + j] = byte(tickets[i] << (8 * j));
             }
         }
         return keccak256(message);
