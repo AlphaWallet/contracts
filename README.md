@@ -15,7 +15,7 @@ When a user accesses a contract through its Ethereum address, the user's agent (
 - the app launches
 
 The XML file is downloaded or updated by accessing a link like this:
-https://repo.awallet.io/0xA66A3F08068174e8F005112A8b2c7A507a822335
+https://repo.aw.app/0xA66A3F08068174e8F005112A8b2c7A507a822335
 
 ## For downloading the first time ##
 
@@ -27,9 +27,9 @@ The XML file is downloaded to the mobile phone, validated for signature (in the 
 
 Include the `IF-Modified-Since` header HTTP header with the local XML's last modified date in the GET request. If the XML on the server has not been modified, a `304` will be returned with an empty body. Be careful with timezone! Put a bit of thinking cases like this: the user moves from timezone A to timezone B and missing a latest update for up to 24 hours.
 
-Example for the client to enquire repo.awallet.io for the latest update.
+Example for the client to enquire repo.aw.app for the latest update.
 
-    curl -H "Accept: text/xml; charset=UTF-8" -H "IF-Modified-Since: Mon, 02 Jul 2018 13:23:00 GMT" -H "X-Client-Name: AlphaWallet" -H "X-Client-Version: 1.0.3" -H "X-Platform-Name: iOS" -H "X-Platform-Version: 11.1.2" https://repo.awallet.io/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3
+    curl -H "Accept: text/xml; charset=UTF-8" -H "IF-Modified-Since: Mon, 02 Jul 2018 13:23:00 GMT" -H "X-Client-Name: AlphaWallet" -H "X-Client-Version: 1.0.3" -H "X-Platform-Name: iOS" -H "X-Platform-Version: 11.1.2" https://repo.aw.app/0xd8e5f58de3933e1e35f9c65eb72cb188674624f3
 
 If an update is needed, the new file will be available in the body. Validate for signature (in the future, validate against schemas). If invalid, keep the old file and log the event (or secrectly send us an email). If valid, replace the local file with it and set the modified timestamp again:
 
@@ -98,7 +98,7 @@ When the server starts, it scans for all XML files in all directories and indexe
 Notice that the server completely doesn't care the network ID (mainnet / testnet).
 
 When the client connects to URI like this:
-https://repo.awallet.io/0xA66A3F08068174e8F005112A8b2c7A507a822335
+https://repo.aw.app/0xA66A3F08068174e8F005112A8b2c7A507a822335
 the server either returns the file which claims to define the behaviour of the contract in the URI, with the `Last-Modified` field being the XML signature signing time (in case of multi-signature XML file, the last signer's signing time). In other words, the repo server provides a facade as if all files are modified by the same time as its last signature, which should be true, usually, but not always (e.g. when the repo manager might want to swap in and swap out different versions of XML to experiment, or when version management (git etc) breaks the modification timestampe).
 
 In the case that there are multiple files which claim to define the behaviour of the contract in the URI, one of the two things happens.
