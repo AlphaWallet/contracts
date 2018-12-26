@@ -227,20 +227,20 @@ contract Meetup
         emit PassTo(ticketIndices, v, r, s, recipient);
     }
 
+    // Pack value, expiry, tickets into 1 array
     function encodeMessage(uint value, uint expiry, uint256[] ticketIndices)
         internal view returns (bytes32)
     {
         bytes memory message = new bytes(84 + ticketIndices.length * 2);
         address contractAddress = getThisContractAddress();
         for (uint i = 0; i < 32; i++)
-        {   // convert bytes32 to bytes[32]
-            // this adds the price to the message
-            message[i] = byte(value << (8 * i));
+        {
+            message[i] = byte(bytes32(value << (8 * i)));
         }
 
         for (i = 0; i < 32; i++)
         {
-            message[i + 32] = byte(expiry << (8 * i));
+            message[i + 32] = byte(bytes32(expiry << (8 * i)));
         }
 
         for(i = 0; i < 20; i++)
@@ -250,7 +250,6 @@ contract Meetup
 
         for (i = 0; i < ticketIndices.length; i++)
         {
-            // convert int[] to bytes
             message[84 + i * 2 ] = byte(ticketIndices[i] >> 8);
             message[84 + i * 2 + 1] = byte(ticketIndices[i]);
         }
@@ -258,20 +257,20 @@ contract Meetup
         return keccak256(message);
     }
 
+    // Pack value, expiry, tickets into 1 array
     function encodeMessageSpawnable(uint value, uint expiry, uint256[] tickets)
         internal view returns (bytes32)
     {
         bytes memory message = new bytes(84 + tickets.length * 32);
         address contractAddress = getThisContractAddress();
         for (uint i = 0; i < 32; i++)
-        {   // convert bytes32 to bytes[32]
-            // this adds the price to the message
-            message[i] = byte(value << (8 * i));
+        {
+            message[i] = byte(bytes32(value << (8 * i)));
         }
 
         for (i = 0; i < 32; i++)
         {
-            message[i + 32] = byte(expiry << (8 * i));
+            message[i + 32] = byte(bytes32(expiry << (8 * i)));
         }
 
         for(i = 0; i < 20; i++)
@@ -281,10 +280,9 @@ contract Meetup
 
         for (i = 0; i < tickets.length; i++)
         {
-            // convert uint256[] to bytes
             for (uint j = 0; j < 32; j++)
             {
-                message[84 + i * 32 + j] = byte(tickets[i] << (8 * j));
+                message[84 + i * 32 + j] = byte(bytes32(tickets[i] << (8 * j)));
             }
         }
         return keccak256(message);
