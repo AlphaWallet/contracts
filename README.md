@@ -106,3 +106,9 @@ In the case that there are multiple files which claim to define the behaviour of
 1. The server, knowing which version of the mobile app supports what kind of XML file, pre-select the compatible file to return.
 
 2. If there are still more than one compatible file, e.g. one signed by contract issuers and another signed by awallet.io while the awallet.io is newer, and that we intend the user to choose, then the server returns 300 with a list of choices.
+
+
+# Donations
+If you support the cause, we could certainly use donations to help fund development:
+
+0xbc8dAfeacA658Ae0857C80D8Aa6dE4D487577c63
