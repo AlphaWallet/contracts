@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<t:token xmlns:t="http://attestation.id/ns/tbml"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="tbml.xsd"
+         xmlns="http://www.w3.org/1999/xhtml">
+    <t:appearance>
+        <t:name xml:lang="en">DAI CDP portal</t:name>
+        <t:introduction xml:lang="en">
+            <h1>You have no DAI CDP available</h1>
+        </t:introduction>
+        <t:instruction xml:lang="en">
+            <input id="moveAMT" type="number"/>
+            <button id="moveCDP">Move CDP</button>
+            <h5 id="caption"/>
+        </t:instruction>
+        <t:instruction xml:lang="es">
+            <input id="moveAMT" type="number"/>
+            <button id="moveCDP">movimiento CDP</button>
+            <h5 id="caption"/>
+        </t:instruction>
+        <t:instruction xml:lang="en">
+            <input id="closeAMT" type="number"/>
+            <button id="closeCDP">Close CDP</button>
+            <h5 id="caption"/>
+        </t:instruction>
+        <t:instruction xml:lang="es">
+            <input id="closeAMT" type="number"/>
+            <button id="closeCDP">Cerrar CDP</button>
+            <h5 id="caption"/>
+        </t:instruction>
+    </t:appearance>
+    <t:features>
+      <t:action contract="holding-contract">
+        <t:name xml:lang="en">Deposit</t:name>
+        <t:function name="deposit">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:name xml:lang="en">Withdraw</t:name>
+        <t:function name="withdraw">
+          <t:inputs>
+            <t:uint256 ref="amt"/>
+          </t:inputs>
+        </t:function>
+        <t:name xml:lang="en">Payback</t:name>
+        <t:function name="">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:name xml:lang="en">Generate</t:name>
+        <t:function name="">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+      </t:action>
+    </t:features>
+    <t:contracts>
+        <t:contract id="holding_contract" type="Custom">
+            <t:address>0xd64979357160E8146F6e1d805cf20437397bF1ba</t:address>
+            <t:name xml:lang="en">DAI CDP</t:name>
+        </t:contract>
+    </t:contracts>
+</t:token>
