@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="cardize.xsl"?>
 <tb:token xmlns:tb="http://attestation.id/ns/tbml"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://attestation.id/ns/tbml ../../tbml.xsd"
           xmlns:xml="http://www.w3.org/XML/1998/namespace">
+
   <tb:contract id="holding_contract" type="holding">
     <tb:address network="3">0x16e58F9a98bc46a572CFb9ce28DDEeaf76AF645a</tb:address>
     <tb:name xml:lang="ru">Ваучеры</tb:name>
