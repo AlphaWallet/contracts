@@ -186,8 +186,11 @@ contract Meetup
         require(!signatureChecked[s]);
         for(uint i = 0; i < tickets.length; i++)
         {
-            inventory[recipient].push(tickets[i]);
-		    spawnedTickets.push(tickets[i]);
+            if(spawned(tickets[i])==false)
+			{
+				inventory[recipient].push(tickets[i]);
+				spawnedTickets.push(tickets[i]);
+			}
         }
     }
 
