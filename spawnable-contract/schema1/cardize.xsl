@@ -6,8 +6,11 @@
     <xsl:template match="/">
         <html>
             <head>
+                <!-- script to populate fields with values from the blockchain -->
                 <script type="text/javascript">
                     //<![CDATA[
+                        window.addEventListener('load', async () => {
+                        })
                     //]]>
                 </script>
                 <style type="text/css">
