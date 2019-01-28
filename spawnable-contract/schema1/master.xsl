@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" id="card" xml:id="card"
                 xmlns:tb="http://attestation.id/ns/tbml"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <xsl:include href="asset-card.xsl"/>
+  <xsl:include href="token.xsl"/>
   <xsl:template match="/">
     <html>
       <head>
