@@ -176,18 +176,22 @@ contract Meetup
                     uint8 v,
                     bytes32 r,
                     bytes32 s,
-                    address recipient) public
+                    address recipient) public payable
     {
         require(expiry > block.timestamp || expiry == 0);
-        bytes32 message = encodeMessageSpawnable(0, expiry, tickets);
+        bytes32 message = encodeMessageSpawnable(msg.value, expiry, tickets);
         address giver = ecrecover(message, v, r, s);
         //only the organiser can authorise this
         require(giver == organiser);
         require(!signatureChecked[s]);
+        organiser.transfer(msg.value);
         for(uint i = 0; i < tickets.length; i++)
         {
-            inventory[recipient].push(tickets[i]);
-		    spawnedTickets.push(tickets[i]);
+            if(spawned(tickets[i])==false)  //O(n) operation
+            {
+                inventory[recipient].push(tickets[i]);
+                spawnedTickets.push(tickets[i]);
+            }
         }
     }
 
