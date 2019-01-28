@@ -1,5 +1,5 @@
 // [1,2], "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Weiwu's Haven"
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.25;
 contract Meetup
 {
     mapping(address => uint256[]) inventory;
