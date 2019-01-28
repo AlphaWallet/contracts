@@ -36,7 +36,7 @@
           body {
           background-color: #54c1e2;
           }
-          .banner {
+          #banner {
           border-radius: 10pt 10pt 0pt 0pt;
           background-color: white;
           }
@@ -50,7 +50,7 @@
         </style>
       </head>
       <body>
-        <div class="banner">
+        <div id="banner">
           <h1>You have purchased 2 tickets.</h1>
         </div>
         <div class="tokens under-action">
