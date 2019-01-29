@@ -51,7 +51,7 @@
       </head>
       <body>
         <div id="banner">
-          <h1>You have purchased 2 tickets.</h1>
+          <h1>You have purchased 2 <xsl:value-of select="/tb:token/tb:name"/></h1>
         </div>
         <div class="tokens under-action">
           <div class="asset card">

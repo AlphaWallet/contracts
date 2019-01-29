@@ -16,6 +16,7 @@ $ for i in */*/*.xml; do
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="tb:contract"/>
+        <xs:element ref="tb:name"/>
         <xs:element ref="tb:features"/>
         <xs:element ref="tb:selections"/>
         <xs:element ref="tb:grouping"/>
