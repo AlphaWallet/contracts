@@ -14,14 +14,16 @@
                         })
                     //]]>
         </script>
-        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <!-- wonder the use of xsl:comment? see https://github.com/facebook/react/issues/14712 -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js"><xsl:comment/></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"><xsl:comment/></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"><xsl:comment/></script>
         <style type="text/css">
           tr {
           display: inline-block;
           width: 50%;
           }
+
           tr:nth-child(odd) {
           text-align: left;
           }
@@ -35,14 +37,25 @@
           }
 
           table {
-          width: 100%;
+          width: 48%;
+          min-width: 16em;
+          margin: 1%;
+          border: thin ridge;
+          padding: 1ex;
+          float: left;
+          background-color: whitesmoke;
+          border: thin solid silver;
+          box-shadow: 5pt 5pt silver;
           }
+
           h1 {
           text-align: center;
           }
+
           html {
           background-color: #54c1e2;
           }
+
           body {
           border-radius: 10pt 10pt 10pt 10pt;
           background-color: white;
@@ -54,7 +67,10 @@
 
         <script type="text/babel">
           ReactDOM.render(
-          <Token/>
+          <div>
+            <Token/>
+            <Token/>
+          </div>
           ,
           document.querySelector("#tokens")
           );
