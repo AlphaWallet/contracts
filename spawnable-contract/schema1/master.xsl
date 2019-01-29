@@ -77,7 +77,7 @@
         </script>
 
         <div id="banner">
-          <h1>You have purchased 2 tickets.</h1>
+          <h1>You have purchased 2 <xsl:value-of select="/tb:token/tb:name"/></h1>
         </div>
         <div id="tokens"/>
         <div id="other-tokens">
