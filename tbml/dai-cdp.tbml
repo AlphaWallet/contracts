@@ -129,6 +129,44 @@
         <button id="close">close</button>
 
       </t:action>
+      <t:action contract="holding-contract">
+        <t:name xml:lang="en">Liquidation Price</t:name>
+        <t:function name="name">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:condition></t:condition>
+        <t:name xml:lang="en">Current price information</t:name>
+        <t:function name="name">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:condition></t:condition>
+        <t:name xml:lang="en">Liquidation Penalty</t:name>
+        <t:function name="name">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:condition></t:condition>
+        <t:name xml:lang="en">Collateralization Ratio</t:name>
+        <t:function name="name">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:condition></t:condition>
+        <t:name xml:lang="en">Minimum Ratio</t:name>
+        <t:function name="name">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:condition></t:condition>
+        <t:name xml:lang="en">Stability fee</t:name>
+        <t:function name="name">
+          <t:inputs>
+          </t:inputs>
+        </t:function>
+        <t:condition></t:condition>
+      </t:action>
     </t:features>
     <t:contracts>
         <t:contract id="holding_contract" type="custom">
