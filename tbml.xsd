@@ -18,6 +18,7 @@ $ for i in */*/*.xml; do
         <xs:element maxOccurs="unbounded" ref="tb:contract"/>
         <xs:element ref="tb:name"/>
         <xs:element ref="tb:features"/>
+        <xs:element ref="tb:actions"/>
         <xs:element ref="tb:selections"/>
         <xs:element ref="tb:grouping"/>
         <xs:element ref="tb:ordering"/>
@@ -62,6 +63,18 @@ $ for i in */*/*.xml; do
         <xs:element maxOccurs="unbounded" ref="tb:message"/>
       </xs:sequence>
       <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tb:action"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="action">
+    <xs:complexType>
+        <xs:element ref="tb:name"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="include" type="xs:NCName"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" id="card" xml:id="card"
-                xmlns:tb="http://attestation.id/ns/tbml"
+                xmlns:tbml="http://attestation.id/ns/tbml"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:include href="token.xsl"/>
 
@@ -77,11 +77,11 @@
         </script>
 
         <div id="banner">
-          <h1>You have purchased 2 <xsl:value-of select="/tb:token/tb:name"/></h1>
+          <h1>You have purchased 2 <xsl:value-of select="/tbml:token/tbml:name"/></h1>
         </div>
         <div id="tokens"/>
-        <div id="other-tokens">
-
+        <div id="other-tokens"/>
+        <div id="actions">
         </div>
       </body>
     </html>

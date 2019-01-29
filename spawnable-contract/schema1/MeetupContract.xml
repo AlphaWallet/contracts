@@ -24,11 +24,14 @@
   </tb:contract>
   <!-- consider metadata of tokens, e.g. quantifier in each languages -->
   <tb:features>
-    <!-- a feature is only usable if all tokens are included, but, if
-         only some are excluded, the feature is still available for
-         the ones that are not excluded. Think about redeem function,
-         the button should be grayed out with the "include" message
-         there -->
+    <!-- features can be used by actions, but actions do not have to
+         use a feature - they could use a smart contract call or be
+         done by web3 javascripts. A feature is a module in the wallet
+         that provide some functions. The XML elements allowed in each
+         feature is hard-coded in the schema and recognised by the
+         corrisponding modules. As of Jan 2019, there is no way to
+         plug-in a module at run time and has to be hard-coded and
+         released as a new version of the wallet.-->
     <tb:feature type="market-queue">
       <tb:include>valid</tb:include>
       <tb:exclude>invited</tb:exclude>
@@ -85,6 +88,12 @@
       <tb:message xml:lang="zh" type="include">只有%name%才可以兑换纸票</tb:message>
     </tb:feature>
   </tb:features>
+  <tb:actions>
+    <tb:action>
+      <tb:name xml:lang="en">Redeem</tb:name>
+      <tb:name xml:lang="zh">換紙票</tb:name>
+    </tb:action>
+  </tb:actions>
   <tb:selections>
     <tb:selection id="discounted">
       <tb:name xml:lang="en">Discount Tickets</tb:name>
