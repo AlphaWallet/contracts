@@ -3,13 +3,13 @@ pragma solidity ^0.4.25;
 contract Meetup
 {
     mapping(address => uint256[]) inventory;
-    uint256[] public spawnedTickets;
+    uint256[] public spawnedtokenIds;
     mapping(bytes32 => bool) signatureChecked;
     address public organiser;
     address public paymaster;
     uint numOfTransfers = 0;
     string public name;
-    uint8 public constant decimals = 0; //no decimals as tickets cannot be split
+    uint8 public constant decimals = 0; //no decimals as tokenIds cannot be split
     bool expired = false;
     string public state;
     string public locality;
@@ -23,8 +23,8 @@ contract Meetup
 
     event Transfer(address indexed _to, uint256 count);
     event TransferFrom(address indexed _from, address indexed _to, uint256 count);
-    event Trade(address indexed seller, uint256[] ticketIndices, uint8 v, bytes32 r, bytes32 s);
-    event PassTo(uint256[] ticketIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
+    event Trade(address indexed seller, uint256[] tokenIdIndices, uint8 v, bytes32 r, bytes32 s);
+    event PassTo(uint256[] tokenIdIndices, uint8 v, bytes32 r, bytes32 s, address indexed recipient);
 
     modifier organiserOnly()
     {
@@ -41,7 +41,7 @@ contract Meetup
     function() payable public { revert(); } //should not send any ether directly
 
     constructor (
-        uint256[] tickets,
+        uint256[] tokenIds,
         address organiserAddr,
         address paymasterAddr,
         address recipientAddr,
@@ -54,7 +54,7 @@ contract Meetup
     {
         organiser = organiserAddr;
         paymaster = paymasterAddr;
-        inventory[recipientAddr] = tickets;
+        inventory[recipientAddr] = tokenIds;
         building = buildingName;
         street = streetName;
         locality = localityName;
@@ -136,7 +136,7 @@ contract Meetup
     // price is encoded in the server and the msg.value is added to the message digest,
     // if the message digest is thus invalid then either the price or something else in the message is invalid
     function trade(uint256 expiry,
-                   uint256[] ticketIndices,
+                   uint256[] tokenIdIndices,
                    uint8 v,
                    bytes32 r,
                    bytes32 s) public payable
@@ -145,62 +145,66 @@ contract Meetup
         //if fake timestamp is added then message verification will fail
         require(expiry > block.timestamp || expiry == 0);
 
-        bytes32 message = encodeMessage(msg.value, expiry, ticketIndices);
+        bytes32 message = encodeMessage(msg.value, expiry, tokenIdIndices);
         address seller = ecrecover(message, v, r, s);
 
-        for(uint i = 0; i < ticketIndices.length; i++)
-        { // transfer each individual tickets in the ask order
-            uint256 index = ticketIndices[i];
-            assert(inventory[seller][index] != uint256(0)); // 0 means ticket gone.
+        for(uint i = 0; i < tokenIdIndices.length; i++)
+        { // transfer each individual tokenIds in the ask order
+            uint256 index = tokenIdIndices[i];
+            assert(inventory[seller][index] != uint256(0)); // 0 means tokenId gone.
             inventory[msg.sender].push(inventory[seller][index]);
-            // 0 means ticket gone.
+            // 0 means tokenId gone.
             delete inventory[seller][index];
         }
         seller.transfer(msg.value);
 
-        emit Trade(seller, ticketIndices, v, r, s);
+        emit Trade(seller, tokenIdIndices, v, r, s);
     }
 
-    function loadNewTickets(uint256[] tickets) public organiserOnly
+    function loadNewtokenIds(uint256[] tokenIds) public organiserOnly
     {
-        for(uint i = 0; i < tickets.length; i++)
+        for(uint i = 0; i < tokenIds.length; i++)
         {
-            inventory[organiser].push(tickets[i]);
+            inventory[organiser].push(tokenIds[i]);
         }
     }
-
-    //for new tickets to be created and given over
+    //Solidity is pass by reference, therefore you need to create a new var
+    //for message encoding on tokenIds or indices
+    //for new tokenIds to be created and given over
     //this requires a special magic link format with tokenids inside rather than indicies
     function spawnPassTo(uint256 expiry,
-                    uint256[] tickets,
+                    uint256[] tokenIds,
                     uint8 v,
                     bytes32 r,
                     bytes32 s,
                     address recipient) public payable
     {
         require(expiry > block.timestamp || expiry == 0);
-        bytes32 message = encodeMessageSpawnable(msg.value, expiry, tickets);
+        uint256[] memory tokensForMessage = tokenIds;
+        bytes32 message = encodeMessageSpawnable(msg.value, expiry, tokensForMessage);
         address giver = ecrecover(message, v, r, s);
         //only the organiser can authorise this
         require(giver == organiser);
         require(!signatureChecked[s]);
         organiser.transfer(msg.value);
-        for(uint i = 0; i < tickets.length; i++)
+        for(uint i = 0; i < tokenIds.length; i++)
         {
-            if(spawned(tickets[i])==false)  //O(n) operation
+            if(spawned(tokenIds[i])==false)  //O(n) operation
             {
-                inventory[recipient].push(tickets[i]);
-                spawnedTickets.push(tickets[i]);
+                inventory[recipient].push(tokenIds[i]);
+                spawnedtokenIds.push(tokenIds[i]);
             }
         }
+        //prevent link being reused.
+        signatureChecked[s] == true;
     }
 
-	//check if a spawnable ticket that created in a magic link is redeemed
-    function spawned(uint256 ticket) public view returns (bool)
+	//check if a spawnable tokenId that created in a magic link is redeemed
+    function spawned(uint256 tokenId) public view returns (bool)
     {
-        for(uint i = 0; i < spawnedTickets.length; i++)
+        for(uint i = 0; i < spawnedtokenIds.length; i++)
         {
-            if(spawnedTickets[i] == ticket)
+            if(spawnedtokenIds[i] == tokenId)
             {
                 return true;
             }
@@ -209,33 +213,34 @@ contract Meetup
     }
 
     function passTo(uint256 expiry,
-                    uint256[] ticketIndices,
+                    uint256[] tokenIdIndices,
                     uint8 v,
                     bytes32 r,
                     bytes32 s,
                     address recipient) public payMasterOnly
     {
         require(expiry > block.timestamp || expiry == 0);
-        bytes32 message = encodeMessage(0, expiry, ticketIndices);
+        uint256[] memory tokenIdIndicesForMessage = tokenIdIndices;
+        bytes32 message = encodeMessage(0, expiry, tokenIdIndicesForMessage);
         address giver = ecrecover(message, v, r, s);
-        for(uint i = 0; i < ticketIndices.length; i++)
+        for(uint i = 0; i < tokenIdIndices.length; i++)
         {
-            uint256 index = ticketIndices[i];
+            uint256 index = tokenIdIndices[i];
             //needs to use revert as all changes should be reversed
-            //if the user doesnt't hold all the tickets
+            //if the user doesnt't hold all the tokenIds
             assert(inventory[giver][index] != uint256(0));
-            uint256 ticket = inventory[giver][index];
-            inventory[recipient].push(ticket);
+            uint256 tokenId = inventory[giver][index];
+            inventory[recipient].push(tokenId);
             delete inventory[giver][index];
         }
-        emit PassTo(ticketIndices, v, r, s, recipient);
+        emit PassTo(tokenIdIndices, v, r, s, recipient);
     }
 
-    // Pack value, expiry, tickets into 1 array
-    function encodeMessage(uint value, uint expiry, uint256[] ticketIndices)
+    // Pack value, expiry, tokenIds into 1 array
+    function encodeMessage(uint value, uint expiry, uint256[] tokenIdIndices)
         internal view returns (bytes32)
     {
-        bytes memory message = new bytes(84 + ticketIndices.length * 2);
+        bytes memory message = new bytes(84 + tokenIdIndices.length * 2);
         address contractAddress = getThisContractAddress();
         for (uint i = 0; i < 32; i++)
         {
@@ -252,20 +257,20 @@ contract Meetup
             message[64 + i] = byte(bytes20(contractAddress) << (8 * i));
         }
 
-        for (i = 0; i < ticketIndices.length; i++)
+        for (i = 0; i < tokenIdIndices.length; i++)
         {
-            message[84 + i * 2 ] = byte(ticketIndices[i] >> 8);
-            message[84 + i * 2 + 1] = byte(ticketIndices[i]);
+            message[84 + i * 2 ] = byte(tokenIdIndices[i] >> 8);
+            message[84 + i * 2 + 1] = byte(tokenIdIndices[i]);
         }
 
         return keccak256(message);
     }
 
-    // Pack value, expiry, tickets into 1 array
-    function encodeMessageSpawnable(uint value, uint expiry, uint256[] tickets)
+    // Pack value, expiry, tokenIds into 1 array
+    function encodeMessageSpawnable(uint value, uint expiry, uint256[] tokenIds)
         internal view returns (bytes32)
     {
-        bytes memory message = new bytes(84 + tickets.length * 32);
+        bytes memory message = new bytes(84 + tokenIds.length * 32);
         address contractAddress = getThisContractAddress();
         for (uint i = 0; i < 32; i++)
         {
@@ -282,11 +287,11 @@ contract Meetup
             message[64 + i] = byte(bytes20(contractAddress) << (8 * i));
         }
 
-        for (i = 0; i < tickets.length; i++)
+        for (i = 0; i < tokenIds.length; i++)
         {
             for (uint j = 0; j < 32; j++)
             {
-                message[84 + i * 32 + j] = byte(bytes32(tickets[i] << (8 * j)));
+                message[84 + i * 32 + j] = byte(bytes32(tokenIds[i] << (8 * j)));
             }
         }
         return keccak256(message);
@@ -312,32 +317,32 @@ contract Meetup
         return inventory[msg.sender];
     }
 
-    function transfer(address _to, uint256[] ticketIndices) public
+    function transfer(address _to, uint256[] tokenIdIndices) public
     {
-        for(uint i = 0; i < ticketIndices.length; i++)
+        for(uint i = 0; i < tokenIdIndices.length; i++)
         {
-            uint index = uint(ticketIndices[i]);
+            uint index = uint(tokenIdIndices[i]);
             require(inventory[msg.sender][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[msg.sender][index];
         }
-        emit Transfer(_to, ticketIndices.length);
+        emit Transfer(_to, tokenIdIndices.length);
     }
 
-    function transferFrom(address _from, address _to, uint256[] ticketIndices)
+    function transferFrom(address _from, address _to, uint256[] tokenIdIndices)
         organiserOnly public
     {
-        for(uint i = 0; i < ticketIndices.length; i++)
+        for(uint i = 0; i < tokenIdIndices.length; i++)
         {
-            uint index = uint(ticketIndices[i]);
+            uint index = uint(tokenIdIndices[i]);
             require(inventory[_from][index] != uint256(0));
             //pushes each element with ordering
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[_from][index];
         }
 
-        emit TransferFrom(_from, _to, ticketIndices.length);
+        emit TransferFrom(_from, _to, tokenIdIndices.length);
     }
 
     function endContract() public organiserOnly
