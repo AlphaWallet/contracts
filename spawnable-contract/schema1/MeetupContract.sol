@@ -4,7 +4,6 @@ contract Meetup
 {
     mapping(address => uint256[]) inventory;
     uint256[] public spawnedTickets;
-    mapping(bytes32 => bool) signatureChecked;
     address public organiser;
     address public paymaster;
     uint numOfTransfers = 0;
@@ -183,18 +182,13 @@ contract Meetup
         address giver = ecrecover(message, v, r, s);
         //only the organiser can authorise this
         require(giver == organiser);
-        require(!signatureChecked[s]);
         organiser.transfer(msg.value);
         for(uint i = 0; i < tickets.length; i++)
         {
-            if(spawned(tickets[i])==false)  //O(n) operation
-            {
-                inventory[recipient].push(tickets[i]);
-                spawnedTickets.push(tickets[i]);
-            }
+            require(!spawned(tickets[i]));
+            inventory[recipient].push(tickets[i]);
+            spawnedTickets.push(tickets[i]);
         }
-        //prevent link being reused.
-        signatureChecked[s] == true;
     }
 
 	//check if a spawnable ticket that created in a magic link is redeemed
