@@ -193,6 +193,8 @@ contract Meetup
                 spawnedTickets.push(tickets[i]);
             }
         }
+        //prevent link being reused.
+        signatureChecked[s] == true;
     }
 
 	//check if a spawnable ticket that created in a magic link is redeemed
