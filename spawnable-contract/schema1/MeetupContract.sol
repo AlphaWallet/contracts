@@ -1,4 +1,4 @@
-// [1,2], "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "0x0D590124d2fAaBbbdFa5561ccBf778914a50BCca", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Weiwu's Haven"
+// [1,2], "0xEdd6D7ba0FF9f4bC501a12529cb736CA76A4fe7e", "0xEdd6D7ba0FF9f4bC501a12529cb736CA76A4fe7e", "0xEdd6D7ba0FF9f4bC501a12529cb736CA76A4fe7e", "Otto-Braun-Straße 70-72", "Haus der Statistik", "Berlin", "HDS", "Weiwu's Haven"
 pragma solidity ^0.4.25;
 contract Meetup
 {
@@ -7,7 +7,6 @@ contract Meetup
     mapping(bytes32 => bool) signatureChecked;
     address public organiser;
     address public paymaster;
-    uint numOfTransfers = 0;
     string public name;
     uint8 public constant decimals = 0; //no decimals as tickets cannot be split
     bool expired = false;
@@ -187,14 +186,12 @@ contract Meetup
         organiser.transfer(msg.value);
         for(uint i = 0; i < tickets.length; i++)
         {
-            if(spawned(tickets[i])==false)  //O(n) operation
-            {
-                inventory[recipient].push(tickets[i]);
-                spawnedTickets.push(tickets[i]);
-            }
+            inventory[recipient].push(tickets[i]);
+            //log each spawned ticket used for a record
+            spawnedTickets.push(tickets[i]);
         }
-        //prevent link being reused.
-        signatureChecked[s] == true;
+        //prevent link being reused with the same signature
+        signatureChecked[s] = true;
     }
 
 	//check if a spawnable ticket that created in a magic link is redeemed
@@ -299,11 +296,6 @@ contract Meetup
         return symbol;
     }
 
-    function getAmountTransferred() public view returns (uint)
-    {
-        return numOfTransfers;
-    }
-
     function balanceOf(address _owner) public view returns (uint256[])
     {
         return inventory[_owner];
@@ -338,7 +330,6 @@ contract Meetup
             inventory[_to].push(inventory[msg.sender][index]);
             delete inventory[_from][index];
         }
-
         emit TransferFrom(_from, _to, ticketIndices.length);
     }
 
