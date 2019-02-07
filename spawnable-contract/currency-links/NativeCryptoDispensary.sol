@@ -37,7 +37,8 @@ contract NativeCryptoDispensary {
         require(ecrecover(message, v, r, s) == approvedSigner);
         nonces.push(nonce);
         //price is signed as szabo units
-        receiver.transfer(amount * (1 szabo));
+        uint256 weiValue = uint256(amount) * (1 szabo); //need to cast to uint256 otherwise value is corrupted
+        receiver.transfer(weiValue);
     }
 
     function formMessage(
