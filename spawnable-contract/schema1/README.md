@@ -68,7 +68,7 @@ token = {
 }
 ```
 
-If you complare based-on-spawnable/tokens.xsl and based-on-tickets/tokens.xsl, you can see what needs to be done for displaying the data.
+If you compare based-on-spawnable/tokens.xsl and based-on-tickets/tokens.xsl, you can see what needs to be done for displaying the data.
 
 One consideration I kept in mind is the web3 v1 is asynchronous, whereas the web3 v0.x APIs are synchronous. But I think by making it asynchronous like we have now seems to work with both versions.
 
@@ -87,4 +87,4 @@ If they don't, they can use this callback and the arguments to figure out what h
 
 So A) and B) are the core parts of the TBML API. In (A), we can also stuff the entire list of tokens in the user's Ethereum wallet in there. I am abit wary about performance, but this simple approach has quite a number of advantages. Perhaps it can be partially mitigated by adding a permission call that TBML developers have to make to make `tokens` accessible, maybe with https://eips.ethereum.org/EIPS/eip-1102 (which we should implement anyway) or a new function call.
 
-The development and debugging experience is a little tedious, I'm working with the simulator, so I can drop updated files and run a web inspector on the simulator's TBML webview to look at the console.log output. But I believe this is something we need to look into a bit more. I found that it's still possible to hardcode web3.tokens.current and run the same HTML/JavaScript standalone though. So that's a good compliment.
+The development and debugging experience is a little tedious, I'm working with the simulator, so I can drop updated files and run a web inspector on the simulator's TBML webview to look at the console.log output. But I believe this is something we need to look into a bit more. I found that it's still possible to hardcode web3.tokens.current and run the same HTML/JavaScript standalone though. So that's a good complement.
