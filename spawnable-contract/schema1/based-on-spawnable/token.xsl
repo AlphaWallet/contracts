@@ -87,10 +87,10 @@
         constructor(props) {
         super(props)
 
-        const hardcodedCurrentToken = {
+        //hhh rename currentToken1 to say that it's hardcoded for testing. But normally it should fail
+        const currentToken1 = {
           name: "Reserve Token",
           symbol: "RSRV",
-          _count: 2,
           instances: [
               {
                 name: "Reserve Token",
@@ -111,7 +111,7 @@
         let currentToken
         if (typeof web3 == "undefined") {
           console.log("Using hardcoded currentToken data for testing")
-          currentToken = hardcodedCurrentToken
+          currentToken = currentToken1
 
           //hhh remove
           console.log("Running timer to simulate changes to hardcoded currentToken data")
@@ -139,7 +139,6 @@
                 }
              })
           }, 3000)
-          this.setState = { currentToken: currentToken }
         } else {
           console.log("Accessing web3.tokens")
           currentToken = web3.tokens.current

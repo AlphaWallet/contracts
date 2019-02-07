@@ -19,12 +19,30 @@
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"><xsl:comment/></script>
         <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"><xsl:comment/></script>
         <style type="text/css">
+          tr {
+          display: inline-block;
+          width: 50%;
+          }
+
+          tr:nth-child(odd) {
+          text-align: left;
+          }
+
+          tr:nth-child(even) {
+          text-align: right;
+          }
+
+          th, td {
+          display: block;
+          }
+
           table {
           width: 48%;
           min-width: 16em;
           margin: 1%;
           border: thin ridge;
           padding: 1ex;
+          float: left;
           background-color: whitesmoke;
           border: thin solid silver;
           box-shadow: 5pt 5pt silver;

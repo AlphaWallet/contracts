@@ -31,17 +31,17 @@
           </tr>
           <tr>
             <td>
-              {this.props.building}
+              {this.props.venue}
             </td>
           </tr>
           <tr>
             <td>
-              (i) {this.props.time == null ? "": this.props.time.toLocaleDateString()} (i) S{this.props.section} (i) {this.props.numero}
+              (i) {this.props.time == null ? "": this.props.time.toLocaleDateString()} (i) {this.props.countryA}-{this.props.countryB} (i) M{this.props.match}
             </td>
           </tr>
           <tr>
             <td>
-              [time] {this.props.street}, {this.props.locality}, {this.props.state}, {this.props.country}
+              {time}, {this.props.locality}
             </td>
           </tr>
         </tbody>
@@ -66,14 +66,11 @@
               key: each.symbol,
               _count: each._count,
               category: each.category,
-              building: each.building,
-              section: each.section,
-              numero: each.numero,
+              venue: each.venue,
+              countryA: each.countryA,
+              countryB: each.countryB,
               match: each.match,
-              street: each.street,
               locality: each.locality,
-              state: each.state,
-              country: each.country,
               time: each.time,
             });
           });
@@ -87,10 +84,10 @@
         constructor(props) {
         super(props)
 
-        const hardcodedCurrentToken = {
+        //hhh rename currentToken1 to say that it's hardcoded for testing. But normally it should fail
+        const currentToken1 = {
           name: "Reserve Token",
           symbol: "RSRV",
-          _count: 2,
           instances: [
               {
                 name: "Reserve Token",
@@ -111,7 +108,7 @@
         let currentToken
         if (typeof web3 == "undefined") {
           console.log("Using hardcoded currentToken data for testing")
-          currentToken = hardcodedCurrentToken
+          currentToken = currentToken1
 
           //hhh remove
           console.log("Running timer to simulate changes to hardcoded currentToken data")
@@ -139,7 +136,6 @@
                 }
              })
           }, 3000)
-          this.setState = { currentToken: currentToken }
         } else {
           console.log("Accessing web3.tokens")
           currentToken = web3.tokens.current
@@ -184,7 +180,6 @@
         })
 
         //hhh template access doesn't work here. Have to fix and get "Vouchers", maybe include into tbml JS object?
-        //hhh should be 10 Meetup Vouchers (symbol). The translated word "Vouchers" should appear
         return React.createElement(
           "div",
           null,
