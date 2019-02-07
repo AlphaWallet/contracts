@@ -1,6 +1,7 @@
 //magic link encoding 0x04
 //send any native currency to this contract and use the contract balance to move the funds
-//Ropsten: 0x9d928a678eeaaEfA19eF73E5368830b3476C0678
+//Ropsten: 0xc0b1ba94EaDE6BBdcA8dB6B13a70E4349267d920
+// Paymaster and signer: 0x6ebBB3BDd71B39749fFd6c400684A52C61d17A37
 pragma solidity 0.5.1;
 contract NativeCryptoDispensary {
 
