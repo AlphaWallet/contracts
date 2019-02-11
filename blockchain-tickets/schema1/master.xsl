@@ -19,29 +19,29 @@
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"><xsl:comment/></script>
         <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"><xsl:comment/></script>
         <style type="text/css">
-          table {
-          width: 48%;
-          min-width: 16em;
-          margin: 1%;
-          border: thin ridge;
-          padding: 1ex;
-          background-color: whitesmoke;
-          border: thin solid silver;
-          box-shadow: 5pt 5pt silver;
-          }
+          <!--table {-->
+          <!--width: 48%;-->
+          <!--min-width: 16em;-->
+          <!--margin: 1%;-->
+          <!--border: thin ridge;-->
+          <!--padding: 1ex;-->
+          <!--background-color: whitesmoke;-->
+          <!--border: thin solid silver;-->
+          <!--box-shadow: 5pt 5pt silver;-->
+          <!--}-->
 
-          h1 {
-          text-align: center;
-          }
+          <!--h1 {-->
+          <!--text-align: center;-->
+          <!--}-->
 
-          html {
-          background-color: #54c1e2;
-          }
+          <!--html {-->
+          <!--background-color: #54c1e2;-->
+          <!--}-->
 
-          body {
-          border-radius: 10pt 10pt 10pt 10pt;
-          background-color: white;
-          }
+          <!--body {-->
+          <!--border-radius: 10pt 10pt 10pt 10pt;-->
+          <!--background-color: white;-->
+          <!--}-->
         </style>
       </head>
       <body>
