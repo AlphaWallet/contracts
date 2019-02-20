@@ -82,10 +82,10 @@
             }
             currentTokenInstance = hardcodedCurrentTokenInstance
           } else {
-            currentTokenInstance = web3.tokens.currentInstance
+            currentTokenInstance = web3.tokens.data.currentInstance
 
             web3.tokens.dataChanged = (oldTokens, updatedTokens) => {
-              const currentTokenInstance = web3.tokens.currentInstance
+              const currentTokenInstance = web3.tokens.data.currentInstance
 			  const domHtml = new Token(currentTokenInstance).render()
 			  document.getElementById('root').innerHTML = domHtml
             }

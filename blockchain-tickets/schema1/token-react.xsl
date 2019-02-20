@@ -84,7 +84,7 @@
             }
             currentTokenInstance = hardcodedCurrentTokenInstance
           } else {
-            currentTokenInstance = web3.tokens.currentInstance
+            currentTokenInstance = web3.tokens.data.currentInstance
 
             //hhh better way?
             web3.tokens.dataChanged = (oldTokens, updatedTokens) => {
@@ -95,7 +95,7 @@
               //  return { currentTokenInstance: updatedTokens.currentInstance }
               //})
               //hhh not really using React for state, just re-create the entire DOM again
-              const currentTokenInstance = web3.tokens.currentInstance
+              const currentTokenInstance = web3.tokens.data.currentInstance
               var token = React.createElement(Token, {
                 //hhh may not need key
                 key: currentTokenInstance.symbol,

@@ -13,14 +13,17 @@ The shape of the data is:
 ```
 web3.tokens = [
     currentInstance: instance,
-    current: {
-        token
-    },
+    current: token,
     all: [
         token,
         token,
         ...
     ],
+    definition: {
+        "0xD8e5F58DE3933E1E35f9c65eb72cb188674624F3": tokenDefinition,
+        "0xf018225735f70a1961B6B8aa07B005e6392072E7": tokenDefinition,
+        ...
+    },
     dataChanged: function(oldTokens, updatedWeb3Tokens)
 ]
 ```
@@ -29,8 +32,7 @@ with:
 
 ```
 token = {
-    symbol: "symbol",
-    name: "Some Coin"
+    contractAddress: "0xD8e5F58DE3933E1E35f9c65eb72cb188674624F3",
     instances: [
         instance,
         instance,
@@ -40,33 +42,55 @@ token = {
 
 instance = {
     _count: 1,
+    contractAddress: "0xD8e5F58DE3933E1E35f9c65eb72cb188674624F3",
     numero: 11
     section: "22",
     building: "Some building",
     street: "Some street",
     country: "SG",
-    attributeNames: {
-        category: "Cat",
-        countryA: "Team A"
-    }
+    ...
+}
+
+tokenDefinition = {
+    attributes: {
+        attributeId: attribute,
+        name: {
+            value: "Tickets test",
+        }
+        symbol: {
+            value: "TEST",
+        }
+        category: {
+            name: "Cat",
+        },
+        countryA: {
+            name: "Team A",
+        },
+        ...
+    },
+    grouping: {...},
+    ordering: {...},
+},
+
+attribute = {
+    name: "Cat",
+    value: "TEST",
 }
 ```
 
 Note that a token instance is the equivalent of a  ticket token ID or a bundle of token IDs.
 
-The localized readable name of attributes are available in the `web3.tokens.currentInstance.attributeNames` dictionary. `web3.tokens.all` and `web3.tokens.current` are *not* available in this iteration, but when they are, we should consider if `attributeNames` should be duplicated in the `instance`(s) of each token.
+`web3.tokens.all` and `web3.tokens.current` are *not* available in this iteration.
+
+The metadata of a token is available in `web3.tokens.definition` with the contract address in [EIP55](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md) as the key. The metadata is basically a 1:1 map from the relevant parts of the asset definition. Only the localized attribute names (and not grouping, ordering) is available for now.
+
+For example, to access the localized attribute name `"countryA"` for the token with contract `"0xD8e5F58DE3933E1E35f9c65eb72cb188674624F3"` use:
 
 ```
-token = {
-    symbol: "symbol",
-    name: "Some Coin"
-    instances: [
-        instance,
-        instance,
-        ...
-    ]
-}
+web3.tokens.definition["0xD8e5F58DE3933E1E35f9c65eb72cb188674624F3"].attributes["countryA"]["name"]
 ```
+
+An attribute can have a `"value"` instead. Specifically, the `"name"` and `"symbol"` attributes has a value so TBML developers can be access them even if the user does not hold any token instance in their wallet.
 
 If you compare [spawnable-contract/schema1/token-plain-javascript.xsl](../spawnable-contract/schema1/token-plain-javascript.xsl) and [blockchain-tickets/schema1/token-plain-javascript.xsl](../blockchain-tickets/schema1/token-plain-javascript.xsl), you can see what needs to be done for changing the layout (aside from some boilerplate).
 
