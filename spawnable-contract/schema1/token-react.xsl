@@ -68,10 +68,7 @@
   <xsl:template name="tokenRendering">
           <![CDATA[
         <script type="text/babel">
-          let currentTokenInstance
           if (typeof web3 == "undefined") {
-            //hhh not always have web3. Flow is wrong
-            //currentTokenInstance = web3.tokens.data.currentInstance
             const hardcodedCurrentTokenInstance = {
               name: "Reserve Token",
               symbol: "RSRV",
@@ -87,10 +84,23 @@
               street: "STREET",
               time: new Date(),
             }
-            currentTokenInstance = hardcodedCurrentTokenInstance
+            var token = React.createElement(Token, {
+              //hhh may not need key
+              key: hardcodedCurrentTokenInstance.symbol,
+              _count: hardcodedCurrentTokenInstance._count,
+              category: hardcodedCurrentTokenInstance.category,
+              building: hardcodedCurrentTokenInstance.building,
+              section: hardcodedCurrentTokenInstance.section,
+              numero: hardcodedCurrentTokenInstance.numero,
+              match: hardcodedCurrentTokenInstance.match,
+              street: hardcodedCurrentTokenInstance.street,
+              locality: hardcodedCurrentTokenInstance.locality,
+              state: hardcodedCurrentTokenInstance.state,
+              country: hardcodedCurrentTokenInstance.country,
+              time: hardcodedCurrentTokenInstance.time,
+            })
+            ReactDOM.render(token, document.getElementById('root'));
           } else {
-            currentTokenInstance = web3.tokens.data.currentInstance
-
             //hhh better way?
             web3.tokens.dataChanged = (oldTokens, updatedTokens) => {
               //If we aren't using React, we can get a diff ourselves
@@ -118,25 +128,7 @@
               })
               ReactDOM.render(token, document.getElementById('root'));
             }
-
           }
-
-          var token = React.createElement(Token, {
-            //hhh may not need key
-            key: currentTokenInstance.symbol,
-            _count: currentTokenInstance._count,
-            category: currentTokenInstance.category,
-            building: currentTokenInstance.building,
-            section: currentTokenInstance.section,
-            numero: currentTokenInstance.numero,
-            match: currentTokenInstance.match,
-            street: currentTokenInstance.street,
-            locality: currentTokenInstance.locality,
-            state: currentTokenInstance.state,
-            country: currentTokenInstance.country,
-            time: currentTokenInstance.time,
-          })
-          ReactDOM.render(token, document.getElementById('root'));
         </script>
     <body>
       <div id="root"/>

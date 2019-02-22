@@ -54,7 +54,7 @@
             <span class="tbml-time">${time}</span>, <span>${this.props.locality}</span>
           </div>
       </div>`
-	  return result
+      return result
       }
       }
     </script>
@@ -64,7 +64,6 @@
   <xsl:template name="tokenRendering">
           <![CDATA[
         <script>
-          let currentTokenInstance
           if (typeof web3 == "undefined") {
             const hardcodedCurrentTokenInstance = {
               name: "Reserve Token",
@@ -78,31 +77,16 @@
               locality: "Singapore",
               time: new Date(),
             }
-            currentTokenInstance = hardcodedCurrentTokenInstance
+            const instance = new Token(hardcodedCurrentTokenInstance)
+            const domHtml = instance.render()
+            document.getElementById('root').innerHTML = domHtml
           } else {
-            currentTokenInstance = web3.tokens.data.currentInstance
-
             web3.tokens.dataChanged = (oldTokens, updatedTokens) => {
               const currentTokenInstance = web3.tokens.data.currentInstance
-			  const domHtml = new Token(currentTokenInstance).render()
-			  document.getElementById('root').innerHTML = domHtml
+              const domHtml = new Token(currentTokenInstance).render()
+              document.getElementById('root').innerHTML = domHtml
             }
           }
-
-		  const instance = new Token({
-              name: "Reserve Token",
-              symbol: "RSRV",
-              _count: 1,
-              category: 1,
-              venue: "VENUE",
-              countryA: "SG",
-              countryB: "MY",
-              match: "11",
-              locality: "Singapore",
-              time: new Date(),
-		  })
-	  const domHtml = instance.render()
-      document.getElementById('root').innerHTML = domHtml
         </script>
     <body>
       <div id="root"/>

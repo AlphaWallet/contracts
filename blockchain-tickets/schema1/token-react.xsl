@@ -68,7 +68,6 @@
   <xsl:template name="tokenRendering">
           <![CDATA[
         <script type="text/babel">
-          let currentTokenInstance
           if (typeof web3 == "undefined") {
             const hardcodedCurrentTokenInstance = {
               name: "Reserve Token",
@@ -82,10 +81,20 @@
               locality: "Singapore",
               time: new Date(),
             }
-            currentTokenInstance = hardcodedCurrentTokenInstance
+            var token = React.createElement(Token, {
+              //hhh may not need key
+              key: hardcodedCurrentTokenInstance.symbol,
+              _count: hardcodedCurrentTokenInstance._count,
+              category: hardcodedCurrentTokenInstance.category,
+              venue: hardcodedCurrentTokenInstance.venue,
+              countryA: hardcodedCurrentTokenInstance.countryA,
+              countryB: hardcodedCurrentTokenInstance.countryB,
+              match: hardcodedCurrentTokenInstance.match,
+              locality: hardcodedCurrentTokenInstance.locality,
+              time: hardcodedCurrentTokenInstance.time,
+            })
+            ReactDOM.render(token, document.getElementById('root'));
           } else {
-            currentTokenInstance = web3.tokens.data.currentInstance
-
             //hhh better way?
             web3.tokens.dataChanged = (oldTokens, updatedTokens) => {
               //If we aren't using React, we can get a diff ourselves
@@ -111,20 +120,6 @@
               ReactDOM.render(token, document.getElementById('root'));
             }
           }
-
-          var token = React.createElement(Token, {
-            //hhh may not need key
-            key: currentTokenInstance.symbol,
-            _count: currentTokenInstance._count,
-            category: currentTokenInstance.category,
-            venue: currentTokenInstance.venue,
-            countryA: currentTokenInstance.countryA,
-            countryB: currentTokenInstance.countryB,
-            match: currentTokenInstance.match,
-            locality: currentTokenInstance.locality,
-            time: currentTokenInstance.time,
-          })
-          ReactDOM.render(token, document.getElementById('root'));
         </script>
     <body>
       <div id="root"/>
