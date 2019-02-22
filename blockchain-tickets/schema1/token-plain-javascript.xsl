@@ -89,7 +89,7 @@
             }
           }
 
-		  const instance = newToken({
+		  const instance = new Token({
               name: "Reserve Token",
               symbol: "RSRV",
               _count: 1,
