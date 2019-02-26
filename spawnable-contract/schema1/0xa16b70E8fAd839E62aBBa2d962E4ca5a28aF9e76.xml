@@ -44,7 +44,7 @@
     <tb:feature type="magic-link">
       <tb:include>valid</tb:include>
       <tb:exclude>discounted</tb:exclude>
-      <tb:prefix>https://app.awallet.io/</tb:prefix>
+      <tb:prefix>https://xdai.aw.app/</tb:prefix>
       <tb:message type="exclude" xml:lang="en">%name% can't be traded with MagicLink</tb:message>
       <tb:message type="include">Only %name% can be traded with MagicLink</tb:message>
       <tb:message type="exclude" xml:lang="zh">%name% 不能用MagicLink交易</tb:message>
@@ -53,13 +53,13 @@
     <tb:feature type="transfer-link">
       <tb:exclude>discounted</tb:exclude>
       <tb:exclude>invited</tb:exclude>
-      <tb:prefix>https://app.awallet.io/</tb:prefix>
+      <tb:prefix>https://xdai.aw.app/</tb:prefix>
       <tb:message type="exclude" xml:lang="en">%name% can't be traded on the market</tb:message>
       <tb:message type="exclude" xml:lang="zh">%name% 不能再在市场上交易</tb:message>
     </tb:feature>
     <tb:feature type="feemaster">
       <tb:exclude>expired</tb:exclude>
-      <tb:feemaster>https://app.awallet.io:80/api/claimToken</tb:feemaster>
+      <tb:feemaster>https://xdai.aw.app:80/api/claimToken</tb:feemaster>
       <tb:message type="include" xml:lang="en">%name% can't be imported</tb:message>
       <tb:message type="include" xml:lang="zh">不能收下%name%</tb:message>
     </tb:feature>
