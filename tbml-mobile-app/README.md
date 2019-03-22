@@ -96,6 +96,25 @@ If you compare [spawnable-contract/schema1/token-plain-javascript.xsl](../spawna
 
 One consideration I kept in mind is that the web3 v1 API is asynchronous, whereas the web3 v0.x APIs are synchronous. But I think by making it asynchronous like we have now seems to work with both versions.
 
+A special note about date values. Instead of a scalar value, Dates are presented as a dictionary:
+
+```
+instance = {
+    section: "22",
+    someDate: {
+        venue: Wed Jan 30 2019 14:16:54 GMT+1100 (AEDT),
+        locale: Wed Jan 30 2019 17:16:54 GMT+1100 (AEDT)
+    }
+    ...
+}
+```
+
+The value of `someDate.locale` would be what you expect normally. `someDate.venue` is the date you would use for displaying a venue-specific time, eg. a soccer game match time, that should always be displayed in the venue's timezone. to display such a time, use `someDate.venue` and print it in your locale. The value has already been corrected for it:
+
+```
+return instance.someDate.venue.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+```
+
 B. Callback
 ---
 TBML developers can hook into the callback like this if they use React:
