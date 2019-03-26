@@ -1,50 +1,52 @@
 <style type="text/css">
 @font-face {
-  font-family: 'SourceSansPro-Light';
-  src: local('SourceSansPro-Light'),url('SourceSansPro-Light.otf') format('opentype');
+  font-family: 'SourceSansPro';
+  src: url('\(Constants.tokenScriptUrlSchemeForResources)SourceSansPro-Light.otf') format('opentype');
   font-weight: lighter;
 }
 @font-face {
-  font-family: 'SourceSansPro-Regular';
-  src: local('SourceSansPro-Regular'),url('SourceSansPro-Regular.otf') format('opentype');
+  font-family: 'SourceSansPro';
+  src: url('\(Constants.tokenScriptUrlSchemeForResources)SourceSansPro-Regular.otf') format('opentype');
   font-weight: normal;
 }
 @font-face {
-  font-family: 'SourceSansPro-Semibold';
-  src: local('SourceSansPro-Semibold'),url('SourceSansPro-Semibold.otf') format('opentype');
-  font-weight: bold;
+  font-family: 'SourceSansPro';
+  src: url('\(Constants.tokenScriptUrlSchemeForResources)SourceSansPro-Semibold.otf') format('opentype');
+  font-weight: bolder;
 }
 @font-face {
-  font-family: 'SourceSansPro-Bold';
-  src: local('SourceSansPro-Bold'),url('SourceSansPro-Bold.otf') format('opentype');
-  font-weight: boldedr;
+  font-family: 'SourceSansPro';
+  src: url('\(Constants.tokenScriptUrlSchemeForResources)SourceSansPro-Bold.otf') format('opentype');
+  font-weight: bold;
 }
 .tbml-count {
-  font-family: "SourceSansPro-Bold";
+  font-family: "SourceSansPro";
   font-weight: bolder;
   font-size: 21px;
   color: rgb(117, 185, 67);
 }
 .tbml-category {
-  font-family: "X";
-  font-weight: normal;
+  font-family: "SourceSansPro";
+  font-weight: lighter;
   font-size: 21px;
   color: rgb(67, 67, 67);
 }
 .tbml-venue {
-  font-family: "SourceSansPro-Light";
+  font-family: "SourceSansPro";
   font-weight: lighter;
   font-size: 16px;
   color: rgb(67, 67, 67);
 }
 .tbml-date {
-  font-family: "SourceSansPro-Semibold";
+  font-family: "SourceSansPro";
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   color: rgb(112, 112, 112);
+  margin-left: 7px;
+  margin-right: 7px;
 }
 .tbml-time {
-  font-family: "SourceSansPro-Light";
+  font-family: "SourceSansPro";
   font-weight: lighter;
   font-size: 16px;
   color: rgb(112, 112, 112);
