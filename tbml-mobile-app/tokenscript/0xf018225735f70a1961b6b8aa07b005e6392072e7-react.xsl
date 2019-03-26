@@ -9,7 +9,7 @@
     <style type="text/css">
       .data-icon {
         height:16px;
-        vertical-align: middle:
+        vertical-align: middle;
       }
     </style>
 

@@ -9,7 +9,7 @@
     <style type="text/css">
       .data-icon {
         height:16px;
-        vertical-align: middle:
+        vertical-align: middle
       }
     </style>
 
@@ -46,7 +46,7 @@
             <span class="tbml-date">M${this.props.match}</span>
           </div>
           <div>
-            <span class="tbml-time">${time}</span>, <span>${this.props.locality}</span>
+            <span class="tbml-time">${time}, ${this.props.locality}</span>
           </div>
       </div>`
       return result
