@@ -3,7 +3,7 @@ contract Proxy {
 }
 
 //ERC20 compat but implemented functions do nothing
-contract AlphaWalletMembershipToken {
+contract AlphaWalletDiscover {
     
     modifier authorised {
         require(msg.sender == paymaster || msg.sender == admin);
@@ -14,7 +14,7 @@ contract AlphaWalletMembershipToken {
     address paymaster;
     uint public decimals = 0;
     string public symbol = "ALP";
-    string public name = "AlphaWallet Membership";
+    string public name = "AlphaWallet Discover";
 
     constructor(address payable assignedAdmin, address assignedPaymaster) public {
         admin = assignedAdmin;
