@@ -35,15 +35,19 @@ contract AlphaWalletDiscover {
     //can still use this for erc721 tokens, replacing amount for tokenId 
     function discover(
         address[] memory services, 
-        address user, 
+        address payable user, 
         uint[] memory amount
-    ) public authorised returns(bool) {
+    ) public payable authorised returns(bool) {
         //Discover allows an AlphaWallet user to recieve a small airdrop of a particular token service
         //Example: user wants to discover Compound, we airdrop cDAI and they have the cards automatically show up in their wallet
         for(uint i = 0; i < services.length; i++) {
             Proxy proxy = Proxy(services[i]);
             //Either all tokens are sent or none are sent 
             require(proxy.transferFrom(admin, user, amount[i]));
+        }
+        if(msg.value != 0) {
+            //paymaster convers the ether 
+            user.transfer(msg.value);
         }
         return true;
     }
