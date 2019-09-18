@@ -2,13 +2,11 @@ contract Proxy {
     function transferFrom(address from, address to, uint tokens) external returns (bool success){}
 }
 
+// Admin account (Trezor): 0xc2667d2B3949D3B11dD273559297BdC84dB1126b
+// Paymaster account (attaches Ether): 0x0d590124d2faabbbdfa5561ccbf778914a50bcca
+// Deployed on mainnet: 0xaB34A8B5Df7048c971f50dfa38d5e45D50638eC7
 //ERC20 compat but implemented functions do nothing
 contract AlphaWalletDiscover {
-    
-    modifier authorised {
-        require(msg.sender == paymaster || msg.sender == admin);
-        _;
-    }
     
     address payable admin;
     address paymaster;
@@ -16,7 +14,7 @@ contract AlphaWalletDiscover {
     string public symbol = "ALP";
     string public name = "AlphaWallet Discover";
 
-    constructor(address payable assignedAdmin, address assignedPaymaster) public {
+    constructor(address payable assignedAdmin, address payable assignedPaymaster) public {
         admin = assignedAdmin;
         paymaster = assignedPaymaster;
     }
@@ -36,19 +34,18 @@ contract AlphaWalletDiscover {
     function discover(
         address[] memory services, 
         address payable user, 
-        uint[] memory amount
-    ) public payable authorised returns(bool) {
+        uint[] memory amounts
+    ) public payable returns(bool) {
+        require(msg.sender == paymaster || msg.sender == admin);
         //Discover allows an AlphaWallet user to recieve a small airdrop of a particular token service
         //Example: user wants to discover Compound, we airdrop cDAI and they have the cards automatically show up in their wallet
         for(uint i = 0; i < services.length; i++) {
             Proxy proxy = Proxy(services[i]);
-            //Either all tokens are sent or none are sent 
-            require(proxy.transferFrom(admin, user, amount[i]));
+            //Either all tokens are sent or none are sent as transferFrom will throw
+            //if it fails
+            proxy.transferFrom(admin, user, amounts[i]);
         }
-        if(msg.value != 0) {
-            //paymaster convers the ether 
-            user.transfer(msg.value);
-        }
+        user.transfer(msg.value);
         return true;
     }
     
