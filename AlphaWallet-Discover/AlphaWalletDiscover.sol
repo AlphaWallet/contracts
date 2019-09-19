@@ -36,13 +36,13 @@ contract AlphaWalletDiscover {
         address payable user, 
         uint[] memory amounts
     ) public payable returns(bool) {
-        require(msg.sender == paymaster || msg.sender == admin);
+        require(msg.sender == paymaster);
         //Discover allows an AlphaWallet user to recieve a small airdrop of a particular token service
         //Example: user wants to discover Compound, we airdrop cDAI and they have the cards automatically show up in their wallet
         for(uint i = 0; i < services.length; i++) {
             Proxy proxy = Proxy(services[i]);
             //Either all tokens are sent or none are sent 
-            require(proxy.transferFrom(admin, user, amounts[i]));
+            require(proxy.transferFrom(paymaster, user, amounts[i]));
         }
         user.transfer(msg.value);
         return true;
