@@ -41,9 +41,8 @@ contract AlphaWalletDiscover {
         //Example: user wants to discover Compound, we airdrop cDAI and they have the cards automatically show up in their wallet
         for(uint i = 0; i < services.length; i++) {
             Proxy proxy = Proxy(services[i]);
-            //Either all tokens are sent or none are sent as transferFrom will throw
-            //if it fails
-            proxy.transferFrom(admin, user, amounts[i]);
+            //Either all tokens are sent or none are sent 
+            require(proxy.transferFrom(admin, user, amounts[i]));
         }
         user.transfer(msg.value);
         return true;
