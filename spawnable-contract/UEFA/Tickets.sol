@@ -175,11 +175,11 @@ contract Meetup
                     uint8 v,
                     bytes32 r,
                     bytes32 s,
-                    address recipient) public payable
+                    address recipient) public
     {
         require(expiry > block.timestamp || expiry == 0);
         require(msg.sender == paymaster);
-        bytes32 message = encodeMessageSpawnable(msg.value, expiry, tickets);
+        bytes32 message = encodeMessageSpawnable(expiry, tickets);
         address giver = ecrecover(message, v, r, s);
         //only the organiser can authorise this
         require(giver == organiser);
@@ -265,12 +265,8 @@ contract Meetup
     function encodeMessageSpawnable(uint value, uint expiry, uint256[] tickets)
         internal view returns (bytes32)
     {
-        bytes memory message = new bytes(84 + tickets.length * 32);
+        bytes memory message = new bytes(52 + tickets.length * 32);
         address contractAddress = getThisContractAddress();
-        for (uint i = 0; i < 32; i++)
-        {
-            message[i] = byte(bytes32(value << (8 * i)));
-        }
 
         for (i = 0; i < 32; i++)
         {
