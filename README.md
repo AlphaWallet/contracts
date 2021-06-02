@@ -2,7 +2,9 @@
 
 This repository stored Spawnable token contracts and various payment contracts created by James Sangalli in 2019.
 
-Spawnable tokens refer to the tokens that didn't exist on the blockchain until used for the first time. An attestation (a signed message) attests to the existence of such a token with a specific owner. However, unless a buyer of the token is trying to purchase it from that owner, it can remain off-chain and TokenScript would treat it the same as if it were on-chain, since it can "spawn" on-chain if needed.
+Spawnable tokens refer to the tokens that didn't exist on the blockchain until being traded for the first time.
+
+> An attestation (a signed message) attests to the existence of such a token with a specific owner. However, unless a buyer of the token is trying to purchase it from that owner, it can remain off-chain and TokenScript would treat it the same as if it were on-chain, since it can "spawn" on-chain if needed.
 
 Such a design is the basis of TokenScript's 2018/2019 FIFA/UEFA ticket experiments, where tickets "spawn" on-chain if needed.
 
