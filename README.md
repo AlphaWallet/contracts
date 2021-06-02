@@ -6,6 +6,6 @@ Spawnable tokens refer to the tokens that didn't exist on the blockchain until u
 
 Such a design is the basis of TokenScript's 2018/2019 FIFA/UEFA ticket experiments, where tickets "spawn" on-chain if needed.
 
-At the moment - 2021 - Weiwu is expanding the functionality to allow NFT artwork to spawn only when someone is willing to pay for it.
+At the moment - 2021 - Weiwu is expanding the functionality to allow NFT artwork to spawn only when someone is willing to pay for it. See more in [DvP architect](dvp_arch.md)
 
 In financial institutions, this is termed "deliver-versus-payment", hence the name of this repo. It was initially called Spawnable by our team members enamoured by first-person P2P shooters, where a player "spawn" into existence.
